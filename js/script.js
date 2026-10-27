@@ -1,16 +1,21 @@
 "use strict";
 
-/* ORTAK MENÜ */
+/* ========================================
+   GAMEGUIDE - ORTAK MENÜ
+======================================== */
 
 const header = document.getElementById("site-header");
 const footer = document.getElementById("site-footer");
 const currentPage = document.body.dataset.page || "home";
+
+/* ÜST MENÜ */
 
 if (header) {
     header.className = "site-header";
 
     header.innerHTML = `
         <div class="container navbar">
+
             <a class="logo" href="index.html" aria-label="GameGuide ana sayfa">
                 <div class="logo-mark">G</div>
                 <div>Game<span>Guide</span></div>
@@ -21,12 +26,15 @@ if (header) {
                 id="menuToggle"
                 aria-label="Menüyü aç veya kapat"
                 aria-expanded="false"
-                type="button">☰</button>
+                type="button">
+                ☰
+            </button>
 
             <nav class="nav-links" id="navLinks" aria-label="Ana menü">
                 <a data-page-link="home" href="index.html">Ana Sayfa</a>
                 <a data-page-link="wiki" href="wiki.html">Wiki</a>
                 <a data-page-link="guides" href="rehberler.html">Rehberler</a>
+                <a data-page-link="tips" href="onemli-oneriler.html">Önemli Öneriler</a>
                 <a data-page-link="updates" href="guncellemeler.html">Güncellemeler</a>
                 <a data-page-link="faq" href="faq.html">SSS</a>
             </nav>
@@ -35,8 +43,11 @@ if (header) {
                 <a class="btn" href="wiki.html">Wiki'yi Keşfet</a>
                 <a class="btn btn-primary" href="rehberler.html">Rehberler</a>
             </div>
+
         </div>
     `;
+
+    /* Aktif sayfayı işaretle */
 
     const activeLink = header.querySelector(
         `[data-page-link="${currentPage}"]`
@@ -47,32 +58,41 @@ if (header) {
         activeLink.setAttribute("aria-current", "page");
     }
 
+    /* Mobil menü */
+
     const toggle = document.getElementById("menuToggle");
     const nav = document.getElementById("navLinks");
 
-    toggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("open");
+    if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("open");
 
-        toggle.textContent = open ? "✕" : "☰";
-        toggle.setAttribute("aria-expanded", String(open));
-    });
-
-    nav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-            toggle.textContent = "☰";
-            toggle.setAttribute("aria-expanded", "false");
+            toggle.textContent = isOpen ? "✕" : "☰";
+            toggle.setAttribute("aria-expanded", String(isOpen));
         });
-    });
+
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("open");
+
+                toggle.textContent = "☰";
+                toggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 }
 
-/* ORTAK FOOTER */
+
+/* ========================================
+   ORTAK FOOTER
+======================================== */
 
 if (footer) {
     footer.className = "site-footer";
 
     footer.innerHTML = `
         <div class="container footer-inner">
+
             <div>
                 <a class="logo" href="index.html">
                     <div class="logo-mark">G</div>
@@ -93,14 +113,19 @@ if (footer) {
                 <a href="index.html">Ana Sayfa</a>
                 <a href="wiki.html">Wiki</a>
                 <a href="rehberler.html">Rehberler</a>
+                <a href="onemli-oneriler.html">Önemli Öneriler</a>
                 <a href="guncellemeler.html">Güncellemeler</a>
                 <a href="faq.html">SSS</a>
             </nav>
+
         </div>
     `;
 }
 
-/* TÜRKÇE KARAKTERLERE DUYARLI ARAMA YARDIMCISI */
+
+/* ========================================
+   TÜRKÇE KARAKTERLİ ARAMA YARDIMCISI
+======================================== */
 
 function normalizeText(value) {
     return String(value || "")
@@ -109,7 +134,10 @@ function normalizeText(value) {
         .replace(/[\u0300-\u036f]/g, "");
 }
 
-/* ANA SAYFA ARAMASI */
+
+/* ========================================
+   ANA SAYFA ARAMASI
+======================================== */
 
 const siteSearch = document.getElementById("siteSearch");
 const homeSearch = document.getElementById("homeSearch");
@@ -125,88 +153,166 @@ if (siteSearch && homeSearch) {
             return;
         }
 
-        window.location.href = "wiki.html?q=" + encodeURIComponent(query);
+        window.location.href =
+            "wiki.html?q=" + encodeURIComponent(query);
     });
 }
 
-/* WIKI ARAMASI */
+
+/* ========================================
+   WIKI ARAMASI VE KATEGORİ FİLTRELEME
+======================================== */
 
 const wikiSearch = document.getElementById("wikiSearch");
-const wikiCards = [...document.querySelectorAll("#wikiList .wiki-card")];
+
+const wikiCards = [
+    ...document.querySelectorAll("#wikiList .wiki-card")
+];
+
 const wikiEmpty = document.getElementById("wikiEmpty");
 
-function filterWiki() {
-    if (!wikiSearch) return;
+const wikiSearchButton = document.getElementById("wikiSearchButton");
+const showAllWiki = document.getElementById("showAllWiki");
 
-    const query = normalizeText(wikiSearch.value);
-    let visible = 0;
+let selectedCategory = "";
+
+function filterWiki() {
+    if (!wikiSearch) {
+        return;
+    }
+
+    const query = normalizeText(wikiSearch.value.trim());
+    let visibleCount = 0;
 
     wikiCards.forEach(card => {
-        const searchable = normalizeText(
+        const searchableText = normalizeText(
             card.innerText + " " + (card.dataset.search || "")
         );
 
-        const matches = searchable.includes(query);
+        const matchesSearch = searchableText.includes(query);
 
-        card.hidden = !matches;
+        const matchesCategory =
+            !selectedCategory ||
+            card.dataset.category === selectedCategory;
 
-        if (matches) visible++;
+        const isVisible = matchesSearch && matchesCategory;
+
+        card.hidden = !isVisible;
+
+        if (isVisible) {
+            visibleCount++;
+        }
     });
 
     if (wikiEmpty) {
-        wikiEmpty.hidden = visible !== 0;
+        wikiEmpty.hidden = visibleCount !== 0;
     }
 }
+
+
+/* URL üzerinden gelen arama ve kategori */
 
 if (wikiSearch) {
-    wikiSearch.addEventListener("input", filterWiki);
-
     const params = new URLSearchParams(window.location.search);
 
-    const initialQuery = params.get("q");
-    const category = params.get("category");
+    const initialQuery = params.get("q") || "";
+    const initialCategory = params.get("category") || "";
 
-    if (initialQuery) {
-        wikiSearch.value = initialQuery;
+    wikiSearch.value = initialQuery;
+    selectedCategory = initialCategory;
+
+    filterWiki();
+
+    wikiSearch.addEventListener("input", () => {
         filterWiki();
-    } else if (category) {
-        wikiCards.forEach(card => {
-            card.hidden = card.dataset.category !== category;
-        });
-    }
+    });
 }
 
-const wikiSearchButton = document.getElementById("wikiSearchButton");
+
+/* Ara butonu */
 
 if (wikiSearchButton) {
-    wikiSearchButton.addEventListener("click", filterWiki);
+    wikiSearchButton.addEventListener("click", () => {
+        filterWiki();
+
+        const wikiSection = document.getElementById("wikiList");
+
+        if (wikiSection) {
+            wikiSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
 }
 
-const showAllWiki = document.getElementById("showAllWiki");
+
+/* Tüm içerikleri göster */
 
 if (showAllWiki) {
     showAllWiki.addEventListener("click", () => {
-        if (wikiSearch) wikiSearch.value = "";
+        selectedCategory = "";
 
-        wikiCards.forEach(card => {
-            card.hidden = false;
-        });
+        if (wikiSearch) {
+            wikiSearch.value = "";
+        }
 
-        if (wikiEmpty) wikiEmpty.hidden = true;
+        filterWiki();
     });
 }
 
-/* SSS ARAMASI */
+
+/* Wiki kategori butonları */
+
+const categoryButtons = document.querySelectorAll(".category-filter");
+
+categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category || "";
+
+        if (wikiSearch) {
+            wikiSearch.value = "";
+        }
+
+        filterWiki();
+
+        const wikiSection = document.getElementById("wikiList");
+
+        if (wikiSection) {
+            wikiSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+});
+
+
+/* ========================================
+   SSS ARAMASI
+======================================== */
 
 const faqSearch = document.getElementById("faqSearch");
-const faqItems = [...document.querySelectorAll("#faqList details")];
+
+const faqItems = [
+    ...document.querySelectorAll("#faqList details")
+];
 
 if (faqSearch) {
     faqSearch.addEventListener("input", () => {
-        const query = normalizeText(faqSearch.value);
+        const query = normalizeText(faqSearch.value.trim());
 
         faqItems.forEach(item => {
-            item.hidden = !normalizeText(item.innerText).includes(query);
+            const text = normalizeText(item.innerText);
+
+            item.hidden = !text.includes(query);
         });
     });
 }
+
+
+/* ========================================
+   SAYFA KONSOL KONTROLÜ
+======================================== */
+
+console.info("GameGuide JavaScript başarıyla yüklendi.");
