@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10140f">
-<meta name="description" content="GameGuide Minecraft bilgi merkezi: bloklar, eşyalar, moblar, biyomlar, rehberler, PvP taktikleri ve güncellemeler.">
+<meta name="theme-color" content="#10170f">
+<meta name="description" content="GameGuide Minecraft bilgi merkezi. Minecraft Wiki, bloklar, eşyalar, moblar, biyomlar, rehberler ve PvP taktikleri.">
 <title>GameGuide | Minecraft Bilgi Merkezi</title>
 
 <style>
 :root {
-    --bg: #10140f;
-    --panel: #181e17;
-    --panel2: #20291e;
-    --green: #79df72;
-    --text: #f1f5ee;
-    --muted: #a6b09f;
-    --border: #303b2d;
-    --radius: 13px;
+    --bg: #10170f;
+    --panel: #1a2418;
+    --panel2: #273624;
+    --green: #8fdf55;
+    --text: #f4f3df;
+    --muted: #c0c5a9;
+    --border: #425538;
 }
 
 * {
@@ -31,10 +30,20 @@ html {
 }
 
 body {
-    background: var(--bg);
     color: var(--text);
+    background-color: #11170f;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(79,123,47,.18), transparent 48%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px),
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px);
+    background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.65;
+}
+
+::selection {
+    background: #8fdf55;
+    color: #172012;
 }
 
 a {
@@ -60,23 +69,42 @@ summary:focus-visible {
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     width: min(1120px, 92%);
     margin: auto;
 }
 
-/* NAVBAR */
+/* ÜST MENÜ */
 
 header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(16, 20, 15, .96);
-    border-bottom: 1px solid var(--border);
+    background: rgba(17,24,15,.97);
+    border-bottom: 4px solid #406c2c;
+    box-shadow: 0 5px 0 rgba(0,0,0,.22);
     backdrop-filter: blur(14px);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #85d64b 0 24px,
+        #69b43c 24px 48px,
+        #4d8d31 48px 72px
+    );
 }
 
 .navbar {
     min-height: 70px;
+    padding-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,6 +118,8 @@ header {
     font-size: 22px;
     font-weight: 900;
     white-space: nowrap;
+    letter-spacing: -.7px;
+    text-shadow: 2px 2px #000;
 }
 
 .logo-icon {
@@ -97,9 +127,11 @@ header {
     place-items: center;
     width: 38px;
     height: 38px;
-    background: var(--green);
-    color: #142011;
-    border-radius: 9px;
+    color: #183016;
+    background: linear-gradient(#9de75b 30%, #5b9b35 30%);
+    border: 3px solid #d4f4a4;
+    border-radius: 2px;
+    box-shadow: inset -4px -4px #0003, 3px 3px #080d08;
 }
 
 .logo span:last-child {
@@ -110,37 +142,78 @@ header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 17px;
+    gap: 8px;
 }
 
 .nav a {
-    color: var(--muted);
-    font-size: 12px;
+    padding: 8px 9px;
+    color: #d3dbbd;
+    border: 1px solid transparent;
+    font-size: 10px;
     font-weight: 700;
-    transition: color .2s;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    transition: .2s;
 }
 
 .nav a:hover {
-    color: var(--green);
+    color: #fff;
+    background: #2b4223;
+    border-color: #638d43;
+    box-shadow: inset 0 -3px var(--green);
 }
 
 .menu-button {
     display: none;
     padding: 8px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
     color: white;
     background: var(--panel);
+    border: 2px solid #668c48;
+    border-radius: 2px;
+    box-shadow: 3px 3px #090d08;
 }
 
 /* ANA SAYFA */
 
 .hero {
-    padding: 70px 0 50px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 82px 0 50px;
     background:
-        radial-gradient(ellipse at 12% 4%, #294529 0%, transparent 45%),
-        radial-gradient(ellipse at 85% 0%, #1d3522 0%, transparent 40%),
-        var(--bg);
+        linear-gradient(180deg, rgba(19,37,28,.54), rgba(17,23,15,.96)),
+        repeating-linear-gradient(90deg, transparent 0 47px, #77ad560d 47px 48px),
+        radial-gradient(ellipse at 18% 10%, #2c6137 0%, transparent 42%),
+        radial-gradient(ellipse at 85% 0%, #244d31 0%, transparent 42%),
+        #121a12;
+    border-bottom: 14px solid #493722;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -14px;
+    height: 14px;
+    background: repeating-linear-gradient(
+        90deg,
+        #72b943 0 32px,
+        #5c9b35 32px 64px,
+        #82cc49 64px 96px
+    );
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .2;
+    background-image: radial-gradient(#a8d680 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    z-index: -1;
 }
 
 .hero-layout {
@@ -154,30 +227,35 @@ header {
     display: inline-block;
     padding: 6px 11px;
     margin-bottom: 16px;
-    color: var(--green);
-    background: #203020;
-    border: 1px solid #3d5837;
-    border-radius: 30px;
+    color: #d7f5b6;
+    background: #223d23;
+    border: 2px solid #588342;
+    border-radius: 2px;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1px;
+    box-shadow: 3px 3px #0a0e09;
 }
 
 .hero h1 {
-    font-size: clamp(35px, 5vw, 58px);
-    line-height: 1.12;
-    letter-spacing: -1.7px;
     margin-bottom: 18px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(35px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    text-shadow: 3px 3px #070b07, 5px 5px #0004;
 }
 
 .hero h1 span {
-    color: var(--green);
+    color: #9ee65b;
+    text-shadow: 3px 3px #253e1b;
 }
 
 .hero p {
     max-width: 610px;
     margin-bottom: 22px;
-    color: var(--muted);
+    color: #d2dcc4;
     font-size: 14px;
 }
 
@@ -188,23 +266,24 @@ header {
     gap: 8px;
     max-width: 580px;
     padding: 7px;
-    border: 1px solid #43533e;
-    border-radius: 11px;
-    background: var(--panel);
+    background: #151c13;
+    border: 3px solid #526c40;
+    border-radius: 2px;
+    box-shadow: 5px 5px #080c07, inset 0 0 0 2px #0b100a;
 }
 
 .search-box input {
     flex: 1;
     min-width: 0;
     padding: 10px;
+    color: #f9f8e9;
+    background: transparent;
     border: 0;
     outline: 0;
-    color: white;
-    background: transparent;
 }
 
 .search-box input::placeholder {
-    color: #8d9986;
+    color: #98a78b;
 }
 
 .button {
@@ -212,29 +291,32 @@ header {
     align-items: center;
     justify-content: center;
     padding: 9px 13px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--panel);
     color: var(--text);
+    background: var(--panel);
+    border: 2px solid #536b43;
+    border-radius: 2px;
+    box-shadow: 3px 3px #070b06;
     font-size: 12px;
     font-weight: 800;
+    letter-spacing: .3px;
+    text-transform: uppercase;
     transition: .2s;
 }
 
 .button:hover {
-    border-color: var(--green);
     color: var(--green);
+    border-color: var(--green);
 }
 
 .button-primary {
-    color: #142011;
-    background: var(--green);
-    border-color: var(--green);
+    color: #172410;
+    background: linear-gradient(#a5ed68, #6db63f);
+    border-color: #a1e96b;
 }
 
 .button-primary:hover {
-    color: #142011;
-    background: #96ed8f;
+    color: #172410;
+    background: linear-gradient(#c3f78f, #86cf4f);
 }
 
 .hero-tags {
@@ -246,52 +328,75 @@ header {
 
 .hero-tags button {
     padding: 5px 10px;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: transparent;
+    color: #d4dec7;
+    background: #182418;
+    border: 2px solid #4d6640;
+    border-radius: 2px;
+    box-shadow: 2px 2px #080d07;
     font-size: 11px;
 }
 
 .hero-tags button:hover {
-    color: var(--green);
-    border-color: var(--green);
+    color: white;
+    background: #36562a;
 }
 
-/* GÖRSEL ALAN */
+.search-status {
+    min-height: 20px;
+    margin-top: 9px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 1px 1px #080d07;
+}
+
+/* BLOK GÖRSELİ */
 
 .hero-art {
+    position: relative;
     min-height: 230px;
     display: grid;
     place-items: center;
-    position: relative;
+    filter: drop-shadow(5px 7px #0004);
 }
 
 .hero-block {
+    position: relative;
     width: 165px;
     height: 165px;
     display: grid;
     place-items: center;
-    border: 1px solid #4c7145;
-    border-radius: 23px;
-    background: linear-gradient(145deg, #456b3b, #1c311e);
+    background:
+        linear-gradient(180deg, transparent 0 22%, #2f5e2259 22% 29%, transparent 29%),
+        repeating-linear-gradient(90deg, transparent 0 18px, #0002 18px 22px),
+        repeating-linear-gradient(0deg, transparent 0 18px, #ffffff0b 18px 22px),
+        linear-gradient(#74be43 0 27%, #3f7f2e 27% 34%, #8e6339 34% 100%);
+    border: 4px solid #172414;
+    border-radius: 0;
+    box-shadow:
+        inset 7px 7px #fff2,
+        inset -8px -8px #0004,
+        8px 8px #080d08,
+        0 0 60px #61a94029;
     font-size: 74px;
-    transform: rotate(-5deg);
-    box-shadow: 0 0 80px #57964a20;
+    text-shadow: 3px 3px #0006;
+    transform: rotate(-3deg);
 }
 
 .floating {
     position: absolute;
     padding: 10px 13px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 9px;
+    color: #e4ebd7;
+    background: #1b2719;
+    border: 2px solid #576c42;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0007;
     font-size: 11px;
 }
 
 .floating strong {
-    color: var(--green);
     display: block;
+    color: #a5e76a;
 }
 
 .float-one {
@@ -309,98 +414,137 @@ header {
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 15px;
     margin-top: 28px;
 }
 
 .stat {
+    position: relative;
     padding: 14px;
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    background: #141a13;
+    background: linear-gradient(135deg, #202e1d, #121a11);
+    border: 3px solid #35472c;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px #11170f, 4px 4px #080d07;
+}
+
+.stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #6fae3f;
 }
 
 .stat strong {
     display: block;
-    color: var(--green);
+    color: #a7ec69;
+    font-family: "Courier New", monospace;
     font-size: 20px;
 }
 
 .stat span {
-    color: var(--muted);
+    color: #c7d2b9;
     font-size: 11px;
 }
 
-/* BÖLÜMLER */
+/* SAYFA BÖLÜMLERİ */
 
 .section {
+    position: relative;
     padding: 39px 0;
 }
 
 .section-alt {
-    background: #131812;
-    border-block: 1px solid #222b20;
+    background:
+        linear-gradient(#141e12f5, #0f160ef5),
+        repeating-linear-gradient(90deg, #263322 0 24px, #1f2a1b 24px 48px);
+    border-block: 4px solid #33482a;
 }
 
 .section-heading {
+    position: relative;
     margin-bottom: 19px;
+    padding-left: 15px;
+}
+
+.section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 4px;
+    width: 5px;
+    background: linear-gradient(#9ce25d 0 50%, #548b34 50% 100%);
+    box-shadow: 2px 2px #080d07;
 }
 
 .kicker {
-    display: block;
-    color: var(--green);
+    display: inline-block;
+    padding: 4px 7px;
+    margin-bottom: 7px;
+    color: #a8e76d;
+    background: #1d311a;
+    border: 1px solid #4e7337;
+    border-radius: 1px;
     font-size: 10px;
     font-weight: 900;
-    letter-spacing: 1.2px;
-    margin-bottom: 5px;
+    letter-spacing: 1.5px;
 }
 
 .section-heading h2 {
-    font-size: clamp(23px, 3vw, 30px);
     margin-bottom: 5px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(23px, 3vw, 30px);
+    font-weight: 900;
+    text-shadow: 2px 2px #060906;
 }
 
 .section-heading p {
-    color: var(--muted);
-    font-size: 13px;
     max-width: 780px;
+    color: #bdc9b2;
+    font-size: 13px;
 }
 
-/* AÇILIR MENÜLER */
+/* AÇILIR KARTLAR */
 
 .accordion-list {
     display: grid;
-    gap: 10px;
+    gap: 12px;
 }
 
 .accordion,
 .topic {
     min-width: 0;
     overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    background: var(--panel);
+    background: linear-gradient(135deg, #202b1d, #161e14);
+    border: 2px solid #34452c;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0005;
     transition: border-color .2s;
 }
 
 .accordion:hover,
 .topic:hover {
-    border-color: #4a6542;
+    border-color: #75a84c;
 }
 
 .accordion[open],
 .topic[open] {
-    border-color: #46633e;
-    background: #171e16;
+    background: #1a2717;
+    border-color: #80b74e;
 }
 
 .accordion > summary,
 .topic > summary {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 13px;
     min-height: 63px;
     padding: 13px 15px;
+    background: linear-gradient(90deg, #4c703426, transparent 65%);
     cursor: pointer;
     list-style: none;
     user-select: none;
@@ -420,9 +564,11 @@ header {
     width: 27px;
     height: 27px;
     margin-left: auto;
-    border: 1px solid var(--border);
-    border-radius: 7px;
     color: var(--green);
+    background: #192416;
+    border: 2px solid #476239;
+    border-radius: 1px;
+    box-shadow: 2px 2px #080d07;
     font-size: 19px;
     line-height: 1;
 }
@@ -430,7 +576,9 @@ header {
 .accordion[open] > summary::after,
 .topic[open] > summary::after {
     content: "−";
-    background: #263824;
+    color: white;
+    background: #42662d;
+    border-color: #8dc65b;
 }
 
 .item-icon,
@@ -440,8 +588,10 @@ header {
     place-items: center;
     width: 39px;
     height: 39px;
-    border-radius: 9px;
-    background: #263525;
+    background: linear-gradient(#72b644 0 23%, #4d862e 23% 31%, #705135 31% 100%);
+    border: 2px solid #50683d;
+    border-radius: 1px;
+    box-shadow: inset 3px 3px #fff2, inset -3px -3px #0003, 2px 2px #0a0e08;
     font-size: 20px;
 }
 
@@ -452,36 +602,39 @@ header {
 .summary-text strong {
     display: block;
     color: var(--text);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .summary-text small {
     display: block;
     margin-top: 3px;
-    color: var(--muted);
+    color: #b4c1a6;
     font-size: 11px;
     font-weight: 400;
 }
 
 .accordion-content {
     padding: 14px 15px 16px;
-    border-top: 1px solid #293427;
+    background: #070c0726;
+    border-top: 2px solid #33472a;
 }
 
 .content-description {
     margin: 0 0 13px;
-    color: var(--muted);
+    color: #c1ceb4;
     font-size: 12px;
     line-height: 1.75;
 }
 
 .topic {
-    border-radius: 9px;
-    background: #151b14;
+    background: #141c12;
+    border-color: #34442c;
+    border-radius: 2px;
+    box-shadow: 2px 2px #0003;
 }
 
 .topic > summary {
-    min-height: 51px;
+    min-height: 54px;
     padding: 9px 11px;
     gap: 10px;
     font-size: 12px;
@@ -491,7 +644,9 @@ header {
 .topic-icon {
     width: 31px;
     height: 31px;
-    border-radius: 7px;
+    background: linear-gradient(135deg, #34442c, #1c2918);
+    border-color: #4a5a3e;
+    box-shadow: inset 2px 2px #fff1;
     font-size: 16px;
 }
 
@@ -501,17 +656,22 @@ header {
 
 .topic[open] > summary {
     color: var(--green);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid #394d2e;
+}
+
+.topic > summary span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .topic-body {
     padding: 12px 14px 14px;
-    color: #dce5d7;
+    color: #dbe4d0;
     font-size: 12px;
 }
 
 .topic-body p {
-    line-height: 1.8;
+    line-height: 1.85;
 }
 
 .topic-body p + p {
@@ -536,16 +696,24 @@ header {
     gap: 8px;
 }
 
+/* BÜTÜN KATEGORİLER */
+
 .topic.all-items {
     margin-bottom: 4px;
-    border-color: #40563a;
-    background: #192117;
+    background: linear-gradient(135deg, #263b21, #182516);
+    border: 3px solid #56783d;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0005;
 }
 
 .topic.all-items > summary {
-    min-height: 53px;
-    color: var(--text);
+    min-height: 58px;
+    background: linear-gradient(90deg, #2f4a25, #1a2917);
     font-weight: 800;
+}
+
+.topic.all-items > summary .topic-icon {
+    background: linear-gradient(#80c84a 0 32%, #416e2b 32% 42%, #765332 42% 100%);
 }
 
 .topic.all-items[open] > summary {
@@ -554,53 +722,66 @@ header {
 
 .all-items-body {
     padding: 10px 11px 13px;
+    background: #080d072e;
 }
 
 .all-items-body > p {
     margin: 0 0 12px;
-    color: var(--muted);
+    color: #c5d3b9;
     font-size: 12px;
     line-height: 1.7;
 }
 
-.search-status {
-    min-height: 20px;
-    margin-top: 9px;
-    color: var(--green);
-    font-size: 12px;
-}
+/* DUYURU VE SUNUCU KARTI */
 
 .notice {
     margin-top: 15px;
     padding: 12px 14px;
-    border: 1px solid #34462d;
-    border-radius: 10px;
-    background: #172016;
     color: var(--muted);
+    background: linear-gradient(90deg, #20311b, #151e13);
+    border: 2px solid #4b6c36;
+    border-left: 6px solid #89d44d;
+    border-radius: 2px;
+    box-shadow: 3px 3px #0004;
     font-size: 12px;
 }
 
 .notice strong {
-    color: var(--green);
+    color: #a7e86a;
 }
 
-/* MINECRAFT SUNUCUSU */
-
 .server-card {
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
     padding: clamp(22px, 4vw, 36px);
-    border: 1px solid #40563a;
-    border-radius: 15px;
     background:
-        radial-gradient(ellipse at 90% 0%, #294529 0%, transparent 48%),
-        #171e16;
+        linear-gradient(180deg, #0e221ab3, #131c0ff5),
+        repeating-linear-gradient(90deg, #294526 0 32px, #203a20 32px 64px),
+        #1b2c19;
+    border: 4px solid #506f3a;
+    border-radius: 2px;
+    box-shadow: 7px 7px #070b06;
+}
+
+.server-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 9px;
+    background: repeating-linear-gradient(90deg, #8dd550 0 26px, #66a83e 26px 52px, #477c30 52px 78px);
 }
 
 .server-card-copy {
+    position: relative;
+    z-index: 1;
     max-width: 680px;
+    padding-top: 8px;
 }
 
 .server-badge {
@@ -609,10 +790,11 @@ header {
     gap: 8px;
     padding: 6px 11px;
     margin-bottom: 12px;
-    border: 1px solid #496841;
-    border-radius: 30px;
-    background: #203020;
     color: var(--green);
+    background: #253c1e;
+    border: 2px solid #78b84a;
+    border-radius: 1px;
+    box-shadow: 3px 3px #080c07;
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 1px;
@@ -620,13 +802,29 @@ header {
 
 .server-card h3 {
     margin-bottom: 8px;
+    font-family: "Courier New", monospace;
     font-size: clamp(21px, 3vw, 28px);
+    font-weight: 900;
+    text-shadow: 3px 3px #080d07;
 }
 
 .server-card p {
     max-width: 650px;
-    color: var(--muted);
+    color: #d2ddc8;
     font-size: 13px;
+}
+
+.server-status {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 12px;
+    color: #b5ef7d;
+    background: #243c1e;
+    border: 2px solid #669343;
+    border-radius: 1px;
+    box-shadow: 3px 3px #080c07;
+    font-size: 12px;
+    font-weight: 800;
 }
 
 .server-icon {
@@ -635,59 +833,62 @@ header {
     height: 100px;
     display: grid;
     place-items: center;
-    border: 1px solid #4c7145;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #456b3b, #1c311e);
+    background:
+        repeating-linear-gradient(90deg, transparent 0 12px, #0002 12px 16px),
+        linear-gradient(#7cc64a 0 30%, #4e8a30 30% 38%, #89613b 38% 100%);
+    border: 4px solid #172414;
+    border-radius: 1px;
+    box-shadow: inset 4px 4px #fff2, inset -5px -5px #0004, 5px 5px #090d07;
     font-size: 46px;
 }
 
-.server-status {
-    margin-top: 14px;
-    color: var(--green);
-    font-size: 12px;
-    font-weight: 800;
-}
-
-/* FOOTER */
+/* ALT BÖLÜM */
 
 footer {
     padding: 28px 0;
-    border-top: 1px solid var(--border);
-    background: #0c100b;
+    background:
+        linear-gradient(#0c110af2, #0c110afb),
+        repeating-linear-gradient(90deg, #25331e 0 32px, #1b2817 32px 64px);
+    border-top: 6px solid #537c36;
 }
 
 .footer-inner {
     display: flex;
     justify-content: space-between;
-    gap: 18px;
     align-items: center;
     flex-wrap: wrap;
+    gap: 18px;
 }
 
 .footer-inner strong {
     color: var(--green);
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    text-shadow: 2px 2px #050805;
 }
 
 .footer-inner p {
-    font-size: 11px;
     color: var(--muted);
+    font-size: 11px;
 }
 
 .footer-links {
     display: flex;
-    gap: 14px;
     flex-wrap: wrap;
+    gap: 8px;
 }
 
 .footer-links button {
-    background: none;
-    border: 0;
+    padding: 6px 8px;
     color: var(--muted);
+    background: #172115;
+    border: 1px solid #3c5230;
     font-size: 11px;
 }
 
 .footer-links button:hover {
-    color: var(--green);
+    color: white;
+    background: #2d4623;
 }
 
 [hidden] {
@@ -709,15 +910,15 @@ footer {
     }
 
     .hero {
-        padding-top: 45px;
+        padding-top: 55px;
     }
 
     .nav {
-        gap: 11px;
+        gap: 4px;
     }
 
     .nav a {
-        font-size: 11px;
+        padding: 6px;
     }
 
     .stats {
@@ -731,7 +932,7 @@ footer {
     .navbar {
         min-height: 64px;
         flex-wrap: wrap;
-        padding: 10px 0;
+        padding: 8px 0 10px;
     }
 
     .menu-button {
@@ -744,7 +945,7 @@ footer {
         padding: 0 0 10px;
         flex-direction: column;
         align-items: stretch;
-        gap: 0;
+        gap: 4px;
     }
 
     .nav.open {
@@ -752,13 +953,20 @@ footer {
     }
 
     .nav a {
-        padding: 10px 3px;
-        border-top: 1px solid #222b20;
-        font-size: 13px;
+        padding: 10px 8px;
+        margin-top: 4px;
+        background: #182316;
+        border: 1px solid #2d4025;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 43px;
     }
 
     .hero h1 {
-        letter-spacing: -.8px;
+        font-size: clamp(29px, 9vw, 42px);
+        letter-spacing: -1px;
     }
 
     .hero-art {
@@ -768,12 +976,13 @@ footer {
     .hero-block {
         width: 125px;
         height: 125px;
+        border-width: 3px;
         font-size: 55px;
     }
 
     .floating {
-        font-size: 10px;
         padding: 8px;
+        font-size: 10px;
     }
 
     .search-box {
@@ -788,13 +997,25 @@ footer {
         width: 100%;
     }
 
+    .stats {
+        gap: 10px;
+    }
+
+    .stat {
+        padding: 13px 10px;
+    }
+
     .section {
         padding: 30px 0;
     }
 
+    .section-heading h2 {
+        letter-spacing: -1px;
+    }
+
     .accordion > summary {
+        gap: 10px;
         padding: 11px;
-        gap: 9px;
     }
 
     .summary-text small {
@@ -809,11 +1030,6 @@ footer {
         padding: 8px;
     }
 
-    .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
     .server-card {
         align-items: flex-start;
         flex-direction: column-reverse;
@@ -823,6 +1039,11 @@ footer {
         width: 76px;
         height: 76px;
         font-size: 36px;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
 
@@ -844,16 +1065,19 @@ footer {
 
 <header>
     <div class="container navbar">
+
         <a class="logo" href="#anasayfa" aria-label="GameGuide ana sayfa">
             <span class="logo-icon">G</span>
             <span>Game<span>Guide</span></span>
         </a>
 
-        <button id="menuButton"
-                class="menu-button"
-                type="button"
-                aria-expanded="false"
-                aria-controls="nav">☰ Menü</button>
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav"
+        >☰ Menü</button>
 
         <nav id="nav" class="nav" aria-label="Ana menü">
             <a href="#wiki">Minecraft Wiki</a>
@@ -864,15 +1088,19 @@ footer {
             <a href="#guncellemeler">Güncellemeler</a>
             <a href="#sss">SSS</a>
         </nav>
+
     </div>
 </header>
 
 <main>
 
+<!-- ANA SAYFA -->
+
 <section class="hero" id="anasayfa">
     <div class="container">
 
         <div class="hero-layout">
+
             <div>
                 <span class="eyebrow">✦ MINECRAFT BİLGİ MERKEZİ</span>
 
@@ -888,11 +1116,13 @@ footer {
                 </p>
 
                 <form id="searchForm" class="search-box" role="search">
-                    <input id="searchInput"
-                           type="search"
-                           placeholder="Warden, elmas, biyom, PvP..."
-                           aria-label="GameGuide içinde ara"
-                           autocomplete="off">
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Warden, elmas, biyom, PvP..."
+                        aria-label="GameGuide içinde ara"
+                        autocomplete="off"
+                    >
 
                     <button class="button button-primary" type="submit">⌕ Ara</button>
                 </form>
@@ -913,17 +1143,32 @@ footer {
                 <div class="floating float-one"><strong>Wiki</strong>Bilgi merkezi</div>
                 <div class="floating float-two"><strong>⚔️ PvP</strong>Savaş rehberleri</div>
             </div>
+
         </div>
 
         <div class="stats">
-            <div class="stat"><strong>18</strong><span>Wiki kategorisi</span></div>
-            <div class="stat"><strong>12+</strong><span>PvP ve oyun rehberi</span></div>
-            <div class="stat"><strong>100+</strong><span>Keşfedilecek başlık</span></div>
-            <div class="stat"><strong>∞</strong><span>Yeni şeyler öğren</span></div>
+            <div class="stat">
+                <strong>18</strong>
+                <span>Wiki kategorisi</span>
+            </div>
+            <div class="stat">
+                <strong>12+</strong>
+                <span>PvP ve oyun rehberi</span>
+            </div>
+            <div class="stat">
+                <strong>100+</strong>
+                <span>Keşfedilecek başlık</span>
+            </div>
+            <div class="stat">
+                <strong>∞</strong>
+                <span>Yeni şeyler öğren</span>
+            </div>
         </div>
 
     </div>
 </section>
+
+<!-- WIKI -->
 
 <section class="section" id="wiki">
     <div class="container">
@@ -940,48 +1185,68 @@ footer {
     </div>
 </section>
 
+<!-- REHBERLER -->
+
 <section class="section section-alt" id="rehberler">
     <div class="container">
         <div class="section-heading">
             <span class="kicker">ADIM ADIM ÖĞREN</span>
             <h2>Minecraft Rehberleri</h2>
-            <p>Başlangıçtan ileri seviyeye kadar keşfet, hazırlan ve oyun bilgini geliştir.</p>
+            <p>
+                Başlangıçtan ileri seviyeye kadar keşfet, hazırlan ve oyun
+                bilgini geliştir.
+            </p>
         </div>
 
         <div id="guideAccordion" class="accordion-list"></div>
     </div>
 </section>
 
+<!-- PVP -->
+
 <section class="section" id="pvp">
     <div class="container">
         <div class="section-heading">
             <span class="kicker">SAVAŞ REHBERLERİ</span>
             <h2>⚔️ Minecraft PvP Merkezi</h2>
-            <p>Kılıçtan Crystal PvP'ye, BedWars'tan SkyWars'a kadar oyun içi savaş türleri, ekipman ve taktikler.</p>
+            <p>
+                Kılıçtan Crystal PvP'ye, BedWars'tan SkyWars'a kadar
+                oyun içi savaş türleri, ekipman ve taktikler.
+            </p>
         </div>
 
         <div id="pvpAccordion" class="accordion-list"></div>
     </div>
 </section>
 
+<!-- ÖNEMLİ ÖNERİLER -->
+
 <section class="section section-alt" id="ipuclari">
     <div class="container">
         <div class="section-heading">
             <span class="kicker">KÜÇÜK İPUÇLARI, BÜYÜK FARK</span>
             <h2>Önemli Öneriler</h2>
-            <p>Hayatta kalma, kaynak toplama, keşif ve savaş sırasında işine yarayabilecek pratik bilgiler.</p>
+            <p>
+                Hayatta kalma, kaynak toplama, keşif ve savaş sırasında
+                işine yarayabilecek pratik bilgiler.
+            </p>
         </div>
 
         <div id="tipsAccordion" class="accordion-list"></div>
     </div>
 </section>
 
+<!-- GÜNCELLEMELER -->
+
 <section class="section" id="guncellemeler">
     <div class="container">
         <div class="section-heading">
             <span class="kicker">SÜRÜM TAKİBİ</span>
             <h2>Minecraft Güncellemeleri</h2>
-            <p>Java, Bedrock, snapshot ve ön sürüm kavramlarını öğren. Deneysel özelliklerin son sürümde bulunmayabileceğini unutma.</p>
+            <p>
+                Java, Bedrock, snapshot ve ön sürüm kavramlarını öğren.
+                Deneysel özelliklerin son sürümde bulunmayabileceğini unutma.
+            </p>
         </div>
 
         <div id="updatesAccordion" class="accordion-list"></div>
@@ -999,34 +1264,47 @@ footer {
 
 <section class="section" id="sunucumuz">
     <div class="container">
+
         <div class="section-heading">
             <span class="kicker">GAMEGUIDE TOPLULUĞU</span>
             <h2>🎮 Minecraft Sunucumuz</h2>
-            <p>GameGuide'ın Minecraft sunucusu için hazırlıklar sürüyor. Açılış bilgileri burada paylaşılacak.</p>
+            <p>
+                GameGuide'ın Minecraft sunucusu için hazırlıklar sürüyor.
+                Açılış bilgileri burada paylaşılacak.
+            </p>
         </div>
 
         <div class="server-card">
+
             <div class="server-card-copy">
                 <span class="server-badge">✦ YAKINDA</span>
+
                 <h3>Maceraya hazır ol!</h3>
+
                 <p>
                     Minecraft sunucumuz üzerinde çalışmalar devam ediyor.
                     Sunucu açıldığında gerekli bilgiler bu bölümde duyurulacaktır.
                 </p>
+
                 <div class="server-status">Yakında hizmete sunulacaktır.</div>
             </div>
 
             <div class="server-icon" aria-hidden="true">⛏️</div>
+
         </div>
     </div>
 </section>
+
+<!-- SSS -->
 
 <section class="section section-alt" id="sss">
     <div class="container">
         <div class="section-heading">
             <span class="kicker">YARDIM MERKEZİ</span>
             <h2>Sık Sorulan Sorular</h2>
-            <p>GameGuide ve Minecraft hakkında sık sorulan soruların yanıtları.</p>
+            <p>
+                GameGuide ve Minecraft hakkında sık sorulan soruların yanıtları.
+            </p>
         </div>
 
         <div id="faqAccordion" class="accordion-list"></div>
@@ -1037,6 +1315,7 @@ footer {
 
 <footer>
     <div class="container footer-inner">
+
         <div>
             <strong>GAMEGUIDE</strong>
             <p>Minecraft dünyasını keşfetmeye başla.</p>
@@ -1050,6 +1329,7 @@ footer {
         </div>
 
         <p>© <span id="year"></span> GameGuide · Bağımsız topluluk projesi.</p>
+
     </div>
 </footer>
 
@@ -1142,7 +1422,7 @@ const wikiCategories = [
         ["Ovalar", "🌾", "Geniş ve düz alanlarıyla başlangıç üssü kurmak için uygundur. Köyler ve hayvanlar bulunabilir."],
         ["Orman", "🌲", "Ağaç ve odun kaynakları bol olan bir biyomdur. Ağaçlık alanlarda görünürlüğü artırmak için yol ve meşale kullan."],
         ["Çöl", "🏜️", "Kum, kaktüs ve çöl köyleri gibi özellikler içerebilir. Ağaç az olduğundan odun kaynağını önceden hazırla."],
-        ["Tayga", "🌲", "Ladin ağaçları ve çeşitli canlılarla tanınır. Taiga köyleri bazı sürümlerde bulunabilir."],
+        ["Tayga", "🌲", "Ladin ağaçları ve çeşitli canlılarla tanınır. Tayga köyleri bazı sürümlerde bulunabilir."],
         ["Kiraz Korusu", "🌸", "Pembe çiçekli kiraz ağaçlarıyla bilinir. Görsel açıdan etkileyici yapı alanları için tercih edilebilir."],
         ["Mantar Tarlaları", "🍄", "Mooshroom canlıları ve dev mantarlarıyla tanınır. Nadir görülen, kendine özgü bir biyomdur."],
         ["Mangrov Bataklığı", "🌿", "Mangrov ağaçları, çamur ve kurbağalarla ilişkilidir. Kökler ve su yolları hareketi zorlaştırabileceğinden yönünü takip et."],
@@ -1565,7 +1845,7 @@ const importantTips = [
 ];
 
 /* =========================================================
-   GÜNCELLEMELER
+   MINECRAFT GÜNCELLEMELERİ
 ========================================================= */
 
 const updateGroups = [
@@ -1614,7 +1894,7 @@ const faqItems = [
 ];
 
 /* =========================================================
-   YARDIMCI FONKSİYONLAR
+   FONKSİYONLAR
 ========================================================= */
 
 function escapeHTML(value) {
@@ -1634,15 +1914,17 @@ function normalizeText(value) {
         .replace(/[\u0300-\u036f]/g, "");
 }
 
-/* TEK BİR KONU: AÇILIR VE AÇIKLAMAYI AYNI SAYFADA GÖSTERİR */
+/* BİR KONU: AYNI SAYFADA AÇILIR */
 
 function createTopic(item, categoryTitle = "") {
     const [title, icon, description] = item;
     const searchText = [title, icon, description, categoryTitle].join(" ");
 
     return `
-        <details class="topic searchable-leaf"
-                 data-search="${escapeHTML(searchText)}">
+        <details
+            class="topic searchable-leaf"
+            data-search="${escapeHTML(searchText)}">
+
             <summary>
                 <span class="topic-icon">${escapeHTML(icon || "📘")}</span>
                 <span>${escapeHTML(title)}</span>
@@ -1663,9 +1945,10 @@ function createGroup(group) {
         .join("");
 
     return `
-        <details class="accordion filter-group"
-                 data-group-title="${escapeHTML(group.title)}"
-                 data-search="${escapeHTML(group.title + " " + group.description)}">
+        <details
+            class="accordion filter-group"
+            data-group-title="${escapeHTML(group.title)}"
+            data-search="${escapeHTML(group.title + " " + group.description)}">
 
             <summary>
                 <span class="item-icon">${escapeHTML(group.icon || "📚")}</span>
@@ -1691,7 +1974,10 @@ function createGroup(group) {
                     </summary>
 
                     <div class="topic-body all-items-body">
-                        <p>İncelemek istediğin başlığa tıkla. Açıklama aynı sayfada görünecek.</p>
+                        <p>
+                            İncelemek istediğin başlığa tıkla.
+                            Açıklama aynı sayfada görünecek.
+                        </p>
 
                         <div class="sub-accordion-list">
                             ${items}
@@ -1703,8 +1989,7 @@ function createGroup(group) {
     `;
 }
 
-/* WIKI KATEGORİSİ:
-   Kategori → Bütün Kategori → Konu → Açıklama */
+/* WIKI KATEGORİSİ: KATEGORİ → BÜTÜN KATEGORİ → KONU */
 
 function createWikiCategory(category) {
     const items = category.items
@@ -1712,9 +1997,10 @@ function createWikiCategory(category) {
         .join("");
 
     return `
-        <details class="accordion filter-group wiki-category"
-                 data-group-title="${escapeHTML(category.title)}"
-                 data-search="${escapeHTML(category.title + " " + category.description)}">
+        <details
+            class="accordion filter-group wiki-category"
+            data-group-title="${escapeHTML(category.title)}"
+            data-search="${escapeHTML(category.title + " " + category.description)}">
 
             <summary>
                 <span class="item-icon">${escapeHTML(category.icon)}</span>
@@ -1740,7 +2026,10 @@ function createWikiCategory(category) {
                     </summary>
 
                     <div class="topic-body all-items-body">
-                        <p>İncelemek istediğin başlığa tıkla. Açıklaması bu sayfada, başlığın hemen altında açılacak.</p>
+                        <p>
+                            İncelemek istediğin başlığa tıkla.
+                            Açıklaması aynı sayfada, başlığın hemen altında açılacak.
+                        </p>
 
                         <div class="sub-accordion-list">
                             ${items}
@@ -1758,8 +2047,9 @@ function createFAQ(item) {
     const [question, answer] = item;
 
     return `
-        <details class="topic searchable-leaf"
-                 data-search="${escapeHTML(question + " " + answer)}">
+        <details
+            class="topic searchable-leaf"
+            data-search="${escapeHTML(question + " " + answer)}">
 
             <summary>
                 <span class="topic-icon">❓</span>
@@ -1774,7 +2064,7 @@ function createFAQ(item) {
 }
 
 /* =========================================================
-   TÜM BÖLÜMLERİ SAYFAYA YERLEŞTİR
+   TÜM İÇERİKLERİ YERLEŞTİR
 ========================================================= */
 
 document.getElementById("wikiAccordion").innerHTML =
@@ -1836,6 +2126,8 @@ function performSearch(scrollToFirst = false) {
 
     let count = 0;
 
+    /* Konu başlıklarını eşleştir. */
+
     leaves.forEach(leaf => {
         const searchable = normalizeText(
             (leaf.dataset.search || "") + " " + leaf.innerText
@@ -1859,6 +2151,8 @@ function performSearch(scrollToFirst = false) {
             }
         }
     });
+
+    /* Kategori adı arandığında ilgili kategorinin içeriğini göster. */
 
     groups.forEach(group => {
         const groupTitle = normalizeText(
@@ -1893,6 +2187,8 @@ function performSearch(scrollToFirst = false) {
         }
     });
 
+    /* İç içe panelleri görünür tut. */
+
     document.querySelectorAll(".all-items").forEach(panel => {
         const visible = panel.querySelector(
             ".searchable-leaf:not([hidden])"
@@ -1921,7 +2217,9 @@ function performSearch(scrollToFirst = false) {
     }
 }
 
-searchInput.addEventListener("input", () => performSearch(false));
+searchInput.addEventListener("input", () => {
+    performSearch(false);
+});
 
 searchForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -1939,7 +2237,6 @@ document.querySelectorAll("[data-search-term]").forEach(button => {
 
 /* =========================================================
    MOBİL MENÜ VE SAYFA İÇİ GEÇİŞLER
-   Bu bağlantılar başka bir HTML sayfasına yönlendirme yapmaz.
 ========================================================= */
 
 const menuButton = document.getElementById("menuButton");
