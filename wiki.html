@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Wiki | GameGuide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body data-page="wiki">
+
+<header id="site-header"></header>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Ana Sayfa</a> / Wiki
+            </div>
+
+            <span class="eyebrow">MINECRAFT ANSİKLOPEDİSİ</span>
+            <h1>Minecraft <span>Wiki</span></h1>
+            <p>Bloklar, eşyalar, moblar, biyomlar ve oyun mekanikleri hakkında bilgi edin.</p>
+
+            <div class="search-box">
+                <input id="wikiSearch" type="search" placeholder="Wiki içeriklerinde ara...">
+                <button class="btn btn-primary" id="wikiSearchButton" type="button">Ara</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <h2>Kategoriler</h2>
+                    <p>İncelemek istediğin içerik türünü seç.</p>
+                </div>
+            </div>
+
+            <div class="category-grid">
+                <button class="category-card category-filter" data-category="bloklar">
+                    <div class="category-icon">🧱</div>
+                    <h3>Bloklar</h3>
+                    <p>Yapı ve işlevsel bloklar.</p>
+                </button>
+
+                <button class="category-card category-filter" data-category="esyalar">
+                    <div class="category-icon">⚔️</div>
+                    <h3>Eşyalar</h3>
+                    <p>Silahlar, zırhlar ve araçlar.</p>
+                </button>
+
+                <button class="category-card category-filter" data-category="moblar">
+                    <div class="category-icon">🐉</div>
+                    <h3>Moblar</h3>
+                    <p>Dost canlıları ve düşmanlar.</p>
+                </button>
+
+                <button class="category-card category-filter" data-category="biyomlar">
+                    <div class="category-icon">🌲</div>
+                    <h3>Biyomlar</h3>
+                    <p>Dünyanın farklı bölgeleri.</p>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <h2>Wiki içerikleri</h2>
+                    <p>Her kartı seçerek ilgili detay sayfasını açabilirsin.</p>
+                </div>
+
+                <button class="btn" id="showAllWiki" type="button">Tümünü göster</button>
+            </div>
+
+            <div class="card-grid" id="wikiList">
+
+                <a class="wiki-card" data-category="moblar" data-search="warden mob derin karanlık"
+                   href="wiki-detay.html?item=warden">
+                    <div class="card-art">👹</div>
+                    <div class="card-body">
+                        <span class="badge">Mob</span>
+                        <h3>Warden</h3>
+                        <p>Derin Karanlık'ta yaşayan güçlü düşman.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+                <a class="wiki-card" data-category="moblar" data-search="ender dragon ejderha boss end"
+                   href="wiki-detay.html?item=ender-dragon">
+                    <div class="card-art">🐲</div>
+                    <div class="card-body">
+                        <span class="badge">Boss</span>
+                        <h3>Ender Dragon</h3>
+                        <p>End boyutunun güçlü boss'u.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+                <a class="wiki-card" data-category="bloklar" data-search="redstone mekanik devre blok"
+                   href="wiki-detay.html?item=redstone">
+                    <div class="card-art">🔴</div>
+                    <div class="card-body">
+                        <span class="badge">Blok ve Mekanik</span>
+                        <h3>Redstone</h3>
+                        <p>Devre ve otomasyon sistemleri.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+                <a class="wiki-card" data-category="esyalar" data-search="netherite zırh eşya silah"
+                   href="wiki-detay.html?item=netherite">
+                    <div class="card-art">🛡️</div>
+                    <div class="card-body">
+                        <span class="badge">Eşya</span>
+                        <h3>Netherite</h3>
+                        <p>Netherite ekipmanları ve yükseltmeleri.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+                <a class="wiki-card" data-category="esyalar" data-search="elmas maden cevher"
+                   href="wiki-detay.html?item=elmas">
+                    <div class="card-art">💎</div>
+                    <div class="card-body">
+                        <span class="badge">Maden</span>
+                        <h3>Elmas</h3>
+                        <p>Değerli ekipmanların üretiminde kullanılan kaynak.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+                <a class="wiki-card" data-category="biyomlar" data-search="derin karanlık biyom sculk"
+                   href="wiki-detay.html?item=derin-karanlik">
+                    <div class="card-art">🌑</div>
+                    <div class="card-body">
+                        <span class="badge">Biyom</span>
+                        <h3>Derin Karanlık</h3>
+                        <p>Sculk blokları ve Antik Şehirlerle bilinen biyom.</p>
+                        <span class="text-link">Detayları gör →</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <p id="wikiEmpty" class="empty-message" hidden>Aramana uygun içerik bulunamadı.</p>
+        </div>
+    </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+</body>
+</html>
