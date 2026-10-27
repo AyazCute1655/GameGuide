@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Minecraft PvP taktikleri, ekipman önerileri ve hayatta kalma ipuçları.">
+
+    <meta name="theme-color" content="#10130f">
+
+    <title>Önemli Öneriler | GameGuide</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .tips-hero {
+            background:
+                radial-gradient(ellipse at 70% 0%, #30462e 0%, transparent 55%),
+                var(--bg);
+        }
+
+        .tips-label {
+            display: inline-block;
+            padding: 6px 11px;
+            margin-bottom: 14px;
+            color: var(--green);
+            background: #223523;
+            border: 1px solid #38553a;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .tips-intro {
+            max-width: 760px;
+            margin-top: 15px;
+            color: var(--muted);
+        }
+
+        .tips-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .tips-navigation a {
+            padding: 9px 13px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .tips-navigation a:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .tip-card {
+            padding: 23px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--green-dark);
+        }
+
+        .tip-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .tip-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .tip-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .tip-number {
+            display: inline-block;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .tips-callout {
+            margin-top: 25px;
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid #38553a;
+            background: #19251a;
+        }
+
+        .tips-callout h3 {
+            margin-bottom: 8px;
+        }
+
+        .tips-callout p {
+            color: var(--muted);
+        }
+
+        .equipment-table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .equipment-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+            background: var(--panel);
+        }
+
+        .equipment-table th,
+        .equipment-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .equipment-table th {
+            color: var(--green);
+            background: #1e261e;
+        }
+
+        .equipment-table td {
+            color: var(--muted);
+        }
+
+        .equipment-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tip-list {
+            display: grid;
+            gap: 13px;
+        }
+
+        .tip-list-item {
+            padding: 17px 20px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+        }
+
+        .tip-list-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tip-list-item p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .tips-bottom {
+            text-align: center;
+            padding: 34px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .tips-bottom p {
+            max-width: 600px;
+            margin: 10px auto 20px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 850px) {
+            .tips-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-bottom {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+
+    <script src="js/script.js" defer></script>
+</head>
+
+<body data-page="tips">
+
+<header id="site-header"></header>
+
+<main>
+
+    <!-- BAŞLIK -->
+
+    <section class="page-hero tips-hero">
+        <div class="container">
+
+            <div class="breadcrumbs">
+                <a href="index.html">Ana Sayfa</a>
+                /
+                <span>Önemli Öneriler</span>
+            </div>
+
+            <span class="eyebrow">GAMEGUIDE TAVSİYELERİ</span>
+
+            <h1>
+                Oyunda daha iyi ol.<br>
+                <span>Akıllıca savaş.</span>
+            </h1>
+
+            <p class="tips-intro">
+                Minecraft'ta PvP, ekipman seçimi ve hayatta kalma
+                konusunda işine yarayacak önerileri keşfet.
+                Temel bilgilerden savaş taktiklerine kadar kendini geliştir.
+            </p>
+
+            <div class="tips-navigation">
+                <a href="#pvp">⚔️ PvP Taktikleri</a>
+                <a href="#ekipman">🛡️ Ekipman</a>
+                <a href="#hayatta-kalma">❤️ Hayatta Kalma</a>
+                <a href="#gelisme">🎯 Gelişme Önerileri</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PVP -->
+
+    <section class="section" id="pvp">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <span class="tips-label">01 / SAVAŞ</span>
+                    <h2>⚔️ PvP Taktikleri</h2>
+                    <p>
+                        Savaş sırasında daha bilinçli hareket etmene
+                        yardımcı olacak temel öneriler.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tips-grid">
+
+                <article class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <span class="tip-number">ÖNERİ 01</span>
+                    <h3>Nişanını takip et</h3>
+                    <p>
+                        Sadece rakibin bulunduğu yere değil, hareket ettiği
+                        yöne de dikkat et. Nişangâhını hedef üzerinde tutmaya
+                        çalış ve hassasiyet ayarını sana uygun şekilde düzenle.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🏃</div>
+                    <span class="tip-number">ÖNERİ 02</span>
+                    <h3>Hareketli kal</h3>
+                    <p>
+                        Saldırı yaparken sürekli aynı yönde hareket etme.
+                        Sağa ve sola yönelerek hareketlerini değiştir.
+                        Böylece rakibin seni takip etmesini zorlaştırabilirsin.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">⏱️</div>
+                    <span class="tip-number">ÖNERİ 03</span>
+                    <h3>Saldırı zamanlamasını öğren</h3>
+                    <p>
+                        Minecraft Java'nın modern savaş sisteminde kılıç
+                        saldırılarının yeniden güç kazanmasını beklemek
+                        önemlidir. Sürekli ve hızlıca tıklamak her zaman
+                        en yüksek hasarı vermez.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🛡️</div>
+                    <span class="tip-number">ÖNERİ 04</span>
+                    <h3>Kalkanını doğru kullan</h3>
+                    <p>
+                        Kalkan, uygun saldırılara karşı korunmana yardımcı
+                        olabilir. Rakibinin saldırılarını takip et ve
+                        savunma ile saldırı arasında doğru zamanı bul.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🏹</div>
+                    <span class="tip-number">ÖNERİ 05</span>
+                    <h3>Menzilli silahları değerlendir</h3>
+                    <p>
+                        Yay, rakibinle aranda mesafe varken işe yarayabilir.
+                        Ok atarken hedefin hareket yönünü hesaba kat.
+                        Yakın mesafede hangi silahı kullanacağını önceden planla.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🧠</div>
+                    <span class="tip-number">ÖNERİ 06</span>
+                    <h3>Rakibinin davranışını gözlemle</h3>
+                    <p>
+                        Rakibin sürekli ileri atılıyorsa mesafeni korumayı,
+                        geri çekiliyorsa çevreni kontrol etmeyi öğren.
+                        Her durumda aynı taktiği uygulamak yerine koşullara uyum sağla.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="tips-callout">
+                <h3>💡 Önemli bilgi: Java ve Bedrock farklı olabilir</h3>
+                <p>
+                    Saldırı zamanlaması, kalkan kullanımı ve bazı savaş
+                    mekanikleri Minecraft sürümüne ve Edition'a göre değişebilir.
+                    Önerileri kendi oynadığın sürümde dene.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EKİPMAN -->
+
+    <section class="section section-alt" id="ekipman">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <span class="tips-label">02 / HAZIRLIK</span>
+                    <h2>🛡️ PvP Ekipman Önerileri</h2>
+                    <p>
+                        Savaşa başlamadan önce envanterini planla.
+                    </p>
+                </div>
+            </div>
+
+            <div class="equipment-table-wrapper">
+                <table class="equipment-table">
+                    <thead>
+                        <tr>
+                            <th>Ekipman</th>
+                            <th>Ne işe yarar?</th>
+                            <th>Öneri</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>🗡️ Kılıç</td>
+                            <td>Yakın dövüşte temel saldırı aracıdır.</td>
+                            <td>Elindeki kaynaklara uygun, güçlü bir kılıç hazırla.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🪓 Balta</td>
+                            <td>Yakın dövüşte kullanılabilir; Java'da kalkanı devre dışı bırakabilir.</td>
+                            <td>Oynadığın sürümdeki savaş mekaniklerini öğren.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🛡️ Zırh</td>
+                            <td>Alınan hasarı azaltmaya yardımcı olur.</td>
+                            <td>Her zırh parçasının dayanıklılığını kontrol et.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🏹 Yay</td>
+                            <td>Uzaktan saldırı yapmanı sağlar.</td>
+                            <td>Oklarını ve atış mesafeni hesaba kat.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🍖 Yiyecek</td>
+                            <td>Açlık ve doğal can yenilenmesi açısından önemlidir.</td>
+                            <td>Savaş öncesi yeterli yiyecek bulundur.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🪣 Su Kovası</td>
+                            <td>Uygun durumlarda düşme hasarını önleyebilir.</td>
+                            <td>Kullanımını güvenli bir alanda önceden dene.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🧱 Bloklar</td>
+                            <td>Geçici engeller veya erişim yolları oluşturabilir.</td>
+                            <td>Kullandığın PvP modunda izin verilen blokları seç.</td>
+                        </tr>
+
+                        <tr>
+                            <td>🪽 Elytra</td>
+                            <td>Uçuş ve hareket kabiliyeti sağlayabilir.</td>
+                            <td>Uçuşun izin verildiği oyun modlarında kullan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HAYATTA KALMA -->
+
+    <section class="section" id="hayatta-kalma">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <span class="tips-label">03 / SAVUNMA</span>
+                    <h2>❤️ Hayatta Kalma Önerileri</h2>
+                    <p>
+                        Gereksiz risklerden kaçın ve durumunu sürekli kontrol et.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tips-grid">
+
+                <article class="tip-card">
+                    <div class="tip-icon">❤️</div>
+                    <h3>Canını takip et</h3>
+                    <p>
+                        Canın azaldığında saldırmaya devam etmek yerine
+                        güvenli bir mesafeye çekilmeyi değerlendir.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🍎</div>
+                    <h3>Yiyeceklerini hazır tut</h3>
+                    <p>
+                        Yiyeceklerin kolay ulaşabileceğin bir envanter
+                        yuvasında bulunsun. Açlık seviyeni gözden kaçırma.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🎒</div>
+                    <h3>Envanterini düzenle</h3>
+                    <p>
+                        Sık kullanacağın silahları, yiyecekleri ve yardımcı
+                        eşyaları kolayca seçebileceğin şekilde yerleştir.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🧭</div>
+                    <h3>Çevreni kontrol et</h3>
+                    <p>
+                        Savaşırken uçurum, lav ve diğer tehlikeleri unutma.
+                        Geri çekileceğin alanı önceden gözlemle.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">✨</div>
+                    <h3>Ekipmanını kontrol et</h3>
+                    <p>
+                        Zırhının ve silahlarının dayanıklılığını kontrol et.
+                        Savaş öncesinde gerekli eşyaları yenilemeyi unutma.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-icon">🤝</div>
+                    <h3>Takımınla iletişim kur</h3>
+                    <p>
+                        Takım oyununda rakibin konumunu, ihtiyaç duyduğun
+                        desteği ve ortak stratejileri takım arkadaşlarınla paylaş.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GELİŞME -->
+
+    <section class="section section-alt" id="gelisme">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <span class="tips-label">04 / ANTRENMAN</span>
+                    <h2>🎯 PvP'de Nasıl Gelişirsin?</h2>
+                    <p>
+                        Daha iyi olmak için düzenli olarak temel becerilerini çalış.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tip-list">
+
+                <div class="tip-list-item">
+                    <strong>1. Nişan çalışması yap</strong>
+                    <p>
+                        Hareket eden hedefleri takip etmeyi ve nişangâhını
+                        kontrollü kullanmayı çalış.
+                    </p>
+                </div>
+
+                <div class="tip-list-item">
+                    <strong>2. Hareketlerini çeşitlendir</strong>
+                    <p>
+                        Düz bir çizgide ilerlemek yerine yön değiştirmenin
+                        ne zaman işe yaradığını öğren.
+                    </p>
+                </div>
+
+                <div class="tip-list-item">
+                    <strong>3. Kendi sürümünün mekaniklerini öğren</strong>
+                    <p>
+                        Java ve Bedrock savaş sistemleri arasında farklılıklar
+                        olabilir. Oynadığın sürümdeki mekanikleri kullan.
+                    </p>
+                </div>
+
+                <div class="tip-list-item">
+                    <strong>4. Mücadele sonrası düşün</strong>
+                    <p>
+                        Bir karşılaşma bittikten sonra hangi kararların işe
+                        yaradığını ve neleri değiştirebileceğini değerlendir.
+                    </p>
+                </div>
+
+                <div class="tip-list-item">
+                    <strong>5. Farklı ekipmanlarla deneme yap</strong>
+                    <p>
+                        Ekipman, harita ve oyun moduna göre farklı stratejiler
+                        işe yarayabilir. Sana uygun olanları belirle.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SON BÖLÜM -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="tips-bottom">
+                <span class="eyebrow">GAMEGUIDE</span>
+
+                <h2>Bir sonraki mücadeleye hazır mısın?</h2>
+
+                <p>
+                    Wiki içeriklerini incele, ekipmanlar hakkında bilgi edin
+                    ve yeni rehberlerle Minecraft bilginin üzerine koy.
+                </p>
+
+                <a href="wiki.html" class="btn btn-primary">
+                    Wiki'yi keşfet →
+                </a>
+
+                <a href="rehberler.html" class="btn">
+                    Rehberlere git
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+</body>
+</html>
