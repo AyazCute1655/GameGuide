@@ -16,7 +16,6 @@
     --text: #f1f5ee;
     --muted: #a6b09f;
     --border: #303b2d;
-    --soft: #243322;
     --radius: 13px;
 }
 
@@ -134,7 +133,7 @@ header {
     background: var(--panel);
 }
 
-/* ANA BÖLÜM */
+/* ANA SAYFA */
 
 .hero {
     padding: 70px 0 50px;
@@ -537,8 +536,6 @@ header {
     gap: 8px;
 }
 
-/* BÜTÜN KATEGORİLER PANELİ */
-
 .topic.all-items {
     margin-bottom: 4px;
     border-color: #40563a;
@@ -566,15 +563,6 @@ header {
     line-height: 1.7;
 }
 
-.empty-state {
-    padding: 18px;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    color: var(--muted);
-    font-size: 13px;
-    text-align: center;
-}
-
 .search-status {
     min-height: 20px;
     margin-top: 9px;
@@ -594,6 +582,70 @@ header {
 
 .notice strong {
     color: var(--green);
+}
+
+/* MINECRAFT SUNUCUSU */
+
+.server-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(22px, 4vw, 36px);
+    border: 1px solid #40563a;
+    border-radius: 15px;
+    background:
+        radial-gradient(ellipse at 90% 0%, #294529 0%, transparent 48%),
+        #171e16;
+}
+
+.server-card-copy {
+    max-width: 680px;
+}
+
+.server-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 11px;
+    margin-bottom: 12px;
+    border: 1px solid #496841;
+    border-radius: 30px;
+    background: #203020;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.server-card h3 {
+    margin-bottom: 8px;
+    font-size: clamp(21px, 3vw, 28px);
+}
+
+.server-card p {
+    max-width: 650px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.server-icon {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #4c7145;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #456b3b, #1c311e);
+    font-size: 46px;
+}
+
+.server-status {
+    margin-top: 14px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
 }
 
 /* FOOTER */
@@ -761,6 +813,17 @@ footer {
         align-items: flex-start;
         flex-direction: column;
     }
+
+    .server-card {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+    }
+
+    .server-icon {
+        width: 76px;
+        height: 76px;
+        font-size: 36px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -786,18 +849,17 @@ footer {
             <span>Game<span>Guide</span></span>
         </a>
 
-        <button
-            id="menuButton"
-            class="menu-button"
-            type="button"
-            aria-expanded="false"
-            aria-controls="nav"
-        >☰ Menü</button>
+        <button id="menuButton"
+                class="menu-button"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav">☰ Menü</button>
 
         <nav id="nav" class="nav" aria-label="Ana menü">
             <a href="#wiki">Minecraft Wiki</a>
             <a href="#rehberler">Rehberler</a>
             <a href="#pvp">PvP Merkezi</a>
+            <a href="#sunucumuz">Minecraft Sunucumuz</a>
             <a href="#ipuclari">Önemli Öneriler</a>
             <a href="#guncellemeler">Güncellemeler</a>
             <a href="#sss">SSS</a>
@@ -809,8 +871,8 @@ footer {
 
 <section class="hero" id="anasayfa">
     <div class="container">
-        <div class="hero-layout">
 
+        <div class="hero-layout">
             <div>
                 <span class="eyebrow">✦ MINECRAFT BİLGİ MERKEZİ</span>
 
@@ -826,13 +888,12 @@ footer {
                 </p>
 
                 <form id="searchForm" class="search-box" role="search">
-                    <input
-                        id="searchInput"
-                        type="search"
-                        placeholder="Warden, elmas, biyom, PvP..."
-                        aria-label="GameGuide içinde ara"
-                        autocomplete="off"
-                    >
+                    <input id="searchInput"
+                           type="search"
+                           placeholder="Warden, elmas, biyom, PvP..."
+                           aria-label="GameGuide içinde ara"
+                           autocomplete="off">
+
                     <button class="button button-primary" type="submit">⌕ Ara</button>
                 </form>
 
@@ -852,7 +913,6 @@ footer {
                 <div class="floating float-one"><strong>Wiki</strong>Bilgi merkezi</div>
                 <div class="floating float-two"><strong>⚔️ PvP</strong>Savaş rehberleri</div>
             </div>
-
         </div>
 
         <div class="stats">
@@ -872,8 +932,7 @@ footer {
             <h2>Minecraft Wiki</h2>
             <p>
                 Bir kategoriye tıkla, ardından “Bütün ...” bölümünü aç.
-                Konu başlıkları ve açıklamaları bu sayfanın içinde görünür;
-                detaylar için başka bir sayfaya gitmen gerekmez.
+                Her konu başlığının açıklaması aynı sayfanın içinde açılır.
             </p>
         </div>
 
@@ -898,10 +957,7 @@ footer {
         <div class="section-heading">
             <span class="kicker">SAVAŞ REHBERLERİ</span>
             <h2>⚔️ Minecraft PvP Merkezi</h2>
-            <p>
-                Kılıçtan Crystal PvP'ye, BedWars'tan SkyWars'a kadar
-                oyun içi savaş türleri, ekipman ve taktikler.
-            </p>
+            <p>Kılıçtan Crystal PvP'ye, BedWars'tan SkyWars'a kadar oyun içi savaş türleri, ekipman ve taktikler.</p>
         </div>
 
         <div id="pvpAccordion" class="accordion-list"></div>
@@ -913,10 +969,7 @@ footer {
         <div class="section-heading">
             <span class="kicker">KÜÇÜK İPUÇLARI, BÜYÜK FARK</span>
             <h2>Önemli Öneriler</h2>
-            <p>
-                Hayatta kalma, kaynak toplama, keşif ve savaş sırasında
-                işine yarayabilecek pratik bilgiler.
-            </p>
+            <p>Hayatta kalma, kaynak toplama, keşif ve savaş sırasında işine yarayabilecek pratik bilgiler.</p>
         </div>
 
         <div id="tipsAccordion" class="accordion-list"></div>
@@ -928,10 +981,7 @@ footer {
         <div class="section-heading">
             <span class="kicker">SÜRÜM TAKİBİ</span>
             <h2>Minecraft Güncellemeleri</h2>
-            <p>
-                Java, Bedrock, snapshot ve ön sürüm kavramlarını öğren.
-                Deneysel özelliklerin son sürümde bulunmayabileceğini unutma.
-            </p>
+            <p>Java, Bedrock, snapshot ve ön sürüm kavramlarını öğren. Deneysel özelliklerin son sürümde bulunmayabileceğini unutma.</p>
         </div>
 
         <div id="updatesAccordion" class="accordion-list"></div>
@@ -941,6 +991,32 @@ footer {
             Güncellemelerin içeriği zaman içinde değişebilir.
             Yeni özellikleri doğrularken Minecraft'ın resmî sürüm duyurularını
             ve oyun içi sürüm notlarını kontrol et.
+        </div>
+    </div>
+</section>
+
+<!-- MINECRAFT SUNUCUMUZ -->
+
+<section class="section" id="sunucumuz">
+    <div class="container">
+        <div class="section-heading">
+            <span class="kicker">GAMEGUIDE TOPLULUĞU</span>
+            <h2>🎮 Minecraft Sunucumuz</h2>
+            <p>GameGuide'ın Minecraft sunucusu için hazırlıklar sürüyor. Açılış bilgileri burada paylaşılacak.</p>
+        </div>
+
+        <div class="server-card">
+            <div class="server-card-copy">
+                <span class="server-badge">✦ YAKINDA</span>
+                <h3>Maceraya hazır ol!</h3>
+                <p>
+                    Minecraft sunucumuz üzerinde çalışmalar devam ediyor.
+                    Sunucu açıldığında gerekli bilgiler bu bölümde duyurulacaktır.
+                </p>
+                <div class="server-status">Yakında hizmete sunulacaktır.</div>
+            </div>
+
+            <div class="server-icon" aria-hidden="true">⛏️</div>
         </div>
     </div>
 </section>
@@ -979,462 +1055,467 @@ footer {
 
 <script>
 /* =========================================================
-   İÇERİK VERİLERİ
-   Tüm detaylar aynı index.html içinde açılır.
+   MINECRAFT WIKI KATEGORİLERİ
 ========================================================= */
 
 const wikiCategories = [
-    {
-        title: "Bloklar",
-        icon: "🧱",
-        description: "Doğal bloklar, yapı malzemeleri ve işlevsel bloklar.",
-        items: [
-            ["Taş", "🪨", "Yer altında bol bulunan temel yapı bloklarından biridir. Kırıldığında genellikle kırık taş düşürür; ipeksi dokunuş büyüsüyle taşın kendisi alınabilir."],
-            ["Toprak ve Çim Bloğu", "🌱", "Toprak birçok yerde bulunur. Çim, uygun ışık ve komşu çim blokları bulunduğunda toprağa yayılabilir."],
-            ["Kırık Taş", "🪨", "Taş kazıldığında çoğunlukla kırık taş elde edilir. Fırında eriterek tekrar taşa dönüştürebilir veya birçok tarifte kullanabilirsin."],
-            ["Odun ve Kütükler", "🌳", "Ağaç gövdelerinden elde edilir. Tahta, çubuk, alet ve yapı malzemeleri üretmenin temel kaynaklarındandır."],
-            ["Kum ve Kızıl Kum", "🏜️", "Çöllerde ve sahillerde sık görülür. Kuma yer çekimi uygulanır; fırında eritilince cam üretilebilir."],
-            ["Cam", "🪟", "Kumun fırında eritilmesiyle elde edilir. Pencerelerde ve dekorasyonda kullanılır; kırıldığında genellikle geri düşmez."],
-            ["Elmas Cevheri", "💎", "Derin yer altındaki nadir cevherlerden biridir. Demir veya daha iyi seviyede bir kazma gerekir; uygun yükseklikte ve dikkatli kazı yap."],
-            ["Demir Cevheri", "⛏️", "Fırında eritilerek demir külçesi elde edilir. Alet, zırh, kova ve pek çok temel eşyanın üretiminde kullanılır."],
-            ["Kömür Cevheri", "⚫", "Kömür; fırınlarda yakıt, meşale üretiminde malzeme olarak kullanılır. İlk maden gezilerinde yararlı bir kaynaktır."],
-            ["Redstone Bloğu ve Bileşenler", "🔴", "Redstone tozu ve bileşenleri sinyal taşıma, kapı, otomasyon ve çeşitli makineler yapmak için kullanılır."],
-            ["Obsidyen", "🟪", "Su ile lavın uygun şekilde etkileşmesiyle oluşabilir. Elmas veya netherit kazma ile kazılabilir ve Nether portalı yapmakta kullanılır."],
-            ["Yatak", "🛏️", "Geceyi atlamaya ve dünyadaki doğma noktanı belirlemeye yarar. Nether ve End'de kullanmaya çalışmak tehlikeli bir patlamaya neden olur."],
-            ["Sandık", "📦", "Eşyaları saklamak için kullanılır. İki sandığı yan yana yerleştirerek büyük sandık oluşturabilirsin."],
-            ["Fırın", "🔥", "Cevherleri eritmek ve yemek pişirmek için kullanılır. Yakıt olarak kömür, odun ve başka yanabilir eşyalar kullanılabilir."],
-            ["Büyü Masası", "🔮", "Deneyim seviyeleri ve lapis lazuli kullanarak eşyalara büyü eklemeyi sağlar. Etrafındaki kitaplıklar sunulan büyü seçeneklerini etkiler."],
-            ["Örs", "🔨", "Eşyaları birleştirmek, onarmak ve yeniden adlandırmak için kullanılır. İşlemler deneyim seviyesi gerektirebilir; örs zamanla aşınabilir."],
-            ["İş Masası", "🛠️", "3×3 üretim alanı açar. Oyundaki birçok tarif için temel bloktur."],
-            ["Fener ve Meşale", "💡", "Çevreyi aydınlatmaya yardımcı olur. Karanlık alanlarda güvenli gezinmek ve bazı düşmanların ortaya çıkma ihtimalini azaltmak için ışık kullan."]
-        ]
-    },
-    {
-        title: "Eşyalar",
-        icon: "🎒",
-        description: "Silahlar, araçlar, malzemeler ve değerli eşyalar.",
-        items: [
-            ["Elmas", "💎", "Güçlü aletler, zırh ve büyü masası gibi eşyalarda kullanılır. Değerli olduğu için üretim kararlarını planlı vermek faydalıdır."],
-            ["Netherit Külçesi", "🟣", "Netherit hurdası ve altın külçesiyle üretilir. Elmas ekipmanı netherit seviyesine yükseltmekte kullanılır."],
-            ["Demir Külçesi", "🔩", "Demir cevherini eriterek veya uygun demir eşyaları işleyerek elde edilebilir. Kova, kalkan, alet ve zırh tariflerinde kullanılır."],
-            ["Altın Külçesi", "🟨", "Altın cevherinden veya altın eşyaları işleyerek elde edilebilir. Bazı tariflerde ve Piglinlerle takasta işe yarar."],
-            ["Lapis Lazuli", "🔵", "Büyü masasında büyü uygulamak için gerekir. Cevheri kazarken yeterli ışık ve güvenli bir rota hazırlamak yararlıdır."],
-            ["Zümrüt", "🟢", "Köylülerle ticarette kullanılan para birimi benzeri bir eşyadır. Köylü görevlerini tamamlayıp ticaret yaparak elde edilebilir."],
-            ["Pusula", "🧭", "Normalde dünyanın başlangıç noktasını gösterir. Manyetit ile ilişkilendirildiğinde belirli bir noktayı takip etmek için kullanılabilir."],
-            ["Harita", "🗺️", "Keşfettiğin alanları görmene yardımcı olur. Haritayı kâğıtla büyütebilir ve bazı sürümlerde işaretleri takip edebilirsin."],
-            ["Kalkan", "🛡️", "Uygun şekilde tutulduğunda bazı saldırıları engeller. Zamanlama ve konumlama, özellikle yakın dövüşte önemlidir."],
-            ["Yay", "🏹", "Ok kullanarak uzaktan saldırmanı sağlar. Gererek atış yapmak menzil ve hasar üzerinde etkilidir."],
-            ["Arbalet", "🎯", "Ok veya havai fişek roketi fırlatabilir. Önceden doldurulabilir; uygun büyüler kullanımını değiştirebilir."],
-            ["Totem of Undying", "✨", "Elde tutulurken ölümcül bir durumda devreye girerek oyuncuyu hayatta tutabilir. Çok değerli olduğu için güvenli biçimde sakla ve doğru elde taşı."],
-            ["Ender İncisi", "🟣", "Kısa mesafelerde ışınlanmayı sağlar ve kullanıldığında bir miktar hasar verebilir. Uçurumlarda ve lav yakınında dikkatli kullan."],
-            ["Ateş Direnci İksiri", "🧪", "Belirli bir süre ateş ve lav hasarına karşı koruma sağlar. Nether keşfi öncesi hazırlamak yararlı olabilir."],
-            ["Elytra", "🪽", "Havada süzülmeni sağlar. Havai fişek roketleriyle uçuşunu uzatabilirsin; iniş yapacağın alanı önceden kontrol et."],
-            ["Shulker Kutusu", "📦", "İçindeki eşyaları kutu kırıldığında da korur. Çok eşya taşımayı kolaylaştırır; kutu yapmak için shulker kabuğu ve sandık gerekir."],
-            ["Etiket", "🏷️", "Örs yardımıyla isim verilerek moblara uygulanabilir. İsim etiketleri birçok yapıda veya balıkçılık gibi yöntemlerle bulunabilir."],
-            ["Kova", "🪣", "Su, lav ve bazı canlıları taşımakta kullanılabilir. Su kovası düşüşlerden kurtulmak veya lav yakınında güvenli alan oluşturmak için işe yarar."]
-        ]
-    },
-    {
-        title: "Moblar",
-        icon: "🐉",
-        description: "Dost canlıları, düşmanlar ve bosslar.",
-        items: [
-            ["Warden", "👹", "Derin Karanlık biyomunda ses ve titreşimlere tepki veren çok güçlü bir düşmandır. Onunla savaşmak yerine sessizce uzaklaşmak genellikle daha güvenlidir."],
-            ["Ender Dragon", "🐉", "End boyutunun boss'udur. Kristaller ejderhayı iyileştirdiğinden, saldırıdan önce onları güvenli biçimde etkisiz hâle getirmek gerekir."],
-            ["Wither", "☠️", "Wither iskeleti kafatasları ve ruh kumu/ruhsal toprakla çağrılan güçlü bir boss'tur. Savaş için geniş ve kontrollü bir alan seç."],
-            ["Creeper", "💥", "Oyuncuya yaklaştığında patlar. Mesafe korumak, kalkan kullanmak ve çevreyi aydınlatmak riskleri azaltabilir."],
-            ["Zombi", "🧟", "Karanlıkta ortaya çıkan temel düşmanlardan biridir. Kapalı ve aydınlık bir üs kurmak geceleri daha güvenli geçirmeni sağlar."],
-            ["İskelet", "🏹", "Uzaktan ok atarak saldırır. Siper kullanmak ve doğrudan açık alanda yaklaşmamak avantaj sağlar."],
-            ["Enderman", "🟪", "Genellikle oyuncu ona doğrudan baktığında saldırganlaşır. Suya karşı hassastır; dar ve alçak bir alan güvenli taktik sağlayabilir."],
-            ["Köylü", "🧑‍🌾", "Meslek bloklarıyla meslek kazanır ve oyuncuyla ticaret yapabilir. İş bloklarını ve yatakları düzenli tutmak köy düzenini kolaylaştırır."],
-            ["Demir Golem", "🗿", "Köyleri korumaya yardımcı olur. Köy sakinlerini korurken tehlikeli düşmanlara karşı güçlü bir savunmadır."],
-            ["Piglin", "🐽", "Nether'da bulunur ve altınla takas yapabilir. Altın zırhın bir parçasını giymek bazı Piglinlerin saldırganlığını önlemeye yardımcı olur."],
-            ["Blaze", "🔥", "Nether kalelerinde bulunur ve ateş saldırıları yapar. Ateş direnci ve dikkatli siper kullanımı karşılaşmayı kolaylaştırabilir."],
-            ["Shulker", "📦", "End şehirlerinde görülür. Mermileri oyuncuyu havaya kaldırabilir; siper ve zamanlama ile etkisini azaltabilirsin."],
-            ["Axolotl", "🩷", "Suda yaşayan dost canlılardan biridir. Su altı keşiflerinde belirli düşmanlara karşı yardımcı olabilir."],
-            ["Armadillo", "🦔", "Savana ve benzeri sıcak biyomlarda karşılaşılabilir. Fırça/üretim gibi mekanikleri sürüme göre inceleyerek ilgili eşyaları kullan."],
-            ["Kurt", "🐺", "Kemikle evcilleştirilebilir. Evcilleştirildiğinde takip edebilir ve bazı düşmanlara karşı yardımcı olur."],
-            ["Arı", "🐝", "Çiçeklerden polen toplar ve uygun kovanlarda bal üretimine yardımcı olur. Arı yuvasından bal alırken kamp ateşi kullanmak kızmalarını önleyebilir."],
-            ["Slime", "🟩", "Bataklıklarda veya slime parçalarında ortaya çıkabilir. Büyüklüğüne göre öldürüldüğünde daha küçük parçalara ayrılabilir."],
-            ["Phantom", "👻", "Uzun süre uyumayan oyuncuların yakınında ortaya çıkabilir. Düzenli uyumak ve çevreyi kontrol etmek karşılaşmayı azaltabilir."]
-        ]
-    },
-    {
-        title: "Biyomlar",
-        icon: "🌍",
-        description: "Overworld, Nether ve End bölgelerini keşfet.",
-        items: [
-            ["Ovalar", "🌾", "Geniş ve düz alanlarıyla başlangıç üssü kurmak için uygundur. Köyler ve hayvanlar bulunabilir."],
-            ["Orman", "🌲", "Ağaç ve odun kaynakları bol olan bir biyomdur. Ağaçlık alanlarda görünürlüğü artırmak için yol ve meşale kullan."],
-            ["Çöl", "🏜️", "Kum, kaktüs ve çöl köyleri gibi özellikler içerebilir. Ağaç az olduğundan odun kaynağını önceden hazırla."],
-            ["Tayga", "🌲", "Ladin ağaçları ve çeşitli canlılarla tanınır. Taiga köyleri bazı sürümlerde bulunabilir."],
-            ["Kiraz Korusu", "🌸", "Pembe çiçekli kiraz ağaçlarıyla bilinir. Görsel açıdan etkileyici yapı alanları için tercih edilebilir."],
-            ["Mantar Tarlaları", "🍄", "Mooshroom canlıları ve dev mantarlarıyla tanınır. Nadir görülen, kendine özgü bir biyomdur."],
-            ["Mangrov Bataklığı", "🌿", "Mangrov ağaçları, çamur ve kurbağalarla ilişkilidir. Kökler ve su yolları hareketi zorlaştırabileceğinden yönünü takip et."],
-            ["Buz Düzlükleri", "❄️", "Kar ve buzla kaplı soğuk bir biyomdur. Yiyecek ve odun bulmayı planlamak başlangıçta önemlidir."],
-            ["Derin Karanlık", "🌑", "Sculk blokları ve antik şehirlerle ilişkilidir. Gürültüye dikkat et; Warden tehlikesi nedeniyle kontrollü hareket et."],
-            ["Nether Çoraklıkları", "🔥", "Nether'da sık görülen biyomlardan biridir. Lav gölleri ve tehlikeli düşmanlar nedeniyle köprü kurarken korunaklı ilerle."],
-            ["Kızıl Orman", "🍄", "Nether'da kırmızı mantar benzeri bitki örtüsü bulunur. Hoglin ve Piglin gibi canlılara dikkat et."],
-            ["Çarpık Orman", "🩵", "Nether'ın mavi tonlu biyomudur. Endermanlar yaygın olabilir; görüş yönüne dikkat et."],
-            ["Ruh Kumu Vadisi", "💀", "Fosiller, ruh kumu ve iskeletlerle karşılaşılabilir. Hareket hızını etkileyen zeminlerde açık alanı dikkatli geç."],
-            ["Bazalt Deltaları", "🌋", "Bazalt ve kara taş oluşumlarıyla bilinir. Düzensiz zemin ve lav cepleri yüzünden yavaş ilerlemek faydalıdır."],
-            ["End Adaları", "🌌", "End ana adasının ötesindeki adalar, End şehirlerini bulabileceğin bölgelerdir. Güvenli köprüler ve ender incileri işe yarayabilir."],
-            ["Sahil", "🏖️", "Kara ve okyanus arasında geçiş alanıdır. Kum, su ve bazen gömülü hazine haritalarıyla karşılaşılabilir."]
-        ]
-    },
-    {
-        title: "Yapılar",
-        icon: "🏛️",
-        description: "Köyler, antik şehirler ve keşfedilebilir yapılar.",
-        items: [
-            ["Köy", "🏘️", "Köylüler, yataklar ve meslek blokları içeren yerleşimlerdir. Erzak, yatak ve ticaret fırsatı bulabilirsin."],
-            ["Antik Şehir", "🏙️", "Derin Karanlıkta oluşan büyük bir yer altı yapısıdır. Sculk sensörlerini tetiklememek için yavaş ve sessiz ilerle."],
-            ["Nether Kalesi", "🏰", "Blaze ve Wither iskeletleri gibi canlılar içerir. Ateş direnci, yiyecek ve korunaklı bir rota hazırlamak yararlı olur."],
-            ["Bastion Kalıntısı", "🧱", "Nether'da Piglinlerle ilişkili tehlikeli bir yapıdır. Sandıkları açarken çevredeki Piglinleri ve düşüşleri hesaba kat."],
-            ["Okyanus Anıtı", "🌊", "Guardian ve Elder Guardian gibi canlıların bulunduğu su altı yapısıdır. Su altında nefes ve görüş için hazırlık yap."],
-            ["Orman Konağı", "🌳", "Karanlık ormanlarda bulunan büyük bir yapıdır. İçinde tehlikeli illagerlar olabilir; yeterli zırh ve yiyecek getir."],
-            ["Yağmacı Karakolu", "🏹", "Pillagerların koruduğu gözetleme yapısıdır. Yaklaşırken menzilli saldırılara ve çevredeki devriyelere dikkat et."],
-            ["Çöl Tapınağı", "🔺", "Merkezindeki tuzaklı oda ve ganimet sandıklarıyla bilinir. Ortadaki basınç plakasına dikkat ederek dikkatli kaz."],
-            ["Deniz Harabesi", "🪸", "Okyanuslarda veya sahillerde bulunabilen eski kalıntılardır. Bazı yapılar gömülü hazine haritaları içerebilir."],
-            ["Gemi Enkazı", "🚢", "Okyanus ve sahillerde bulunur. Sandıklar yiyecek, malzeme veya hazine haritası sağlayabilir."],
-            ["End Şehri", "🏯", "End adalarında bulunur. Shulkerlarla karşılaşabilirsin; bazı yapılarda elytra içeren gemiler yer alabilir."],
-            ["Deneme Odaları", "⚙️", "Bakır ve tüf bloklarıyla oluşturulmuş, deneme spawnerları içeren bir yapıdır. Ekipmanını ve yiyeceğini hazırlayarak ilerle."],
-            ["Maden Kuyusu", "⛏️", "Yer altında koridorlar ve raylarla karşılaşabileceğin eski bir yapıdır. Mağara örümcekleri ve lavlara dikkat et."],
-            ["İglo", "❄️", "Karlı biyomlarda bulunabilen küçük yapılardır. Bazılarında gizli bir alt bölüm bulunabilir."],
-            ["Buried Treasure / Gömülü Hazine", "🗺️", "Hazine haritasındaki işareti takip ederek kum veya çakılın altında sandık arayabilirsin. Haritadaki X işaretine göre konumunu ayarla."]
-        ]
-    },
-    {
-        title: "Boyutlar",
-        icon: "🌌",
-        description: "Overworld, Nether ve End hakkında bilgi edin.",
-        items: [
-            ["Overworld", "🌎", "Oyuna genellikle burada başlarsın. Biyomlar, köyler, mağaralar ve pek çok doğal kaynak bu boyuttadır."],
-            ["Nether", "🔥", "Obsidyen portalıyla ulaşılır. Lav, dar köprüler ve düşmanlar nedeniyle ateş direnci ve sağlam blok taşımak yararlıdır."],
-            ["End", "🌌", "Ender Dragon ile ilişkilendirilen boyuttur. Giriş için Ender gözüyle kaleyi bulup portal odasını keşfetmek gerekir."],
-            ["Nether Portalı", "🟪", "Obsidyen çerçeve ateşle etkinleştirilir. Portal bağlantıları koordinatlara göre eşleşir; uzak mesafeleri kısaltabilir."],
-            ["End Portalı", "🟣", "Kalelerdeki portal odasında bulunur. Eksik yuvalara Ender gözü yerleştirildiğinde etkinleşir."],
-            ["Boyutlar Arası Hazırlık", "🎒", "Yiyecek, yedek bloklar, kalkan ve uygun ekipman getir. Eşyalarını kaybetmemek için güvenli dönüş rotası planla."]
-        ]
-    },
-    {
-        title: "Üretim Tarifleri",
-        icon: "🛠️",
-        description: "Eşyaları üretmek için gereken malzemeleri öğren.",
-        items: [
-            ["Tahta ve Çubuk", "🪵", "Kütükleri tahtaya dönüştür; tahtaları üretim alanına yerleştirerek çubuk üret. Temel alet tarifleri için gerekir."],
-            ["Taş Kazma", "⛏️", "Üç kırık taş ve iki çubukla üretilir. Demir ve daha değerli kaynakları kazmak için başlangıç ekipmanıdır."],
-            ["Fırın", "🔥", "Sekiz kırık taşı üretim masasının dış çevresine yerleştirerek üretilebilir. Eritme ve yemek pişirmede kullanılır."],
-            ["Sandık", "📦", "Sekiz tahta bloğuyla üretilebilir. Eşya biriktirmek için erken oyunda öncelikli tariflerdendir."],
-            ["Kalkan", "🛡️", "Tahta ve demir külçesi kullanılarak üretilir. Tarifin dizilimi sürüme göre kontrol edilebilir."],
-            ["Yatak", "🛏️", "Üç tahta ve aynı renkten üç yün ile üretilebilir. Doğma noktası belirlemeyi ve geceyi atlamayı sağlar."],
-            ["Ok", "🏹", "Çubuk, çakmaktaşı ve tüy kullanılarak üretilebilir. Yay veya arbaletle menzilli saldırı yapmanı sağlar."],
-            ["Pusula", "🧭", "Dört demir külçesi ve bir redstone tozu ile üretilebilir. Başlangıç konumunu veya manyetit hedefini bulmaya yardımcı olur."],
-            ["Büyü Masası", "🔮", "Elmas, obsidyen ve kitapla üretilir. Ekipmanına büyü eklemek için deneyim seviyesi ve lapis lazuli gerekir."],
-            ["Olta", "🎣", "Çubuklar ve ip ile üretilebilir. Balık ve bazı ek ganimetleri elde etmek için kullanılır."],
-            ["Havai Fişek Roketi", "🎆", "Kâğıt ve barutla üretilir; yıldız eklenirse görsel patlama oluşabilir. Elytra uçuşunda roket kullanımı önemlidir."],
-            ["Ender Gözü", "🟣", "Ender incisi ve blaze tozuyla üretilir. Kaleyi bulmaya ve End portalını etkinleştirmeye yardımcı olur."]
-        ]
-    },
-    {
-        title: "Büyüler",
-        icon: "🔮",
-        description: "Silah, araç ve zırh büyülerini incele.",
-        items: [
-            ["Keskinlik", "⚔️", "Kılıç ve baltanın yakın dövüş hasarını artırır. Genel savaşlar için çok yönlü bir seçenektir."],
-            ["Koruma", "🛡️", "Zırhın gelen hasara karşı korumasını artırır. Belirli hasar türlerine özel büyülerle farkları vardır."],
-            ["Verimlilik", "⛏️", "Kazma, balta, kürek ve benzeri araçların blok kırma hızını artırır."],
-            ["Kırılmazlık", "🔧", "Eşyanın dayanıklılığının daha seyrek azalmasına yardımcı olur."],
-            ["Tamir", "✨", "Deneyim kürelerini kullanarak elde tutulan veya giyilen uygun eşyaların dayanıklılığını onarır."],
-            ["İpeksi Dokunuş", "🧊", "Bazı blokları normal düşen eşyaları yerine kendileri olarak toplamayı sağlar. Servet büyüsüyle aynı anda kullanılamaz."],
-            ["Servet", "💎", "Uygun bloklardan düşen kaynak miktarını artırabilir. Elmas, kömür ve bazı diğer cevherlerde değerlidir."],
-            ["Alevden Çehre", "🔥", "Kılıçla yapılan saldırılara ateş etkisi ekler. Etkisi yaratığa ve oyun koşullarına göre değişebilir."],
-            ["Geri Tepme", "💨", "Vurulan hedefi geriye iter. Rakipleri uzak tutmaya yarar, ancak bazı hedeflerin takibini zorlaştırabilir."],
-            ["Sonsuzluk", "🏹", "Yayın normal okları sınırsız kullanmasını sağlar; yine de envanterde en az bir ok gerekir."],
-            ["Güç", "🎯", "Yayın hasarını artırır. Uzaktan savaşta ve uçan hedeflere karşı faydalıdır."],
-            ["Düşen Tüy", "🪶", "Düşme hasarını azaltır. Dağlık alanlarda ve yüksek yapılarda güvenli hareket etmeye yardımcı olur."],
-            ["Su Altı Nefesi", "🌊", "Su altında daha uzun nefes tutmayı sağlar. Okyanus anıtı ve enkaz keşiflerinde yararlı olabilir."],
-            ["Ateş Koruması", "🔥", "Ateş kaynaklı hasarı azaltır. Nether gezileri için ateş direnci iksiriyle aynı etkiye sahip değildir."]
-        ]
-    },
-    {
-        title: "İksirler",
-        icon: "🧪",
-        description: "İksir türlerini, etkilerini ve üretim sistemini öğren.",
-        items: [
-            ["İksir Standı", "🧪", "Blaze çubuğuyla üretilebilir. Su şişelerine temel malzemeler ekleyerek iksir yapmanı sağlar."],
-            ["Ateş Direnci", "🔥", "Lav ve ateş kaynaklı hasara karşı belirli süre koruma sağlar. Nether gezilerinde yararlıdır."],
-            ["Hız", "💨", "Hareket hızını geçici olarak artırır. Keşif ve geri çekilme sırasında avantaj sağlayabilir."],
-            ["Kuvvet", "💪", "Yakın dövüş hasarını artırır. Güçlü düşmanlarla savaşmadan önce uygun bir seçenek olabilir."],
-            ["Yenilenme", "❤️", "Canın zaman içinde yenilenmesine yardımcı olur. Zor karşılaşmalarda zamanlama önemlidir."],
-            ["Gece Görüşü", "🌙", "Karanlıkta çevreni daha rahat görmeni sağlar. Derin mağaralar ve su altı keşfi için faydalıdır."],
-            ["Su Altında Nefes", "🐠", "Su altında nefes alma süresini artırır. Uzun dalışlarda iyi bir hazırlıktır."],
-            ["Zayıflık", "🌀", "Hedefin yakın dövüş gücünü azaltır. Bazı köylü iyileştirme mekaniklerinde kullanılır."],
-            ["Sıçrama", "🦘", "Zıplama yüksekliğini artırır ve bazı düşme koşullarına yardımcı olabilir."],
-            ["İksir Süresini Uzatma", "🔴", "Uygun iksire redstone eklemek etki süresini uzatabilir. Her iksirde aynı biçimde çalışmayabilir."],
-            ["İksiri Fırlatılabilir Yapma", "💦", "Uygun iksire barut ekleyerek fırlatılabilir iksir oluşturabilirsin. Etki çevredeki hedeflere yayılabilir."]
-        ]
-    },
-    {
-        title: "Redstone",
-        icon: "🔴",
-        description: "Devreler, otomasyonlar ve mekanik sistemler.",
-        items: [
-            ["Redstone Tozu", "🔴", "Devrelerde sinyal taşır. Sinyal gücü mesafeyle azalabilir; tekrarlayıcılarla sinyali yenileyebilirsin."],
-            ["Redstone Tekrarlayıcı", "🔁", "Sinyali güçlendirip gecikme eklemek için kullanılır. Otomasyon zamanlamasında temel parçadır."],
-            ["Karşılaştırıcı", "➗", "Kapların doluluk seviyesini ve bazı blok sinyallerini okuyabilir. Otomatik sıralama ve ölçüm devrelerinde kullanılır."],
-            ["Piston", "🧱", "Sinyal geldiğinde blokları iter. Kapılar, gizli girişler ve taşınan mekanizmalar yapılabilir."],
-            ["Yapışkan Piston", "🟩", "Pistonun ittiği bloğu geri çekmesine yardımcı olur. Hareketli zemin ve gizli kapılarda kullanılır."],
-            ["Gözlemci", "👁️", "Önündeki blok değişimlerini algılayıp kısa bir redstone sinyali üretir. Otomatik çiftliklerde kullanışlıdır."],
-            ["Huni", "📥", "Eşyaları kaplar arasında aktarır. Sandık, fırın ve otomatik çiftliklerde eşya taşımaya yarar."],
-            ["Dağıtıcı", "📤", "Redstone sinyaliyle içindeki eşyaları kullanabilir veya fırlatabilir. Sıvı, ok ve diğer eşyalarla farklı işler yapar."],
-            ["Damlatıcı", "⬇️", "Sinyal verildiğinde eşya fırlatır; dağıtıcıdan farklı davranışları vardır. Eşya aktarma sistemlerinde kullanılır."],
-            ["Redstone Lambası", "💡", "Sinyal geldiğinde ışık verir. Otomatik aydınlatma ve durum göstergeleri tasarlamak için kullanılır."],
-            ["Basınç Plakası", "🟫", "Oyuncu, mob veya eşya gibi etkenlerle redstone sinyali gönderebilir. Tuzak veya kapı devresinde kullanılabilir."],
-            ["Otomatik Çiftlik", "🌾", "Gözlemci, piston, su ve huni gibi parçalarla kaynak toplama işlemlerinin bir bölümünü otomatikleştirebilirsin."]
-        ]
-    },
-    {
-        title: "Köylüler ve Ticaret",
-        icon: "🧑‍🌾",
-        description: "Meslekler, iş blokları ve ticaret sistemi.",
-        items: [
-            ["Köylü Meslekleri", "🧑‍🌾", "İşsiz köylü uygun iş bloğuna erişirse meslek edinebilir. Mesleği olan köylüyle ticaret yaptıktan sonra mesleği kolayca değişmez."],
-            ["Kütüphaneci", "📚", "Kürsü ile meslek kazanır. Kitap, kâğıt ve büyülü kitap gibi ticaret seçenekleri sunabilir."],
-            ["Zırhçı", "🛡️", "Yüksek seviyelerde zırh parçaları takas edebilir. İş bloğu yüksek fırındır."],
-            ["Alet Ustası", "⛏️", "Kazma ve diğer araçlarla ilgili ticaretler sunabilir. İş bloğu demirci masasıdır."],
-            ["Silah Ustası", "⚔️", "Silahlarla ilgili ticaretler sunabilir. İş bloğu bileme taşıdır."],
-            ["Çiftçi", "🌾", "Ekin, sebze ve diğer tarım ürünleri üzerinden ticaret yapabilir. İş bloğu komposterdir."],
-            ["Okçu", "🏹", "Çubuk, ip ve ok gibi eşyalarla ticaret yapabilir. İş bloğu okçuluk masasıdır."],
-            ["Rahip", "🧪", "Bazı büyü ve iksir malzemeleriyle ilgili ticaretler sunabilir. İş bloğu iksir standıdır."],
-            ["Demirci Masası", "🔧", "Alet ustasının iş bloğudur; aynı zamanda elmas ekipmanı netherit seviyesine yükseltmekte kullanılır."],
-            ["Köylü İyileştirme", "❤️", "Zombi köylü, zayıflık etkisi ve altın elma kullanılarak iyileştirilebilir. Yakınındaki düşmanlardan korumak önemlidir."],
-            ["Ticaret Fiyatları", "💚", "Fiyatlar itibar, talep ve oyun koşullarından etkilenebilir. Sürekli aynı eşyayı alıp satmak fiyatı artırabilir."]
-        ]
-    },
-    {
-        title: "Tarım",
-        icon: "🌾",
-        description: "Ekinler, bitkiler ve çiftlik sistemleri.",
-        items: [
-            ["Buğday", "🌾", "Tohumları sürülmüş ve uygun koşullardaki toprağa ek. Suya yakın tarla ve yeterli ışık büyümeyi destekler."],
-            ["Havuç ve Patates", "🥕", "Köylerde veya belirli ganimetlerde bulunabilir. Tarla kurarak sürdürülebilir yiyecek kaynağı oluşturabilirsin."],
-            ["Şeker Kamışı", "🎋", "Su kenarındaki uygun bloklarda büyür. Kâğıt üretimi ve bazı tariflerde kullanılır."],
-            ["Bambu", "🎍", "Hızlı büyüyen bir bitkidir. İskele ve bambu yapı malzemeleri üretmek için değerlidir."],
-            ["Kabak ve Karpuz", "🎃", "Tarlada gövde ve meyve alanı gerekir. Meyvenin çıkacağı komşu blokların boş olmasına dikkat et."],
-            ["Hayvan Yetiştirme", "🐄", "İnek, koyun ve tavuk gibi canlıları uygun yiyeceklerle besleyerek çoğaltabilirsin. Çitlerle güvenli alan oluştur."],
-            ["Arı Çiftliği", "🐝", "Çiçek ve kovan kullanarak bal peteği veya bal şişesi toplanabilir. Hasattan önce kamp ateşi koymak arıların sakin kalmasına yardımcı olur."],
-            ["Komposter", "♻️", "Bazı bitki ve yiyecek eşyaları kompostlanarak kemik tozu üretilebilir. Çiftlik otomasyonlarına eklenebilir."],
-            ["Mantar Yetiştirme", "🍄", "Uygun düşük ışıklı alanlar ve doğru bloklar mantarların yayılmasını destekler. Büyük mantar yetiştirmek için kemik tozu kullanılabilir."],
-            ["Ağaç Çiftliği", "🌳", "Fidanları uygun aralıkla dik, büyüme alanını açık bırak ve büyüme için gereken ışığı sağla."],
-            ["Otomatik Ekin Toplama", "💧", "Su akışı ve huni düzenleri hasadı kolaylaştırabilir. Tasarımın ekin türüne ve oyun sürümüne uygun olduğundan emin ol."]
-        ]
-    },
-    {
-        title: "Madencilik",
-        icon: "⛏️",
-        description: "Cevherler, kaynaklar ve kazı yöntemleri.",
-        items: [
-            ["Elmas Bulma", "💎", "Derin yer altındaki uygun yüksekliklerde mağara keşfi veya planlı tünel kazısı yap. Lav ve düşüş riskine karşı blok, su ve yiyecek taşı."],
-            ["Demir Bulma", "⛏️", "Mağaralarda ve dağlık alanlarda bulunabilir. İlerledikçe yeterli demir toplayarak kova, kalkan ve ekipman yap."],
-            ["Kömür ve Bakır", "⚫", "Kömür yakıt ve meşale için, bakır ise yapı ve çeşitli tarifler için kullanılır. Görünür damarları güvenli biçimde takip et."],
-            ["Altın Bulma", "🟨", "Overworld'de ve Nether'da farklı biçimlerde bulunur. Nether altın cevherini kazarken Piglinlerin yakınlığını dikkate al."],
-            ["Antik Enkaz", "🟣", "Nether'da nadir bulunan antik enkaz, eritildiğinde netherit hurdası verir. Lav ve patlamaya karşı dikkatli kazı yap."],
-            ["Y-Seviyesi", "📏", "Cevher dağılımı oyun sürümüne göre farklılaşabilir. En iyi yükseklik için oynadığın sürümün güncel cevher dağılımını kontrol et."],
-            ["Mağara Hazırlığı", "🎒", "Meşale, yiyecek, kalkan, su kovası, yedek kazma ve inşaat bloğu getir. Girişe işaret koyarak dönüş yolunu kaybetme."],
-            ["Güvenli Kazı", "🧱", "Tam altındaki veya üstündeki bloğu kontrol etmeden kazma. Lav ve yüksek düşüşlere karşı yan koridor veya merdivenli iniş kullan."],
-            ["Şerit Madenciliği", "⛏️", "Belirli aralıklarla paralel tüneller açarak kaynak arayabilirsin. Mağara keşfiyle birlikte kullanıldığında alan taramasını kolaylaştırır."],
-            ["Cevher Büyüleri", "✨", "Servet kaynak miktarını artırabilir; İpeksi Dokunuş cevher bloğunu saklamayı sağlar. İhtiyacına göre doğru kazmayı seç."]
-        ]
-    },
-    {
-        title: "Savaş Sistemi",
-        icon: "⚔️",
-        description: "Silahlar, savunma, saldırılar ve savaş mekanikleri.",
-        items: [
-            ["Saldırı Zamanlaması", "⏱️", "Java Edition'da silah saldırı dolumunu izlemek hasarı artırabilir. Rastgele hızlı tıklamak yerine saldırı zamanını öğren."],
-            ["Kalkan Kullanımı", "🛡️", "Gelen bazı saldırıları engeller. Rakibin saldırısı bittikten sonra karşılık vermek ve çevreyi gözlemek önemlidir."],
-            ["Kritik Vuruş", "⬆️", "Uygun düşüş sırasında yapılan saldırı ek hasar verebilir. Zıplama zamanlaması ve hedefe doğru hareket koordinasyon gerektirir."],
-            ["Geri İtme ve Mesafe", "↔️", "Hedefle arandaki mesafe saldırı menzili ve geri itme üzerinde etkili olabilir. Dar alanlarda konumunu koru."],
-            ["Yay ile Savaş", "🏹", "Atışı gererek güçlendir, hedefin hareketini tahmin et ve siper kullan. Okların sınırlıysa isabetli atışlara odaklan."],
-            ["Zırh ve Koruma", "🛡️", "Daha iyi zırh hasarı azaltır, ancak açlık, düşüş, büyüler ve özel hasar türleri de önemlidir."],
-            ["İksirli Savaş", "🧪", "Hız, kuvvet, ateş direnci ve yenilenme gibi etkiler belirli savaşlarda yardımcı olabilir. İksirleri güvenli yerde ve doğru zamanda kullan."],
-            ["Çevreyi Kullanma", "🌋", "Duvarlar, yükseklik, su ve siper savaş sonucunu etkileyebilir. Lav veya uçurum yakınında plansız hamle yapma."]
-        ]
-    },
-    {
-        title: "Başarımlar",
-        icon: "🏆",
-        description: "İlerlemeler ve oyun içi hedefler.",
-        items: [
-            ["İlerleme Kitabı", "📖", "Java Edition'daki ilerlemeler, yaptığın keşifleri ve tamamladığın hedefleri takip eder. Gereksinimlerini oyun içinden inceleyebilirsin."],
-            ["İlk Aletler", "🪵", "Odun topla ve ilk aletlerini üret. Bu adım temel madencilik ve hayatta kalma döngüsünü başlatır."],
-            ["Nether'a Gir", "🔥", "Portal yapıp Nether'a geçmek yeni kaynaklara ve ilerleme hedeflerine erişmeni sağlar. İyi hazırlan."],
-            ["End'e Yolculuk", "🌌", "Kaleyi bul, End portalını etkinleştir ve End'e girmeden önce yeterli ekipman ile dönüş hazırlığını yap."],
-            ["Ender Dragon", "🐉", "Kristalleri ve ejderhanın saldırılarını takip ederek savaşı tamamla. Yay, blok ve iyileştirme eşyaları hazırlamak faydalıdır."],
-            ["Köylü Ticareti", "💚", "Bir köylüyle başarılı bir takas yaparak ticaret mekaniklerini keşfet. Mesleğe göre uygun eşya topla."],
-            ["Hayvan Çiftliği", "🐄", "Uygun yiyeceklerle iki hayvanı besleyip çoğaltarak sürdürülebilir kaynak oluştur."]
-        ]
-    },
-    {
-        title: "Oyun Mekanikleri",
-        icon: "⚙️",
-        description: "Minecraft'ın temel ve ileri seviye sistemleri.",
-        items: [
-            ["Gün ve Gece Döngüsü", "☀️", "Dünya döngüsü zamanla ilerler. Gece düşmanlarla karşılaşma ihtimali yükseldiğinden ilk gün barınak ve ışık hazırla."],
-            ["Açlık ve Doygunluk", "🍗", "Yemek yemek açlığı yeniler. Farklı yiyecekler farklı doygunluk sağlar; uzun keşif için yeterli yemek taşı."],
-            ["Deneyim Seviyesi", "✨", "Deneyim küreleriyle kazanılır. Büyü uygulamak ve örs işlemleri için kullanılabilir."],
-            ["Doğma Noktası", "🛏️", "Yatak veya uygun mekaniklerle yeniden doğma noktasını değiştirebilirsin. Tehlikeli boyutlarda yatağın davranışına dikkat et."],
-            ["Işık Seviyesi", "💡", "Işık; görünürlük, bitki yetiştirme ve düşmanların ortaya çıkması gibi mekanikleri etkiler. Üssünü düzenli aydınlat."],
-            ["Chunk Sistemi", "🧩", "Dünya küçük alanlara ayrılarak işlenir. Yükleme mesafesi, çiftliklerin çalışma koşullarını etkileyebilir."],
-            ["Dayanıklılık", "🔧", "Araç ve zırhların kullanım ömrü vardır. Tamir, Kırılmazlık ve yedek ekipman dayanıklılık yönetimine yardımcı olur."],
-            ["Düşme Hasarı", "⬇️", "Yüksekten düşmek hasar verir. Su kovası, yumuşak iniş, merdiven ve uygun büyüler riski azaltabilir."],
-            ["Harita ve Koordinatlar", "🗺️", "X, Y ve Z koordinatları yön ve konum bulmak için kullanılır. Önemli noktaların koordinatlarını not almak dönüşü kolaylaştırır."]
-        ]
-    },
-    {
-        title: "Komutlar",
-        icon: "⌨️",
-        description: "Komutların kullanımı ve örnekleri.",
-        items: [
-            ["/help", "⌨️", "Komut yardımı sağlar. Erişilebilir komutlar sürüme, oyun moduna ve sunucu izinlerine göre değişebilir."],
-            ["/gamemode", "🎮", "İzin olduğunda oyun modunu değiştirir. Örneğin yaratıcı ve hayatta kalma modları arasında geçiş yapılabilir."],
-            ["/tp", "🧭", "İzin ve doğru sözdizimi olduğunda oyuncuyu veya varlığı belirli konuma ışınlamak için kullanılır."],
-            ["/give", "🎁", "Yeterli izinle oyuncuya eşya verir. Komut adları ve parametreleri sürüme göre kontrol edilmelidir."],
-            ["/time", "🕒", "İzin olduğunda oyun içi zamanı değiştirir veya görüntüler."],
-            ["/weather", "🌦️", "İzin olduğunda hava durumunu değiştirmek veya kontrol etmek için kullanılabilir."],
-            ["/seed", "🌱", "Dünya tohumunu gösterir; bazı sunucular veya oyun ayarları bu bilgiye erişimi kısıtlayabilir."],
-            ["Komut İzinleri", "🔐", "Çok oyunculu sunucularda komutlar rol veya izin gerektirebilir. Yalnızca izin verilen komutları kullan."]
-        ]
-    },
-    {
-        title: "Zırhlar",
-        icon: "🛡️",
-        description: "Zırh setleri, koruma ve ekipman özellikleri.",
-        items: [
-            ["Deri Zırh", "🟤", "Erken oyunda kolay ulaşılabilen bir korumadır. Deri zırh parçaları renklendirilebilir."],
-            ["Demir Zırh", "⚙️", "Başlangıç ve orta aşamada dengeli koruma sağlar. Demir kaynaklarını yeterince topladıktan sonra tam set üretmek yararlıdır."],
-            ["Elmas Zırh", "💎", "Güçlü bir zırh setidir. Büyüler ve yükseltmelerle daha uzun süre kullanılabilir."],
-            ["Netherit Zırh", "🟣", "Elmas zırhın demirci masasında netherit külçesiyle yükseltilmesiyle elde edilir. Üretimden önce değerli malzemeleri güvenceye al."],
-            ["Kask", "🪖", "Baş bölgesi zırhıdır. Solunum ve su altı madenciliği gibi uygun büyülerle ek yararlar sağlayabilir."],
-            ["Göğüslük", "🦺", "Zırh parçaları arasında önemli koruma sağlar. Elytra kullanımı göğüslükle aynı anda mümkün olmadığından seçim yapman gerekir."],
-            ["Pantolon", "👖", "Zırh setinin parçasıdır ve genel savunmaya katkı sağlar. Koruma büyüleriyle güçlendirilebilir."],
-            ["Çizme", "🥾", "Düşen Tüy, Derinlik Gezgini veya Buzda Yürüme gibi büyülerle hareket ve düşüşlerde avantaj sağlayabilir."],
-            ["Ekipman Dayanıklılığı", "🔧", "Zırhın dayanıklılığını takip et, Tamir/Kırılmazlık büyülerini değerlendir ve tehlikeli yolculuklarda yedek parça taşı."]
-        ]
-    }
+{
+    title: "Bloklar",
+    icon: "🧱",
+    description: "Doğal bloklar, yapı malzemeleri ve işlevsel bloklar.",
+    items: [
+        ["Taş", "🪨", "Yer altında bol bulunan temel yapı bloklarından biridir. Kırıldığında genellikle kırık taş düşürür; ipeksi dokunuş büyüsüyle taşın kendisi alınabilir."],
+        ["Toprak ve Çim Bloğu", "🌱", "Toprak birçok yerde bulunur. Çim, uygun ışık ve komşu çim blokları bulunduğunda toprağa yayılabilir."],
+        ["Kırık Taş", "🪨", "Taş kazıldığında çoğunlukla kırık taş elde edilir. Fırında eriterek tekrar taşa dönüştürebilir veya birçok tarifte kullanabilirsin."],
+        ["Odun ve Kütükler", "🌳", "Ağaç gövdelerinden elde edilir. Tahta, çubuk, alet ve yapı malzemeleri üretmenin temel kaynaklarındandır."],
+        ["Kum ve Kızıl Kum", "🏜️", "Çöllerde ve sahillerde sık görülür. Kuma yer çekimi uygulanır; fırında eritilince cam üretilebilir."],
+        ["Cam", "🪟", "Kumun fırında eritilmesiyle elde edilir. Pencerelerde ve dekorasyonda kullanılır; kırıldığında genellikle geri düşmez."],
+        ["Elmas Cevheri", "💎", "Derin yer altındaki nadir cevherlerden biridir. Demir veya daha iyi seviyede bir kazma gerekir; uygun yükseklikte ve dikkatli kazı yap."],
+        ["Demir Cevheri", "⛏️", "Fırında eritilerek demir külçesi elde edilir. Alet, zırh, kova ve pek çok temel eşyanın üretiminde kullanılır."],
+        ["Kömür Cevheri", "⚫", "Kömür; fırınlarda yakıt, meşale üretiminde malzeme olarak kullanılır. İlk maden gezilerinde yararlı bir kaynaktır."],
+        ["Redstone Bloğu ve Bileşenler", "🔴", "Redstone tozu ve bileşenleri sinyal taşıma, kapı, otomasyon ve çeşitli makineler yapmak için kullanılır."],
+        ["Obsidyen", "🟪", "Su ile lavın uygun şekilde etkileşmesiyle oluşabilir. Elmas veya netherit kazma ile kazılabilir ve Nether portalı yapmakta kullanılır."],
+        ["Yatak", "🛏️", "Geceyi atlamaya ve dünyadaki doğma noktanı belirlemeye yarar. Nether ve End'de kullanmaya çalışmak tehlikeli bir patlamaya neden olur."],
+        ["Sandık", "📦", "Eşyaları saklamak için kullanılır. İki sandığı yan yana yerleştirerek büyük sandık oluşturabilirsin."],
+        ["Fırın", "🔥", "Cevherleri eritmek ve yemek pişirmek için kullanılır. Yakıt olarak kömür, odun ve başka yanabilir eşyalar kullanılabilir."],
+        ["Büyü Masası", "🔮", "Deneyim seviyeleri ve lapis lazuli kullanarak eşyalara büyü eklemeyi sağlar. Etrafındaki kitaplıklar sunulan büyü seçeneklerini etkiler."],
+        ["Örs", "🔨", "Eşyaları birleştirmek, onarmak ve yeniden adlandırmak için kullanılır. İşlemler deneyim seviyesi gerektirebilir; örs zamanla aşınabilir."],
+        ["İş Masası", "🛠️", "3×3 üretim alanı açar. Oyundaki birçok tarif için temel bloktur."],
+        ["Fener ve Meşale", "💡", "Çevreyi aydınlatmaya yardımcı olur. Karanlık alanlarda güvenli gezinmek ve bazı düşmanların ortaya çıkma ihtimalini azaltmak için ışık kullan."]
+    ]
+},
+{
+    title: "Eşyalar",
+    icon: "🎒",
+    description: "Silahlar, araçlar, malzemeler ve değerli eşyalar.",
+    items: [
+        ["Elmas", "💎", "Güçlü aletler, zırh ve büyü masası gibi eşyalarda kullanılır. Değerli olduğu için üretim kararlarını planlı vermek faydalıdır."],
+        ["Netherit Külçesi", "🟣", "Netherit hurdası ve altın külçesiyle üretilir. Elmas ekipmanı netherit seviyesine yükseltmekte kullanılır."],
+        ["Demir Külçesi", "🔩", "Demir cevherini eriterek veya uygun demir eşyaları işleyerek elde edilebilir. Kova, kalkan, alet ve zırh tariflerinde kullanılır."],
+        ["Altın Külçesi", "🟨", "Altın cevherinden veya altın eşyaları işleyerek elde edilebilir. Bazı tariflerde ve Piglinlerle takasta işe yarar."],
+        ["Lapis Lazuli", "🔵", "Büyü masasında büyü uygulamak için gerekir. Cevheri kazarken yeterli ışık ve güvenli bir rota hazırlamak yararlıdır."],
+        ["Zümrüt", "🟢", "Köylülerle ticarette kullanılan para birimi benzeri bir eşyadır. Köylü görevlerini tamamlayıp ticaret yaparak elde edilebilir."],
+        ["Pusula", "🧭", "Normalde dünyanın başlangıç noktasını gösterir. Manyetit ile ilişkilendirildiğinde belirli bir noktayı takip etmek için kullanılabilir."],
+        ["Harita", "🗺️", "Keşfettiğin alanları görmene yardımcı olur. Haritayı kâğıtla büyütebilir ve bazı sürümlerde işaretleri takip edebilirsin."],
+        ["Kalkan", "🛡️", "Uygun şekilde tutulduğunda bazı saldırıları engeller. Zamanlama ve konumlama, özellikle yakın dövüşte önemlidir."],
+        ["Yay", "🏹", "Ok kullanarak uzaktan saldırmanı sağlar. Gererek atış yapmak menzil ve hasar üzerinde etkilidir."],
+        ["Arbalet", "🎯", "Ok veya havai fişek roketi fırlatabilir. Önceden doldurulabilir; uygun büyüler kullanımını değiştirebilir."],
+        ["Totem of Undying", "✨", "Elde tutulurken ölümcül bir durumda devreye girerek oyuncuyu hayatta tutabilir. Çok değerli olduğu için güvenli biçimde sakla ve doğru elde taşı."],
+        ["Ender İncisi", "🟣", "Kısa mesafelerde ışınlanmayı sağlar ve kullanıldığında bir miktar hasar verebilir. Uçurumlarda ve lav yakınında dikkatli kullan."],
+        ["Ateş Direnci İksiri", "🧪", "Belirli bir süre ateş ve lav hasarına karşı koruma sağlar. Nether keşfi öncesi hazırlamak yararlı olabilir."],
+        ["Elytra", "🪽", "Havada süzülmeni sağlar. Havai fişek roketleriyle uçuşunu uzatabilirsin; iniş yapacağın alanı önceden kontrol et."],
+        ["Shulker Kutusu", "📦", "İçindeki eşyaları kutu kırıldığında da korur. Çok eşya taşımayı kolaylaştırır; kutu yapmak için shulker kabuğu ve sandık gerekir."],
+        ["Etiket", "🏷️", "Örs yardımıyla isim verilerek moblara uygulanabilir. İsim etiketleri birçok yapıda veya balıkçılık gibi yöntemlerle bulunabilir."],
+        ["Kova", "🪣", "Su, lav ve bazı canlıları taşımakta kullanılabilir. Su kovası düşüşlerden kurtulmak veya lav yakınında güvenli alan oluşturmak için işe yarar."]
+    ]
+},
+{
+    title: "Moblar",
+    icon: "🐉",
+    description: "Dost canlıları, düşmanlar ve bosslar.",
+    items: [
+        ["Warden", "👹", "Derin Karanlık biyomunda ses ve titreşimlere tepki veren çok güçlü bir düşmandır. Onunla savaşmak yerine sessizce uzaklaşmak genellikle daha güvenlidir."],
+        ["Ender Dragon", "🐉", "End boyutunun boss'udur. Kristaller ejderhayı iyileştirdiğinden, saldırıdan önce onları güvenli biçimde etkisiz hâle getirmek gerekir."],
+        ["Wither", "☠️", "Wither iskeleti kafatasları ve ruh kumu/ruhsal toprakla çağrılan güçlü bir boss'tur. Savaş için geniş ve kontrollü bir alan seç."],
+        ["Creeper", "💥", "Oyuncuya yaklaştığında patlar. Mesafe korumak, kalkan kullanmak ve çevreyi aydınlatmak riskleri azaltabilir."],
+        ["Zombi", "🧟", "Karanlıkta ortaya çıkan temel düşmanlardan biridir. Kapalı ve aydınlık bir üs kurmak geceleri daha güvenli geçirmeni sağlar."],
+        ["İskelet", "🏹", "Uzaktan ok atarak saldırır. Siper kullanmak ve doğrudan açık alanda yaklaşmamak avantaj sağlar."],
+        ["Enderman", "🟪", "Genellikle oyuncu ona doğrudan baktığında saldırganlaşır. Suya karşı hassastır; dar ve alçak bir alan güvenli taktik sağlayabilir."],
+        ["Köylü", "🧑‍🌾", "Meslek bloklarıyla meslek kazanır ve oyuncuyla ticaret yapabilir. İş bloklarını ve yatakları düzenli tutmak köy düzenini kolaylaştırır."],
+        ["Demir Golem", "🗿", "Köyleri korumaya yardımcı olur. Köy sakinlerini korurken tehlikeli düşmanlara karşı güçlü bir savunmadır."],
+        ["Piglin", "🐽", "Nether'da bulunur ve altınla takas yapabilir. Altın zırhın bir parçasını giymek bazı Piglinlerin saldırganlığını önlemeye yardımcı olur."],
+        ["Blaze", "🔥", "Nether kalelerinde bulunur ve ateş saldırıları yapar. Ateş direnci ve dikkatli siper kullanımı karşılaşmayı kolaylaştırabilir."],
+        ["Shulker", "📦", "End şehirlerinde görülür. Mermileri oyuncuyu havaya kaldırabilir; siper ve zamanlama ile etkisini azaltabilirsin."],
+        ["Axolotl", "🩷", "Suda yaşayan dost canlılardan biridir. Su altı keşiflerinde belirli düşmanlara karşı yardımcı olabilir."],
+        ["Armadillo", "🦔", "Savana ve benzeri sıcak biyomlarda karşılaşılabilir. Fırça/üretim gibi mekanikleri sürüme göre inceleyerek ilgili eşyaları kullan."],
+        ["Kurt", "🐺", "Kemikle evcilleştirilebilir. Evcilleştirildiğinde takip edebilir ve bazı düşmanlara karşı yardımcı olur."],
+        ["Arı", "🐝", "Çiçeklerden polen toplar ve uygun kovanlarda bal üretimine yardımcı olur. Arı yuvasından bal alırken kamp ateşi kullanmak kızmalarını önleyebilir."],
+        ["Slime", "🟩", "Bataklıklarda veya slime parçalarında ortaya çıkabilir. Büyüklüğüne göre öldürüldüğünde daha küçük parçalara ayrılabilir."],
+        ["Phantom", "👻", "Uzun süre uyumayan oyuncuların yakınında ortaya çıkabilir. Düzenli uyumak ve çevreyi kontrol etmek karşılaşmayı azaltabilir."]
+    ]
+},
+{
+    title: "Biyomlar",
+    icon: "🌍",
+    description: "Overworld, Nether ve End bölgelerini keşfet.",
+    items: [
+        ["Ovalar", "🌾", "Geniş ve düz alanlarıyla başlangıç üssü kurmak için uygundur. Köyler ve hayvanlar bulunabilir."],
+        ["Orman", "🌲", "Ağaç ve odun kaynakları bol olan bir biyomdur. Ağaçlık alanlarda görünürlüğü artırmak için yol ve meşale kullan."],
+        ["Çöl", "🏜️", "Kum, kaktüs ve çöl köyleri gibi özellikler içerebilir. Ağaç az olduğundan odun kaynağını önceden hazırla."],
+        ["Tayga", "🌲", "Ladin ağaçları ve çeşitli canlılarla tanınır. Taiga köyleri bazı sürümlerde bulunabilir."],
+        ["Kiraz Korusu", "🌸", "Pembe çiçekli kiraz ağaçlarıyla bilinir. Görsel açıdan etkileyici yapı alanları için tercih edilebilir."],
+        ["Mantar Tarlaları", "🍄", "Mooshroom canlıları ve dev mantarlarıyla tanınır. Nadir görülen, kendine özgü bir biyomdur."],
+        ["Mangrov Bataklığı", "🌿", "Mangrov ağaçları, çamur ve kurbağalarla ilişkilidir. Kökler ve su yolları hareketi zorlaştırabileceğinden yönünü takip et."],
+        ["Buz Düzlükleri", "❄️", "Kar ve buzla kaplı soğuk bir biyomdur. Yiyecek ve odun bulmayı planlamak başlangıçta önemlidir."],
+        ["Derin Karanlık", "🌑", "Sculk blokları ve antik şehirlerle ilişkilidir. Gürültüye dikkat et; Warden tehlikesi nedeniyle kontrollü hareket et."],
+        ["Nether Çoraklıkları", "🔥", "Nether'da sık görülen biyomlardan biridir. Lav gölleri ve tehlikeli düşmanlar nedeniyle köprü kurarken korunaklı ilerle."],
+        ["Kızıl Orman", "🍄", "Nether'da kırmızı mantar benzeri bitki örtüsü bulunur. Hoglin ve Piglin gibi canlılara dikkat et."],
+        ["Çarpık Orman", "🩵", "Nether'ın mavi tonlu biyomudur. Endermanlar yaygın olabilir; görüş yönüne dikkat et."],
+        ["Ruh Kumu Vadisi", "💀", "Fosiller, ruh kumu ve iskeletlerle karşılaşılabilir. Hareket hızını etkileyen zeminlerde açık alanı dikkatli geç."],
+        ["Bazalt Deltaları", "🌋", "Bazalt ve kara taş oluşumlarıyla bilinir. Düzensiz zemin ve lav cepleri yüzünden yavaş ilerlemek faydalıdır."],
+        ["End Adaları", "🌌", "End ana adasının ötesindeki adalar, End şehirlerini bulabileceğin bölgelerdir. Güvenli köprüler ve ender incileri işe yarayabilir."],
+        ["Sahil", "🏖️", "Kara ve okyanus arasında geçiş alanıdır. Kum, su ve bazen gömülü hazine haritalarıyla karşılaşılabilir."]
+    ]
+},
+{
+    title: "Yapılar",
+    icon: "🏛️",
+    description: "Köyler, antik şehirler ve keşfedilebilir yapılar.",
+    items: [
+        ["Köy", "🏘️", "Köylüler, yataklar ve meslek blokları içeren yerleşimlerdir. Erzak, yatak ve ticaret fırsatı bulabilirsin."],
+        ["Antik Şehir", "🏙️", "Derin Karanlıkta oluşan büyük bir yer altı yapısıdır. Sculk sensörlerini tetiklememek için yavaş ve sessiz ilerle."],
+        ["Nether Kalesi", "🏰", "Blaze ve Wither iskeletleri gibi canlılar içerir. Ateş direnci, yiyecek ve korunaklı bir rota hazırlamak yararlı olur."],
+        ["Bastion Kalıntısı", "🧱", "Nether'da Piglinlerle ilişkili tehlikeli bir yapıdır. Sandıkları açarken çevredeki Piglinleri ve düşüşleri hesaba kat."],
+        ["Okyanus Anıtı", "🌊", "Guardian ve Elder Guardian gibi canlıların bulunduğu su altı yapısıdır. Su altında nefes ve görüş için hazırlık yap."],
+        ["Orman Konağı", "🌳", "Karanlık ormanlarda bulunan büyük bir yapıdır. İçinde tehlikeli illagerlar olabilir; yeterli zırh ve yiyecek getir."],
+        ["Yağmacı Karakolu", "🏹", "Pillagerların koruduğu gözetleme yapısıdır. Yaklaşırken menzilli saldırılara ve çevredeki devriyelere dikkat et."],
+        ["Çöl Tapınağı", "🔺", "Merkezindeki tuzaklı oda ve ganimet sandıklarıyla bilinir. Ortadaki basınç plakasına dikkat ederek dikkatli kaz."],
+        ["Deniz Harabesi", "🪸", "Okyanuslarda veya sahillerde bulunabilen eski kalıntılardır. Bazı yapılar gömülü hazine haritaları içerebilir."],
+        ["Gemi Enkazı", "🚢", "Okyanus ve sahillerde bulunur. Sandıklar yiyecek, malzeme veya hazine haritası sağlayabilir."],
+        ["End Şehri", "🏯", "End adalarında bulunur. Shulkerlarla karşılaşabilirsin; bazı yapılarda elytra içeren gemiler yer alabilir."],
+        ["Deneme Odaları", "⚙️", "Bakır ve tüf bloklarıyla oluşturulmuş, deneme spawnerları içeren bir yapıdır. Ekipmanını ve yiyeceğini hazırlayarak ilerle."],
+        ["Maden Kuyusu", "⛏️", "Yer altında koridorlar ve raylarla karşılaşabileceğin eski bir yapıdır. Mağara örümcekleri ve lavlara dikkat et."],
+        ["İglo", "❄️", "Karlı biyomlarda bulunabilen küçük yapılardır. Bazılarında gizli bir alt bölüm bulunabilir."],
+        ["Gömülü Hazine", "🗺️", "Hazine haritasındaki işareti takip ederek kum veya çakılın altında sandık arayabilirsin. Haritadaki X işaretine göre konumunu ayarla."]
+    ]
+},
+{
+    title: "Boyutlar",
+    icon: "🌌",
+    description: "Overworld, Nether ve End hakkında bilgi edin.",
+    items: [
+        ["Overworld", "🌎", "Oyuna genellikle burada başlarsın. Biyomlar, köyler, mağaralar ve pek çok doğal kaynak bu boyuttadır."],
+        ["Nether", "🔥", "Obsidyen portalıyla ulaşılır. Lav, dar köprüler ve düşmanlar nedeniyle ateş direnci ve sağlam blok taşımak yararlıdır."],
+        ["End", "🌌", "Ender Dragon ile ilişkilendirilen boyuttur. Giriş için Ender gözüyle kaleyi bulup portal odasını keşfetmek gerekir."],
+        ["Nether Portalı", "🟪", "Obsidyen çerçeve ateşle etkinleştirilir. Portal bağlantıları koordinatlara göre eşleşir; uzak mesafeleri kısaltabilir."],
+        ["End Portalı", "🟣", "Kalelerdeki portal odasında bulunur. Eksik yuvalara Ender gözü yerleştirildiğinde etkinleşir."],
+        ["Boyutlar Arası Hazırlık", "🎒", "Yiyecek, yedek bloklar, kalkan ve uygun ekipman getir. Eşyalarını kaybetmemek için güvenli dönüş rotası planla."]
+    ]
+},
+{
+    title: "Üretim Tarifleri",
+    icon: "🛠️",
+    description: "Eşyaları üretmek için gereken malzemeleri öğren.",
+    items: [
+        ["Tahta ve Çubuk", "🪵", "Kütükleri tahtaya dönüştür; tahtaları üretim alanına yerleştirerek çubuk üret. Temel alet tarifleri için gerekir."],
+        ["Taş Kazma", "⛏️", "Üç kırık taş ve iki çubukla üretilir. Demir ve daha değerli kaynakları kazmak için başlangıç ekipmanıdır."],
+        ["Fırın", "🔥", "Sekiz kırık taşı üretim masasının dış çevresine yerleştirerek üretilebilir. Eritme ve yemek pişirmede kullanılır."],
+        ["Sandık", "📦", "Sekiz tahta bloğuyla üretilebilir. Eşya biriktirmek için erken oyunda öncelikli tariflerdendir."],
+        ["Kalkan", "🛡️", "Tahta ve demir külçesi kullanılarak üretilir. Tarifin dizilimi sürüme göre kontrol edilebilir."],
+        ["Yatak", "🛏️", "Üç tahta ve aynı renkten üç yün ile üretilebilir. Doğma noktası belirlemeyi ve geceyi atlamayı sağlar."],
+        ["Ok", "🏹", "Çubuk, çakmaktaşı ve tüy kullanılarak üretilebilir. Yay veya arbaletle menzilli saldırı yapmanı sağlar."],
+        ["Pusula", "🧭", "Dört demir külçesi ve bir redstone tozu ile üretilebilir. Başlangıç konumunu veya manyetit hedefini bulmaya yardımcı olur."],
+        ["Büyü Masası", "🔮", "Elmas, obsidyen ve kitapla üretilir. Ekipmanına büyü eklemek için deneyim seviyesi ve lapis lazuli gerekir."],
+        ["Olta", "🎣", "Çubuklar ve ip ile üretilebilir. Balık ve bazı ek ganimetleri elde etmek için kullanılır."],
+        ["Havai Fişek Roketi", "🎆", "Kâğıt ve barutla üretilir; yıldız eklenirse görsel patlama oluşabilir. Elytra uçuşunda roket kullanımı önemlidir."],
+        ["Ender Gözü", "🟣", "Ender incisi ve blaze tozuyla üretilir. Kaleyi bulmaya ve End portalını etkinleştirmeye yardımcı olur."]
+    ]
+},
+{
+    title: "Büyüler",
+    icon: "🔮",
+    description: "Silah, araç ve zırh büyülerini incele.",
+    items: [
+        ["Keskinlik", "⚔️", "Kılıç ve baltanın yakın dövüş hasarını artırır. Genel savaşlar için çok yönlü bir seçenektir."],
+        ["Koruma", "🛡️", "Zırhın gelen hasara karşı korumasını artırır. Belirli hasar türlerine özel büyülerle farkları vardır."],
+        ["Verimlilik", "⛏️", "Kazma, balta, kürek ve benzeri araçların blok kırma hızını artırır."],
+        ["Kırılmazlık", "🔧", "Eşyanın dayanıklılığının daha seyrek azalmasına yardımcı olur."],
+        ["Tamir", "✨", "Deneyim kürelerini kullanarak elde tutulan veya giyilen uygun eşyaların dayanıklılığını onarır."],
+        ["İpeksi Dokunuş", "🧊", "Bazı blokları normal düşen eşyaları yerine kendileri olarak toplamayı sağlar. Servet büyüsüyle aynı anda kullanılamaz."],
+        ["Servet", "💎", "Uygun bloklardan düşen kaynak miktarını artırabilir. Elmas, kömür ve bazı diğer cevherlerde değerlidir."],
+        ["Alevden Çehre", "🔥", "Kılıçla yapılan saldırılara ateş etkisi ekler. Etkisi yaratığa ve oyun koşullarına göre değişebilir."],
+        ["Geri Tepme", "💨", "Vurulan hedefi geriye iter. Rakipleri uzak tutmaya yarar, ancak bazı hedeflerin takibini zorlaştırabilir."],
+        ["Sonsuzluk", "🏹", "Yayın normal okları sınırsız kullanmasını sağlar; yine de envanterde en az bir ok gerekir."],
+        ["Güç", "🎯", "Yayın hasarını artırır. Uzaktan savaşta ve uçan hedeflere karşı faydalıdır."],
+        ["Düşen Tüy", "🪶", "Düşme hasarını azaltır. Dağlık alanlarda ve yüksek yapılarda güvenli hareket etmeye yardımcı olur."],
+        ["Su Altı Nefesi", "🌊", "Su altında daha uzun nefes tutmayı sağlar. Okyanus anıtı ve enkaz keşiflerinde yararlı olabilir."],
+        ["Ateş Koruması", "🔥", "Ateş kaynaklı hasarı azaltır. Nether gezileri için ateş direnci iksiriyle aynı etkiye sahip değildir."]
+    ]
+},
+{
+    title: "İksirler",
+    icon: "🧪",
+    description: "İksir türlerini, etkilerini ve üretim sistemini öğren.",
+    items: [
+        ["İksir Standı", "🧪", "Blaze çubuğuyla üretilebilir. Su şişelerine temel malzemeler ekleyerek iksir yapmanı sağlar."],
+        ["Ateş Direnci", "🔥", "Lav ve ateş kaynaklı hasara karşı belirli süre koruma sağlar. Nether gezilerinde yararlıdır."],
+        ["Hız", "💨", "Hareket hızını geçici olarak artırır. Keşif ve geri çekilme sırasında avantaj sağlayabilir."],
+        ["Kuvvet", "💪", "Yakın dövüş hasarını artırır. Güçlü düşmanlarla savaşmadan önce uygun bir seçenek olabilir."],
+        ["Yenilenme", "❤️", "Canın zaman içinde yenilenmesine yardımcı olur. Zor karşılaşmalarda zamanlama önemlidir."],
+        ["Gece Görüşü", "🌙", "Karanlıkta çevreni daha rahat görmeni sağlar. Derin mağaralar ve su altı keşfi için faydalıdır."],
+        ["Su Altında Nefes", "🐠", "Su altında nefes alma süresini artırır. Uzun dalışlarda iyi bir hazırlıktır."],
+        ["Zayıflık", "🌀", "Hedefin yakın dövüş gücünü azaltır. Bazı köylü iyileştirme mekaniklerinde kullanılır."],
+        ["Sıçrama", "🦘", "Zıplama yüksekliğini artırır ve bazı düşme koşullarına yardımcı olabilir."],
+        ["İksir Süresini Uzatma", "🔴", "Uygun iksire redstone eklemek etki süresini uzatabilir. Her iksirde aynı biçimde çalışmayabilir."],
+        ["İksiri Fırlatılabilir Yapma", "💦", "Uygun iksire barut ekleyerek fırlatılabilir iksir oluşturabilirsin. Etki çevredeki hedeflere yayılabilir."]
+    ]
+},
+{
+    title: "Redstone",
+    icon: "🔴",
+    description: "Devreler, otomasyonlar ve mekanik sistemler.",
+    items: [
+        ["Redstone Tozu", "🔴", "Devrelerde sinyal taşır. Sinyal gücü mesafeyle azalabilir; tekrarlayıcılarla sinyali yenileyebilirsin."],
+        ["Redstone Tekrarlayıcı", "🔁", "Sinyali güçlendirip gecikme eklemek için kullanılır. Otomasyon zamanlamasında temel parçadır."],
+        ["Karşılaştırıcı", "➗", "Kapların doluluk seviyesini ve bazı blok sinyallerini okuyabilir. Otomatik sıralama ve ölçüm devrelerinde kullanılır."],
+        ["Piston", "🧱", "Sinyal geldiğinde blokları iter. Kapılar, gizli girişler ve taşınan mekanizmalar yapılabilir."],
+        ["Yapışkan Piston", "🟩", "Pistonun ittiği bloğu geri çekmesine yardımcı olur. Hareketli zemin ve gizli kapılarda kullanılır."],
+        ["Gözlemci", "👁️", "Önündeki blok değişimlerini algılayıp kısa bir redstone sinyali üretir. Otomatik çiftliklerde kullanışlıdır."],
+        ["Huni", "📥", "Eşyaları kaplar arasında aktarır. Sandık, fırın ve otomatik çiftliklerde eşya taşımaya yarar."],
+        ["Dağıtıcı", "📤", "Redstone sinyaliyle içindeki eşyaları kullanabilir veya fırlatabilir. Sıvı, ok ve diğer eşyalarla farklı işler yapar."],
+        ["Damlatıcı", "⬇️", "Sinyal verildiğinde eşya fırlatır; dağıtıcıdan farklı davranışları vardır. Eşya aktarma sistemlerinde kullanılır."],
+        ["Redstone Lambası", "💡", "Sinyal geldiğinde ışık verir. Otomatik aydınlatma ve durum göstergeleri tasarlamak için kullanılır."],
+        ["Basınç Plakası", "🟫", "Oyuncu, mob veya eşya gibi etkenlerle redstone sinyali gönderebilir. Tuzak veya kapı devresinde kullanılabilir."],
+        ["Otomatik Çiftlik", "🌾", "Gözlemci, piston, su ve huni gibi parçalarla kaynak toplama işlemlerinin bir bölümünü otomatikleştirebilirsin."]
+    ]
+},
+{
+    title: "Köylüler ve Ticaret",
+    icon: "🧑‍🌾",
+    description: "Meslekler, iş blokları ve ticaret sistemi.",
+    items: [
+        ["Köylü Meslekleri", "🧑‍🌾", "İşsiz köylü uygun iş bloğuna erişirse meslek edinebilir. Mesleği olan köylüyle ticaret yaptıktan sonra mesleği kolayca değişmez."],
+        ["Kütüphaneci", "📚", "Kürsü ile meslek kazanır. Kitap, kâğıt ve büyülü kitap gibi ticaret seçenekleri sunabilir."],
+        ["Zırhçı", "🛡️", "Yüksek seviyelerde zırh parçaları takas edebilir. İş bloğu yüksek fırındır."],
+        ["Alet Ustası", "⛏️", "Kazma ve diğer araçlarla ilgili ticaretler sunabilir. İş bloğu demirci masasıdır."],
+        ["Silah Ustası", "⚔️", "Silahlarla ilgili ticaretler sunabilir. İş bloğu bileme taşıdır."],
+        ["Çiftçi", "🌾", "Ekin, sebze ve diğer tarım ürünleri üzerinden ticaret yapabilir. İş bloğu komposterdir."],
+        ["Okçu", "🏹", "Çubuk, ip ve ok gibi eşyalarla ticaret yapabilir. İş bloğu okçuluk masasıdır."],
+        ["Rahip", "🧪", "Bazı büyü ve iksir malzemeleriyle ilgili ticaretler sunabilir. İş bloğu iksir standıdır."],
+        ["Demirci Masası", "🔧", "Alet ustasının iş bloğudur; aynı zamanda elmas ekipmanı netherit seviyesine yükseltmekte kullanılır."],
+        ["Köylü İyileştirme", "❤️", "Zombi köylü, zayıflık etkisi ve altın elma kullanılarak iyileştirilebilir. Yakınındaki düşmanlardan korumak önemlidir."],
+        ["Ticaret Fiyatları", "💚", "Fiyatlar itibar, talep ve oyun koşullarından etkilenebilir. Sürekli aynı eşyayı alıp satmak fiyatı artırabilir."]
+    ]
+},
+{
+    title: "Tarım",
+    icon: "🌾",
+    description: "Ekinler, bitkiler ve çiftlik sistemleri.",
+    items: [
+        ["Buğday", "🌾", "Tohumları sürülmüş ve uygun koşullardaki toprağa ek. Suya yakın tarla ve yeterli ışık büyümeyi destekler."],
+        ["Havuç ve Patates", "🥕", "Köylerde veya belirli ganimetlerde bulunabilir. Tarla kurarak sürdürülebilir yiyecek kaynağı oluşturabilirsin."],
+        ["Şeker Kamışı", "🎋", "Su kenarındaki uygun bloklarda büyür. Kâğıt üretimi ve bazı tariflerde kullanılır."],
+        ["Bambu", "🎍", "Hızlı büyüyen bir bitkidir. İskele ve bambu yapı malzemeleri üretmek için değerlidir."],
+        ["Kabak ve Karpuz", "🎃", "Tarlada gövde ve meyve alanı gerekir. Meyvenin çıkacağı komşu blokların boş olmasına dikkat et."],
+        ["Hayvan Yetiştirme", "🐄", "İnek, koyun ve tavuk gibi canlıları uygun yiyeceklerle besleyerek çoğaltabilirsin. Çitlerle güvenli alan oluştur."],
+        ["Arı Çiftliği", "🐝", "Çiçek ve kovan kullanarak bal peteği veya bal şişesi toplanabilir. Hasattan önce kamp ateşi koymak arıların sakin kalmasına yardımcı olur."],
+        ["Komposter", "♻️", "Bazı bitki ve yiyecek eşyaları kompostlanarak kemik tozu üretilebilir. Çiftlik otomasyonlarına eklenebilir."],
+        ["Mantar Yetiştirme", "🍄", "Uygun düşük ışıklı alanlar ve doğru bloklar mantarların yayılmasını destekler. Büyük mantar yetiştirmek için kemik tozu kullanılabilir."],
+        ["Ağaç Çiftliği", "🌳", "Fidanları uygun aralıkla dik, büyüme alanını açık bırak ve büyüme için gereken ışığı sağla."],
+        ["Otomatik Ekin Toplama", "💧", "Su akışı ve huni düzenleri hasadı kolaylaştırabilir. Tasarımın ekin türüne ve oyun sürümüne uygun olduğundan emin ol."]
+    ]
+},
+{
+    title: "Madencilik",
+    icon: "⛏️",
+    description: "Cevherler, kaynaklar ve kazı yöntemleri.",
+    items: [
+        ["Elmas Bulma", "💎", "Derin yer altındaki uygun yüksekliklerde mağara keşfi veya planlı tünel kazısı yap. Lav ve düşüş riskine karşı blok, su ve yiyecek taşı."],
+        ["Demir Bulma", "⛏️", "Mağaralarda ve dağlık alanlarda bulunabilir. İlerledikçe yeterli demir toplayarak kova, kalkan ve ekipman yap."],
+        ["Kömür ve Bakır", "⚫", "Kömür yakıt ve meşale için, bakır ise yapı ve çeşitli tarifler için kullanılır. Görünür damarları güvenli biçimde takip et."],
+        ["Altın Bulma", "🟨", "Overworld'de ve Nether'da farklı biçimlerde bulunur. Nether altın cevherini kazarken Piglinlerin yakınlığını dikkate al."],
+        ["Antik Enkaz", "🟣", "Nether'da nadir bulunan antik enkaz, eritildiğinde netherit hurdası verir. Lav ve patlamaya karşı dikkatli kazı yap."],
+        ["Y-Seviyesi", "📏", "Cevher dağılımı oyun sürümüne göre farklılaşabilir. En iyi yükseklik için oynadığın sürümün güncel cevher dağılımını kontrol et."],
+        ["Mağara Hazırlığı", "🎒", "Meşale, yiyecek, kalkan, su kovası, yedek kazma ve inşaat bloğu getir. Girişe işaret koyarak dönüş yolunu kaybetme."],
+        ["Güvenli Kazı", "🧱", "Tam altındaki veya üstündeki bloğu kontrol etmeden kazma. Lav ve yüksek düşüşlere karşı yan koridor veya merdivenli iniş kullan."],
+        ["Şerit Madenciliği", "⛏️", "Belirli aralıklarla paralel tüneller açarak kaynak arayabilirsin. Mağara keşfiyle birlikte kullanıldığında alan taramasını kolaylaştırır."],
+        ["Cevher Büyüleri", "✨", "Servet kaynak miktarını artırabilir; İpeksi Dokunuş cevher bloğunu saklamayı sağlar. İhtiyacına göre doğru kazmayı seç."]
+    ]
+},
+{
+    title: "Savaş Sistemi",
+    icon: "⚔️",
+    description: "Silahlar, savunma, saldırılar ve savaş mekanikleri.",
+    items: [
+        ["Saldırı Zamanlaması", "⏱️", "Java Edition'da silah saldırı dolumunu izlemek hasarı artırabilir. Rastgele hızlı tıklamak yerine saldırı zamanını öğren."],
+        ["Kalkan Kullanımı", "🛡️", "Gelen bazı saldırıları engeller. Rakibin saldırısı bittikten sonra karşılık vermek ve çevreyi gözlemek önemlidir."],
+        ["Kritik Vuruş", "⬆️", "Uygun düşüş sırasında yapılan saldırı ek hasar verebilir. Zıplama zamanlaması ve hedefe doğru hareket koordinasyon gerektirir."],
+        ["Geri İtme ve Mesafe", "↔️", "Hedefle arandaki mesafe saldırı menzili ve geri itme üzerinde etkili olabilir. Dar alanlarda konumunu koru."],
+        ["Yay ile Savaş", "🏹", "Atışı gererek güçlendir, hedefin hareketini tahmin et ve siper kullan. Okların sınırlıysa isabetli atışlara odaklan."],
+        ["Zırh ve Koruma", "🛡️", "Daha iyi zırh hasarı azaltır, ancak açlık, düşüş, büyüler ve özel hasar türleri de önemlidir."],
+        ["İksirli Savaş", "🧪", "Hız, kuvvet, ateş direnci ve yenilenme gibi etkiler belirli savaşlarda yardımcı olabilir. İksirleri güvenli yerde ve doğru zamanda kullan."],
+        ["Çevreyi Kullanma", "🌋", "Duvarlar, yükseklik, su ve siper savaş sonucunu etkileyebilir. Lav veya uçurum yakınında plansız hamle yapma."]
+    ]
+},
+{
+    title: "Başarımlar",
+    icon: "🏆",
+    description: "İlerlemeler ve oyun içi hedefler.",
+    items: [
+        ["İlerleme Kitabı", "📖", "Java Edition'daki ilerlemeler, yaptığın keşifleri ve tamamladığın hedefleri takip eder. Gereksinimlerini oyun içinden inceleyebilirsin."],
+        ["İlk Aletler", "🪵", "Odun topla ve ilk aletlerini üret. Bu adım temel madencilik ve hayatta kalma döngüsünü başlatır."],
+        ["Nether'a Gir", "🔥", "Portal yapıp Nether'a geçmek yeni kaynaklara ve ilerleme hedeflerine erişmeni sağlar. İyi hazırlan."],
+        ["End'e Yolculuk", "🌌", "Kaleyi bul, End portalını etkinleştir ve End'e girmeden önce yeterli ekipman ile dönüş hazırlığını yap."],
+        ["Ender Dragon", "🐉", "Kristalleri ve ejderhanın saldırılarını takip ederek savaşı tamamla. Yay, blok ve iyileştirme eşyaları hazırlamak faydalıdır."],
+        ["Köylü Ticareti", "💚", "Bir köylüyle başarılı bir takas yaparak ticaret mekaniklerini keşfet. Mesleğe göre uygun eşya topla."],
+        ["Hayvan Çiftliği", "🐄", "Uygun yiyeceklerle iki hayvanı besleyip çoğaltarak sürdürülebilir kaynak oluştur."]
+    ]
+},
+{
+    title: "Oyun Mekanikleri",
+    icon: "⚙️",
+    description: "Minecraft'ın temel ve ileri seviye sistemleri.",
+    items: [
+        ["Gün ve Gece Döngüsü", "☀️", "Dünya döngüsü zamanla ilerler. Gece düşmanlarla karşılaşma ihtimali yükseldiğinden ilk gün barınak ve ışık hazırla."],
+        ["Açlık ve Doygunluk", "🍗", "Yemek yemek açlığı yeniler. Farklı yiyecekler farklı doygunluk sağlar; uzun keşif için yeterli yemek taşı."],
+        ["Deneyim Seviyesi", "✨", "Deneyim küreleriyle kazanılır. Büyü uygulamak ve örs işlemleri için kullanılabilir."],
+        ["Doğma Noktası", "🛏️", "Yatak veya uygun mekaniklerle yeniden doğma noktasını değiştirebilirsin. Tehlikeli boyutlarda yatağın davranışına dikkat et."],
+        ["Işık Seviyesi", "💡", "Işık; görünürlük, bitki yetiştirme ve düşmanların ortaya çıkması gibi mekanikleri etkiler. Üssünü düzenli aydınlat."],
+        ["Chunk Sistemi", "🧩", "Dünya küçük alanlara ayrılarak işlenir. Yükleme mesafesi, çiftliklerin çalışma koşullarını etkileyebilir."],
+        ["Dayanıklılık", "🔧", "Araç ve zırhların kullanım ömrü vardır. Tamir, Kırılmazlık ve yedek ekipman dayanıklılık yönetimine yardımcı olur."],
+        ["Düşme Hasarı", "⬇️", "Yüksekten düşmek hasar verir. Su kovası, yumuşak iniş, merdiven ve uygun büyüler riski azaltabilir."],
+        ["Harita ve Koordinatlar", "🗺️", "X, Y ve Z koordinatları yön ve konum bulmak için kullanılır. Önemli noktaların koordinatlarını not almak dönüşü kolaylaştırır."]
+    ]
+},
+{
+    title: "Komutlar",
+    icon: "⌨️",
+    description: "Komutların kullanımı ve örnekleri.",
+    items: [
+        ["/help", "⌨️", "Komut yardımı sağlar. Erişilebilir komutlar sürüme, oyun moduna ve sunucu izinlerine göre değişebilir."],
+        ["/gamemode", "🎮", "İzin olduğunda oyun modunu değiştirir. Örneğin yaratıcı ve hayatta kalma modları arasında geçiş yapılabilir."],
+        ["/tp", "🧭", "İzin ve doğru sözdizimi olduğunda oyuncuyu veya varlığı belirli konuma ışınlamak için kullanılır."],
+        ["/give", "🎁", "Yeterli izinle oyuncuya eşya verir. Komut adları ve parametreleri sürüme göre kontrol edilmelidir."],
+        ["/time", "🕒", "İzin olduğunda oyun içi zamanı değiştirir veya görüntüler."],
+        ["/weather", "🌦️", "İzin olduğunda hava durumunu değiştirmek veya kontrol etmek için kullanılabilir."],
+        ["/seed", "🌱", "Dünya tohumunu gösterir; bazı sunucular veya oyun ayarları bu bilgiye erişimi kısıtlayabilir."],
+        ["Komut İzinleri", "🔐", "Çok oyunculu sunucularda komutlar rol veya izin gerektirebilir. Yalnızca izin verilen komutları kullan."]
+    ]
+},
+{
+    title: "Zırhlar",
+    icon: "🛡️",
+    description: "Zırh setleri, koruma ve ekipman özellikleri.",
+    items: [
+        ["Deri Zırh", "🟤", "Erken oyunda kolay ulaşılabilen bir korumadır. Deri zırh parçaları renklendirilebilir."],
+        ["Demir Zırh", "⚙️", "Başlangıç ve orta aşamada dengeli koruma sağlar. Demir kaynaklarını yeterince topladıktan sonra tam set üretmek yararlıdır."],
+        ["Elmas Zırh", "💎", "Güçlü bir zırh setidir. Büyüler ve yükseltmelerle daha uzun süre kullanılabilir."],
+        ["Netherit Zırh", "🟣", "Elmas zırhın demirci masasında netherit külçesiyle yükseltilmesiyle elde edilir. Üretimden önce değerli malzemeleri güvenceye al."],
+        ["Kask", "🪖", "Baş bölgesi zırhıdır. Solunum ve su altı madenciliği gibi uygun büyülerle ek yararlar sağlayabilir."],
+        ["Göğüslük", "🦺", "Zırh parçaları arasında önemli koruma sağlar. Elytra kullanımı göğüslükle aynı anda mümkün olmadığından seçim yapman gerekir."],
+        ["Pantolon", "👖", "Zırh setinin parçasıdır ve genel savunmaya katkı sağlar. Koruma büyüleriyle güçlendirilebilir."],
+        ["Çizme", "🥾", "Düşen Tüy, Derinlik Gezgini veya Buzda Yürüme gibi büyülerle hareket ve düşüşlerde avantaj sağlayabilir."],
+        ["Ekipman Dayanıklılığı", "🔧", "Zırhın dayanıklılığını takip et, Tamir/Kırılmazlık büyülerini değerlendir ve tehlikeli yolculuklarda yedek parça taşı."]
+    ]
+}
 ];
 
-/* MINECRAFT REHBERLERİ */
+/* =========================================================
+   MINECRAFT REHBERLERİ
+========================================================= */
 
 const guideGroups = [
-    {
-        title: "Başlangıç Rehberleri",
-        icon: "🌱",
-        description: "İlk günlerini güvenle geçir ve temel ihtiyaçlarını öğren.",
-        items: [
-            ["İlk Geceyi Atlatma", "🌙", "İlk gün odun topla, temel aletlerini üret, yiyecek bul ve gün batmadan aydınlatılmış bir barınak hazırla."],
-            ["İlk Aletlerini Üret", "🪓", "Kütükleri tahtaya, tahtaları çubuklara dönüştür. Önce kazma, ardından ihtiyacına göre balta, kılıç ve kürek üret."],
-            ["Güvenli Üs Kurma", "🏠", "Kapı, ışık, sandık ve yatak kullan. Girişleri kontrol et, yakındaki mağaraları aydınlat ve değerli eşyaları düzenle."],
-            ["Yiyecek Bulma", "🍞", "Başlangıçta hayvanlar, ekinler veya balık kullanılabilir. Uzun yolculuklara çıkmadan önce yeterli yiyecek hazırla."]
-        ]
-    },
-    {
-        title: "Orta Seviye Rehberleri",
-        icon: "⛏️",
-        description: "Kaynaklarını geliştir ve daha zorlu bölgelere hazırlan.",
-        items: [
-            ["Madencilik Hazırlığı", "⛏️", "Yedek kazma, meşale, yiyecek, kalkan, su kovası ve blok taşı. Girişe işaret koyarak kaybolma riskini azalt."],
-            ["Nether'a Hazırlık", "🔥", "İyi zırh, kalkan, altın zırh parçası, ateş direnci iksiri ve bol blok taşı. Portalın koordinatlarını not al."],
-            ["Köylü Ticaret Alanı", "💚", "Köylüleri güvenli alanlarda tut, iş bloklarına erişim sağla ve ticaretlerini düzenli yaparak yararlı eşyalar elde et."],
-            ["Büyü Masası Kurma", "🔮", "Elmas ve obsidyen topla, kitap üret ve masanın çevresine kitaplık yerleştirerek daha güçlü büyülere eriş."]
-        ]
-    },
-    {
-        title: "İleri Seviye Rehberleri",
-        icon: "🐉",
-        description: "Boss savaşları ve uzun vadeli ilerleme için plan yap.",
-        items: [
-            ["Ender Dragon Savaşı", "🐉", "Yay, ok, kılıç, blok, yiyecek ve iyileştirme eşyaları al. Önce End kristallerini etkisiz hâle getirip ejderhanın hareketlerini izle."],
-            ["Elytra Bulma ve Kullanma", "🪽", "End şehirlerinde gemi arayarak elytra bulabilirsin. Uçuştan önce iniş alanı, roket miktarı ve dayanıklılığı kontrol et."],
-            ["Netherit Ekipmanı", "🟣", "Nether'da antik enkaz bul, eriterek hurda elde et ve altınla netherit külçesi üret. Ekipmanı demirci masasında yükselt."],
-            ["Otomatik Çiftliklere Giriş", "⚙️", "Redstone, gözlemci, piston, huni ve su gibi parçaları küçük bir tasarımda test ederek kaynak toplama işini kolaylaştır."]
-        ]
-    },
-    {
-        title: "Hayatta Kalma ve Keşif",
-        icon: "🧭",
-        description: "Daha uzun keşifler için rotanı, kaynaklarını ve dönüşünü planla.",
-        items: [
-            ["Uzun Yolculuk Planı", "🧭", "Yatak, yiyecek, tekne, pusula, harita ve yapı blokları al. Önemli koordinatları yaz ve dönüş rotasını işaretle."],
-            ["Okyanus Keşfi", "🌊", "Tekne, su altında nefes iksiri veya kaplumbağa kabuğu gibi uygun eşyalarla hazırlan. Oksijenini ve yüzeydeki yönünü takip et."],
-            ["Mağarada Kaybolmama", "🕯️", "Meşaleleri tek bir duvara yerleştir, kavşaklara işaret koy ve keşfettiğin yolları harita veya koordinatla kaydet."],
-            ["Eşyaları Güvende Tutma", "📦", "Değerli eşyaları ayrı sandıklarda sakla, yola gereksiz eşyalarla çıkma ve tehlikeli bölgelere girerken yedek ekipman taşı."]
-        ]
-    }
+{
+    title: "Başlangıç Rehberleri",
+    icon: "🌱",
+    description: "İlk günlerini güvenle geçir ve temel ihtiyaçlarını öğren.",
+    items: [
+        ["İlk Geceyi Atlatma", "🌙", "İlk gün odun topla, temel aletlerini üret, yiyecek bul ve gün batmadan aydınlatılmış bir barınak hazırla."],
+        ["İlk Aletlerini Üret", "🪓", "Kütükleri tahtaya, tahtaları çubuklara dönüştür. Önce kazma, ardından ihtiyacına göre balta, kılıç ve kürek üret."],
+        ["Güvenli Üs Kurma", "🏠", "Kapı, ışık, sandık ve yatak kullan. Girişleri kontrol et, yakındaki mağaraları aydınlat ve değerli eşyaları düzenle."],
+        ["Yiyecek Bulma", "🍞", "Başlangıçta hayvanlar, ekinler veya balık kullanılabilir. Uzun yolculuklara çıkmadan önce yeterli yiyecek hazırla."]
+    ]
+},
+{
+    title: "Orta Seviye Rehberleri",
+    icon: "⛏️",
+    description: "Kaynaklarını geliştir ve daha zorlu bölgelere hazırlan.",
+    items: [
+        ["Madencilik Hazırlığı", "⛏️", "Yedek kazma, meşale, yiyecek, kalkan, su kovası ve blok taşı. Girişe işaret koyarak kaybolma riskini azalt."],
+        ["Nether'a Hazırlık", "🔥", "İyi zırh, kalkan, altın zırh parçası, ateş direnci iksiri ve bol blok taşı. Portalın koordinatlarını not al."],
+        ["Köylü Ticaret Alanı", "💚", "Köylüleri güvenli alanlarda tut, iş bloklarına erişim sağla ve ticaretlerini düzenli yaparak yararlı eşyalar elde et."],
+        ["Büyü Masası Kurma", "🔮", "Elmas ve obsidyen topla, kitap üret ve masanın çevresine kitaplık yerleştirerek daha güçlü büyülere eriş."]
+    ]
+},
+{
+    title: "İleri Seviye Rehberleri",
+    icon: "🐉",
+    description: "Boss savaşları ve uzun vadeli ilerleme için plan yap.",
+    items: [
+        ["Ender Dragon Savaşı", "🐉", "Yay, ok, kılıç, blok, yiyecek ve iyileştirme eşyaları al. Önce End kristallerini etkisiz hâle getirip ejderhanın hareketlerini izle."],
+        ["Elytra Bulma ve Kullanma", "🪽", "End şehirlerinde gemi arayarak elytra bulabilirsin. Uçuştan önce iniş alanı, roket miktarı ve dayanıklılığı kontrol et."],
+        ["Netherit Ekipmanı", "🟣", "Nether'da antik enkaz bul, eriterek hurda elde et ve altınla netherit külçesi üret. Ekipmanı demirci masasında yükselt."],
+        ["Otomatik Çiftliklere Giriş", "⚙️", "Redstone, gözlemci, piston, huni ve su gibi parçaları küçük bir tasarımda test ederek kaynak toplama işini kolaylaştır."]
+    ]
+},
+{
+    title: "Hayatta Kalma ve Keşif",
+    icon: "🧭",
+    description: "Daha uzun keşifler için rotanı, kaynaklarını ve dönüşünü planla.",
+    items: [
+        ["Uzun Yolculuk Planı", "🧭", "Yatak, yiyecek, tekne, pusula, harita ve yapı blokları al. Önemli koordinatları yaz ve dönüş rotasını işaretle."],
+        ["Okyanus Keşfi", "🌊", "Tekne, su altında nefes iksiri veya kaplumbağa kabuğu gibi uygun eşyalarla hazırlan. Oksijenini ve yüzeydeki yönünü takip et."],
+        ["Mağarada Kaybolmama", "🕯️", "Meşaleleri tek bir duvara yerleştir, kavşaklara işaret koy ve keşfettiğin yolları harita veya koordinatla kaydet."],
+        ["Eşyaları Güvende Tutma", "📦", "Değerli eşyaları ayrı sandıklarda sakla, yola gereksiz eşyalarla çıkma ve tehlikeli bölgelere girerken yedek ekipman taşı."]
+    ]
+}
 ];
 
-/* PVP MERKEZİ */
+/* =========================================================
+   PVP MERKEZİ
+========================================================= */
 
 const pvpGroups = [
-    {
-        title: "Yakın Dövüş",
-        icon: "⚔️",
-        description: "Kılıç, balta ve yakın mesafe savaşları.",
-        items: [
-            ["Kılıç PvP", "⚔️", "Saldırı zamanlamasına, mesafeye ve hareketine odaklan. Rakibin hamlesinden sonra karşılık vermek ve kalkanını doğru kullanmak önemlidir."],
-            ["Balta PvP", "🪓", "Bazı sürümlerde baltalar yüksek tek vuruş hasarı veya kalkanla etkileşim avantajı sunabilir. Saldırı hızını ve mesafeyi çalış."],
-            ["Kalkan Kullanımı", "🛡️", "Saldırıları engellemek için doğru yöne bak ve karşı saldırı fırsatı yakalamaya çalış. Çevrenden gelen diğer tehlikeleri de izle."],
-            ["Kritik Vuruşlar", "⬆️", "Uygun düşüş sırasında saldırmak bazı oyun koşullarında ek hasar verebilir. Zıplama ve saldırı zamanlamasını antrenmanda dene."]
-        ]
-    },
-    {
-        title: "Menzilli Savaş ve Ekipman",
-        icon: "🏹",
-        description: "Yay, zırh, iksir ve envanter düzeni.",
-        items: [
-            ["Yay PvP", "🏹", "Hedefin hareket yönünü tahmin et, yayı yeterince ger ve siper kullan. Yakın mesafede geri çekilmek için boş alan bırak."],
-            ["Arbalet Kullanımı", "🎯", "Arbaleti önceden doldurabilir ve uygun durumda roket kullanabilirsin. Yeniden doldurma süresini hesaba kat."],
-            ["PvP Ekipmanları", "🛡️", "Oyun moduna uygun zırh, silah, yiyecek, kalkan, ok ve blok seç. Ekipman tercihi sürüme ve sunucu kurallarına göre değişebilir."],
-            ["Envanter Düzeni", "🎒", "Sık kullandığın eşyaları kolay erişilebilir yuvalara yerleştir. Yiyecek ve savunma araçlarını panik anında aramak zorunda kalma."],
-            ["İksir ve Etkiler", "🧪", "Sunucu kuralları izin veriyorsa hız, kuvvet veya ateş direnci gibi etkileri savaş planına dahil et. Etki sürelerini takip et."]
-        ]
-    },
-    {
-        title: "PvP Oyun Modları",
-        icon: "🎮",
-        description: "Farklı sunucu modlarına özel temel yaklaşımlar.",
-        items: [
-            ["Crystal PvP", "💎", "Bu mod kristal hasarı ve hızlı konumlandırma üzerine kuruludur. Patlama riskini, zırh durumunu ve çevredeki blokları sürekli takip etmek gerekir."],
-            ["BoxPvP", "🟩", "Arena sınırlarını, kaynak kazanma yöntemlerini ve sunucu kurallarını öğren. Değerli eşyaları riske atmadan önce rakipleri ve çıkış yollarını gözle."],
-            ["BedWars", "🛏️", "Yatağını koru, takım kaynaklarını dengeli kullan ve köprü kurarken çevreyi izle. Rakip yatağa saldırmadan önce geri dönüş rotanı planla."],
-            ["SkyWars", "☁️", "Başlangıç sandığını hızlıca kontrol et ve adanın güvenliğini sağla. Orta adaya geçerken blok, zırh ve kaçış rotası bulundur."],
-            ["Potion PvP", "🧪", "İksir etkilerini, sürelerini ve envanter sırasını öğren. Sunucu kurallarını kontrol ederek iksirleri ne zaman kullanacağını planla."],
-            ["UHC", "❤️", "Can yenilenmesi sınırlı olabileceğinden yiyecek, zırh ve kaynak yönetimine önem ver. Gereksiz çatışmadan kaçınmak avantaj sağlayabilir."],
-            ["Survival PvP", "🌲", "Dünya kaynaklarını, barınağını ve envanterini koru. Çevreyi kullan, değerli eşyalarla gereksiz risk alma ve sunucu kurallarına uy."]
-        ]
-    },
-    {
-        title: "Taktik ve Antrenman",
-        icon: "🎯",
-        description: "Hareket, karar verme ve beceri geliştirme.",
-        items: [
-            ["Savaş Taktikleri", "🎯", "Mesafeyi koru, rakibin hareketlerini izle ve savaş alanının sınırlarını kullan. Her karşılaşmada aynı stratejiyi uygulamak yerine duruma göre karar ver."],
-            ["Hareket ve Mesafe", "💨", "Yanlara hareket etmeyi, geri çekilmeyi ve hedefi takip etmeyi çalış. Dar alanlarda kendi hareketini engelleyen bloklara dikkat et."],
-            ["PvP Antrenmanı", "🏋️", "Önce bir beceri seç: zamanlama, nişan, blok yerleşimi veya envanter hızı. Kısa tekrarlarla gelişimini takip et."],
-            ["Takım Oyunu", "🤝", "Takım arkadaşlarınla hedefleri paylaş, kaynak durumunu haber ver ve aynı hedefe koordineli yaklaş. Gereksiz yere takım arkadaşlarının yolunu kapatma."],
-            ["Savaş Sonrası Öğrenme", "📝", "Kaybettiğin bir karşılaşmadan sonra pozisyon, ekipman ve zamanlamayı gözden geçir. Tek bir hataya değil tekrar eden alışkanlıklara odaklan."]
-        ]
-    }
+{
+    title: "Yakın Dövüş",
+    icon: "⚔️",
+    description: "Kılıç, balta ve yakın mesafe savaşları.",
+    items: [
+        ["Kılıç PvP", "⚔️", "Saldırı zamanlamasına, mesafeye ve hareketine odaklan. Rakibin hamlesinden sonra karşılık vermek ve kalkanını doğru kullanmak önemlidir."],
+        ["Balta PvP", "🪓", "Bazı sürümlerde baltalar yüksek tek vuruş hasarı veya kalkanla etkileşim avantajı sunabilir. Saldırı hızını ve mesafeyi çalış."],
+        ["Kalkan Kullanımı", "🛡️", "Saldırıları engellemek için doğru yöne bak ve karşı saldırı fırsatı yakalamaya çalış. Çevrenden gelen diğer tehlikeleri de izle."],
+        ["Kritik Vuruşlar", "⬆️", "Uygun düşüş sırasında saldırmak bazı oyun koşullarında ek hasar verebilir. Zıplama ve saldırı zamanlamasını antrenmanda dene."]
+    ]
+},
+{
+    title: "Menzilli Savaş ve Ekipman",
+    icon: "🏹",
+    description: "Yay, zırh, iksir ve envanter düzeni.",
+    items: [
+        ["Yay PvP", "🏹", "Hedefin hareket yönünü tahmin et, yayı yeterince ger ve siper kullan. Yakın mesafede geri çekilmek için boş alan bırak."],
+        ["Arbalet Kullanımı", "🎯", "Arbaleti önceden doldurabilir ve uygun durumda roket kullanabilirsin. Yeniden doldurma süresini hesaba kat."],
+        ["PvP Ekipmanları", "🛡️", "Oyun moduna uygun zırh, silah, yiyecek, kalkan, ok ve blok seç. Ekipman tercihi sürüme ve sunucu kurallarına göre değişebilir."],
+        ["Envanter Düzeni", "🎒", "Sık kullandığın eşyaları kolay erişilebilir yuvalara yerleştir. Yiyecek ve savunma araçlarını panik anında aramak zorunda kalma."],
+        ["İksir ve Etkiler", "🧪", "Sunucu kuralları izin veriyorsa hız, kuvvet veya ateş direnci gibi etkileri savaş planına dahil et. Etki sürelerini takip et."]
+    ]
+},
+{
+    title: "PvP Oyun Modları",
+    icon: "🎮",
+    description: "Farklı sunucu modlarına özel temel yaklaşımlar.",
+    items: [
+        ["Crystal PvP", "💎", "Bu mod kristal hasarı ve hızlı konumlandırma üzerine kuruludur. Patlama riskini, zırh durumunu ve çevredeki blokları sürekli takip etmek gerekir."],
+        ["BoxPvP", "🟩", "Arena sınırlarını, kaynak kazanma yöntemlerini ve sunucu kurallarını öğren. Değerli eşyaları riske atmadan önce rakipleri ve çıkış yollarını gözle."],
+        ["BedWars", "🛏️", "Yatağını koru, takım kaynaklarını dengeli kullan ve köprü kurarken çevreyi izle. Rakip yatağa saldırmadan önce geri dönüş rotanı planla."],
+        ["SkyWars", "☁️", "Başlangıç sandığını hızlıca kontrol et ve adanın güvenliğini sağla. Orta adaya geçerken blok, zırh ve kaçış rotası bulundur."],
+        ["Potion PvP", "🧪", "İksir etkilerini, sürelerini ve envanter sırasını öğren. Sunucu kurallarını kontrol ederek iksirleri ne zaman kullanacağını planla."],
+        ["UHC", "❤️", "Can yenilenmesi sınırlı olabileceğinden yiyecek, zırh ve kaynak yönetimine önem ver. Gereksiz çatışmadan kaçınmak avantaj sağlayabilir."],
+        ["Survival PvP", "🌲", "Dünya kaynaklarını, barınağını ve envanterini koru. Çevreyi kullan, değerli eşyalarla gereksiz risk alma ve sunucu kurallarına uy."]
+    ]
+},
+{
+    title: "Taktik ve Antrenman",
+    icon: "🎯",
+    description: "Hareket, karar verme ve beceri geliştirme.",
+    items: [
+        ["Savaş Taktikleri", "🎯", "Mesafeyi koru, rakibin hareketlerini izle ve savaş alanının sınırlarını kullan. Her karşılaşmada aynı stratejiyi uygulamak yerine duruma göre karar ver."],
+        ["Hareket ve Mesafe", "💨", "Yanlara hareket etmeyi, geri çekilmeyi ve hedefi takip etmeyi çalış. Dar alanlarda kendi hareketini engelleyen bloklara dikkat et."],
+        ["PvP Antrenmanı", "🏋️", "Önce bir beceri seç: zamanlama, nişan, blok yerleşimi veya envanter hızı. Kısa tekrarlarla gelişimini takip et."],
+        ["Takım Oyunu", "🤝", "Takım arkadaşlarınla hedefleri paylaş, kaynak durumunu haber ver ve aynı hedefe koordineli yaklaş. Gereksiz yere takım arkadaşlarının yolunu kapatma."],
+        ["Savaş Sonrası Öğrenme", "📝", "Bir karşılaşmadan sonra pozisyon, ekipman ve zamanlamayı gözden geçir. Tek bir hataya değil tekrar eden alışkanlıklara odaklan."]
+    ]
+}
 ];
 
-/* ÖNEMLİ ÖNERİLER */
+/* =========================================================
+   ÖNEMLİ ÖNERİLER
+========================================================= */
 
 const importantTips = [
     {
         title: "Her zaman yedek malzeme taşı",
         icon: "🎒",
-        description: "Uzun gezilerde yedek kazma, meşale, yiyecek ve yapı bloğu taşımak beklenmedik durumlarda hayat kurtarabilir."
+        description: "Uzun gezilerde yedek kazma, meşale, yiyecek ve yapı bloğu taşımak beklenmedik durumlarda işine yarayabilir."
     },
     {
         title: "Koordinatları not al",
@@ -1454,7 +1535,7 @@ const importantTips = [
     {
         title: "Kalkan ve su kovası kullanmayı öğren",
         icon: "🛡️",
-        description: "Kalkan bazı saldırılara karşı koruma sağlar. Su kovası ise uygun koşullarda düşüşü veya lav çevresindeki tehlikeyi azaltabilir."
+        description: "Kalkan bazı saldırılara karşı koruma sağlar. Su kovası uygun koşullarda düşüşü veya lav çevresindeki tehlikeyi azaltabilir."
     },
     {
         title: "İlk gece için barınak hazırla",
@@ -1483,41 +1564,44 @@ const importantTips = [
     }
 ];
 
-/* GÜNCELLEMELER */
+/* =========================================================
+   GÜNCELLEMELER
+========================================================= */
 
 const updateGroups = [
-    {
-        title: "Sürüm Türleri",
-        icon: "☕",
-        description: "Minecraft Java, Bedrock, snapshot ve ön sürüm ayrımları.",
-        items: [
-            ["Java Edition", "☕", "Bilgisayar için Java tabanlı sürümdür. Modlar ve sunucu seçenekleri toplulukta yaygındır; sürüm ve mod uyumunu kontrol etmek gerekir."],
-            ["Bedrock Edition", "📱", "Birçok farklı cihazda bulunan sürümdür. Çok oyunculu uyumluluk ve bazı mekanikler Java Edition'dan farklı olabilir."],
-            ["Snapshot", "🧪", "Java Edition'da geliştirme aşamasındaki özellikleri denemek için yayımlanan test sürümleridir. Dünyanın yedeğini almadan ana kayıt dosyanda kullanma."],
-            ["Ön Sürüm / Pre-release", "🔍", "Yeni sürümün çıkışına yakın hata düzeltmeleri ve denemeler içerebilir. Özellikler son sürümden önce değişebilir."],
-            ["Hotfix", "🩹", "Yayımlanmış bir sürümdeki belirli sorunları düzeltmek için gelen küçük güncellemedir."]
-        ]
-    },
-    {
-        title: "Güncellemeleri Takip Etme",
-        icon: "📰",
-        description: "Yeni özellikleri araştırırken sürüm numarasını ve duyuruları karşılaştır.",
-        items: [
-            ["Sürüm Notlarını Okuma", "📄", "Değişiklikler, düzeltilen hatalar ve bilinen sorunlar sürüm notlarında listelenebilir. Oynadığın platformun açıklamasını kontrol et."],
-            ["Yeni Blok ve Eşyalar", "🧱", "Deneysel içeriklerde yeni bloklar, eşya tarifleri veya mekanikler bulunabilir. Bunların normal dünyaya eklenip eklenmediğini kontrol et."],
-            ["Deneysel Özellikler", "🧬", "Bazı yenilikleri açmak için dünyada deneysel özellikler gerekebilir. Bu özelliklerin kararlı sürümde aynı kalacağı garanti değildir."],
-            ["Dünya Yedeği", "💾", "Snapshot veya test sürümü denemeden önce dünyanı yedekle. Farklı sürümler arasında geçiş yapmak dünyada sorunlara yol açabilir."],
-            ["Mod Uyumluluğu", "🧩", "Minecraft sürümü, mod yükleyicisi ve her modun sürüm numarası birbiriyle uyumlu olmalıdır. Güncellemeden önce modların destek durumunu kontrol et."]
-        ]
-    }
+{
+    title: "Sürüm Türleri",
+    icon: "☕",
+    description: "Minecraft Java, Bedrock, snapshot ve ön sürüm ayrımları.",
+    items: [
+        ["Java Edition", "☕", "Bilgisayar için Java tabanlı sürümdür. Modlar ve sunucu seçenekleri toplulukta yaygındır; sürüm ve mod uyumunu kontrol etmek gerekir."],
+        ["Bedrock Edition", "📱", "Birçok farklı cihazda bulunan sürümdür. Çok oyunculu uyumluluk ve bazı mekanikler Java Edition'dan farklı olabilir."],
+        ["Snapshot", "🧪", "Java Edition'da geliştirme aşamasındaki özellikleri denemek için yayımlanan test sürümleridir. Dünyanın yedeğini almadan ana kayıt dosyanda kullanma."],
+        ["Ön Sürüm / Pre-release", "🔍", "Yeni sürümün çıkışına yakın hata düzeltmeleri ve denemeler içerebilir. Özellikler son sürümden önce değişebilir."],
+        ["Hotfix", "🩹", "Yayımlanmış bir sürümdeki belirli sorunları düzeltmek için gelen küçük güncellemedir."]
+    ]
+},
+{
+    title: "Güncellemeleri Takip Etme",
+    icon: "📰",
+    description: "Yeni özellikleri araştırırken sürüm numarasını ve duyuruları karşılaştır.",
+    items: [
+        ["Sürüm Notlarını Okuma", "📄", "Değişiklikler, düzeltilen hatalar ve bilinen sorunlar sürüm notlarında listelenebilir. Oynadığın platformun açıklamasını kontrol et."],
+        ["Yeni Blok ve Eşyalar", "🧱", "Deneysel içeriklerde yeni bloklar, eşya tarifleri veya mekanikler bulunabilir. Bunların normal dünyaya eklenip eklenmediğini kontrol et."],
+        ["Deneysel Özellikler", "🧬", "Bazı yenilikleri açmak için dünyada deneysel özellikler gerekebilir. Bu özelliklerin kararlı sürümde aynı kalacağı garanti değildir."],
+        ["Dünya Yedeği", "💾", "Snapshot veya test sürümü denemeden önce dünyanı yedekle. Farklı sürümler arasında geçiş yapmak dünyada sorunlara yol açabilir."],
+        ["Mod Uyumluluğu", "🧩", "Minecraft sürümü, mod yükleyicisi ve her modun sürüm numarası birbiriyle uyumlu olmalıdır. Güncellemeden önce modların destek durumunu kontrol et."]
+    ]
+}
 ];
 
-/* SIK SORULAN SORULAR */
+/* =========================================================
+   SIK SORULAN SORULAR
+========================================================= */
 
 const faqItems = [
     ["GameGuide nedir?", "GameGuide; Minecraft Wiki içerikleri, temel rehberler, PvP taktikleri ve sürüm bilgilerini tek sayfada sunan bağımsız bir bilgi platformudur."],
     ["Bu site resmî Minecraft sitesi mi?", "Hayır. GameGuide bağımsız bir topluluk projesidir; Mojang Studios veya Microsoft tarafından desteklenmez."],
-    ["Bir konuya tıklayınca neden başka sayfa açılmıyor?", "İçerikler aynı sayfada açılıp kapanan paneller olarak tasarlandı. Konu başlığını açarak açıklamasını yerinde okuyabilirsin."],
     ["Arama nasıl çalışıyor?", "Üstteki arama alanına blok, eşya, mob, biyom veya PvP gibi bir kelime yaz. Eşleşen başlıklar görünür ve ilgili kategoriler otomatik açılır."],
     ["Blokları ve eşyaları nasıl bulabilirim?", "Minecraft Wiki bölümünden kategori seç; ardından “Bütün ...” panelini ve incelemek istediğin konu başlığını aç."],
     ["PvP rehberleri nerede?", "PvP Merkezi bölümünde kılıç, balta, yay, Crystal PvP, BoxPvP, BedWars, SkyWars, Potion PvP, UHC ve antrenman başlıkları bulunur."],
@@ -1530,7 +1614,7 @@ const faqItems = [
 ];
 
 /* =========================================================
-   HTML OLUŞTURMA FONKSİYONLARI
+   YARDIMCI FONKSİYONLAR
 ========================================================= */
 
 function escapeHTML(value) {
@@ -1550,23 +1634,15 @@ function normalizeText(value) {
         .replace(/[\u0300-\u036f]/g, "");
 }
 
-/* HER BİR KONU AYRI BİR AÇILIR PANEL */
+/* TEK BİR KONU: AÇILIR VE AÇIKLAMAYI AYNI SAYFADA GÖSTERİR */
 
 function createTopic(item, categoryTitle = "") {
     const [title, icon, description] = item;
-
-    const searchText = [
-        title,
-        icon,
-        description,
-        categoryTitle
-    ].join(" ");
+    const searchText = [title, icon, description, categoryTitle].join(" ");
 
     return `
-        <details
-            class="topic searchable-leaf"
-            data-search="${escapeHTML(searchText)}">
-
+        <details class="topic searchable-leaf"
+                 data-search="${escapeHTML(searchText)}">
             <summary>
                 <span class="topic-icon">${escapeHTML(icon || "📘")}</span>
                 <span>${escapeHTML(title)}</span>
@@ -1581,16 +1657,15 @@ function createTopic(item, categoryTitle = "") {
 
 /* REHBER, PVP VE GÜNCELLEME GRUPLARI */
 
-function createGroup(group, kind = "group") {
-    const matchedItems = group.items
+function createGroup(group) {
+    const items = group.items
         .map(item => createTopic(item, group.title))
         .join("");
 
     return `
-        <details
-            class="accordion filter-group"
-            data-group-title="${escapeHTML(group.title)}"
-            data-search="${escapeHTML(group.title + " " + group.description)}">
+        <details class="accordion filter-group"
+                 data-group-title="${escapeHTML(group.title)}"
+                 data-search="${escapeHTML(group.title + " " + group.description)}">
 
             <summary>
                 <span class="item-icon">${escapeHTML(group.icon || "📚")}</span>
@@ -1609,20 +1684,17 @@ function createGroup(group, kind = "group") {
                     ${escapeHTML(group.description)}
                 </p>
 
-                <details class="topic all-items" open>
+                <details class="topic all-items">
                     <summary>
                         <span class="topic-icon">📚</span>
                         <span>Bütün ${escapeHTML(group.title)}</span>
                     </summary>
 
                     <div class="topic-body all-items-body">
-                        <p>
-                            İncelemek istediğin başlığa tıkla.
-                            Açıklama aynı sayfada görünecek.
-                        </p>
+                        <p>İncelemek istediğin başlığa tıkla. Açıklama aynı sayfada görünecek.</p>
 
                         <div class="sub-accordion-list">
-                            ${matchedItems}
+                            ${items}
                         </div>
                     </div>
                 </details>
@@ -1631,7 +1703,7 @@ function createGroup(group, kind = "group") {
     `;
 }
 
-/* WIKI KATEGORİLERİ:
+/* WIKI KATEGORİSİ:
    Kategori → Bütün Kategori → Konu → Açıklama */
 
 function createWikiCategory(category) {
@@ -1640,10 +1712,9 @@ function createWikiCategory(category) {
         .join("");
 
     return `
-        <details
-            class="accordion filter-group wiki-category"
-            data-group-title="${escapeHTML(category.title)}"
-            data-search="${escapeHTML(category.title + " " + category.description)}">
+        <details class="accordion filter-group wiki-category"
+                 data-group-title="${escapeHTML(category.title)}"
+                 data-search="${escapeHTML(category.title + " " + category.description)}">
 
             <summary>
                 <span class="item-icon">${escapeHTML(category.icon)}</span>
@@ -1669,10 +1740,7 @@ function createWikiCategory(category) {
                     </summary>
 
                     <div class="topic-body all-items-body">
-                        <p>
-                            İncelemek istediğin başlığa tıkla.
-                            Açıklaması bu sayfada, başlığın hemen altında açılacak.
-                        </p>
+                        <p>İncelemek istediğin başlığa tıkla. Açıklaması bu sayfada, başlığın hemen altında açılacak.</p>
 
                         <div class="sub-accordion-list">
                             ${items}
@@ -1684,15 +1752,14 @@ function createWikiCategory(category) {
     `;
 }
 
-/* SSS PANELLERİ */
+/* SIK SORULAN SORULAR */
 
 function createFAQ(item) {
     const [question, answer] = item;
 
     return `
-        <details
-            class="topic searchable-leaf"
-            data-search="${escapeHTML(question + " " + answer)}">
+        <details class="topic searchable-leaf"
+                 data-search="${escapeHTML(question + " " + answer)}">
 
             <summary>
                 <span class="topic-icon">❓</span>
@@ -1714,27 +1781,27 @@ document.getElementById("wikiAccordion").innerHTML =
     wikiCategories.map(createWikiCategory).join("");
 
 document.getElementById("guideAccordion").innerHTML =
-    guideGroups.map(group => createGroup(group, "guides")).join("");
+    guideGroups.map(createGroup).join("");
 
 document.getElementById("pvpAccordion").innerHTML =
-    pvpGroups.map(group => createGroup(group, "pvp")).join("");
+    pvpGroups.map(createGroup).join("");
 
 document.getElementById("tipsAccordion").innerHTML =
-    importantTips
-        .map(tip => createTopic(
+    importantTips.map(tip =>
+        createTopic(
             [tip.title, tip.icon, tip.description],
             "Önemli Öneriler"
-        ))
-        .join("");
+        )
+    ).join("");
 
 document.getElementById("updatesAccordion").innerHTML =
-    updateGroups.map(group => createGroup(group, "updates")).join("");
+    updateGroups.map(createGroup).join("");
 
 document.getElementById("faqAccordion").innerHTML =
     faqItems.map(createFAQ).join("");
 
 /* =========================================================
-   ARAMA: SONUÇLARI GÖSTER, ÜST KATEGORİLERİ AÇ
+   ARAMA SİSTEMİ
 ========================================================= */
 
 const searchForm = document.getElementById("searchForm");
@@ -1769,15 +1836,12 @@ function performSearch(scrollToFirst = false) {
 
     let count = 0;
 
-    /* Önce konu başlıklarını eşleştir. */
-
     leaves.forEach(leaf => {
         const searchable = normalizeText(
             (leaf.dataset.search || "") + " " + leaf.innerText
         );
 
         const match = searchable.includes(query);
-
         leaf.hidden = !match;
 
         if (match) {
@@ -1796,8 +1860,6 @@ function performSearch(scrollToFirst = false) {
         }
     });
 
-    /* Kategori adı arandığında içeriklerini göster. */
-
     groups.forEach(group => {
         const groupTitle = normalizeText(
             (group.dataset.groupTitle || "") +
@@ -1806,10 +1868,7 @@ function performSearch(scrollToFirst = false) {
         );
 
         const titleMatch = groupTitle.includes(query);
-
-        const childLeaves = [
-            ...group.querySelectorAll(".searchable-leaf")
-        ];
+        const childLeaves = [...group.querySelectorAll(".searchable-leaf")];
 
         if (titleMatch) {
             childLeaves.forEach(leaf => {
@@ -1834,8 +1893,6 @@ function performSearch(scrollToFirst = false) {
         }
     });
 
-    /* İç içe listelerin görünür olduğundan emin ol. */
-
     document.querySelectorAll(".all-items").forEach(panel => {
         const visible = panel.querySelector(
             ".searchable-leaf:not([hidden])"
@@ -1848,8 +1905,7 @@ function performSearch(scrollToFirst = false) {
         }
     });
 
-    searchStatus.textContent =
-        count + " eşleşen içerik bulundu.";
+    searchStatus.textContent = count + " eşleşen içerik bulundu.";
 
     if (scrollToFirst) {
         const first = document.querySelector(
@@ -1865,9 +1921,7 @@ function performSearch(scrollToFirst = false) {
     }
 }
 
-searchInput.addEventListener("input", () => {
-    performSearch(false);
-});
+searchInput.addEventListener("input", () => performSearch(false));
 
 searchForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -1885,7 +1939,7 @@ document.querySelectorAll("[data-search-term]").forEach(button => {
 
 /* =========================================================
    MOBİL MENÜ VE SAYFA İÇİ GEÇİŞLER
-   Menüden bölüme geçerken URL değiştirilmez.
+   Bu bağlantılar başka bir HTML sayfasına yönlendirme yapmaz.
 ========================================================= */
 
 const menuButton = document.getElementById("menuButton");
@@ -1916,10 +1970,7 @@ function scrollToSection(id) {
 nav.querySelectorAll("a[href^='#']").forEach(link => {
     link.addEventListener("click", event => {
         event.preventDefault();
-
-        scrollToSection(
-            link.getAttribute("href").slice(1)
-        );
+        scrollToSection(link.getAttribute("href").slice(1));
     });
 });
 
