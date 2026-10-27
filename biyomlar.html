@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minecraft Biyomları | GameGuide</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/script.js" defer></script>
+    <script src="js/category-page.js" defer></script>
+</head>
+
+<body data-page="wiki" data-category="biyomlar">
+
+<header id="site-header"></header>
+
+<main>
+
+    <section class="page-hero">
+        <div class="container">
+
+            <div class="breadcrumbs">
+                <a href="index.html">Ana Sayfa</a>
+                /
+                <a href="wiki.html">Wiki</a>
+                /
+                <span id="categoryBreadcrumb">Biyomlar</span>
+            </div>
+
+            <span class="eyebrow">
+                GAMEGUIDE WIKI
+            </span>
+
+            <h1 id="categoryTitle">
+                Minecraft Biyomları
+            </h1>
+
+            <p id="categoryDescription">
+                Minecraft dünyasının farklı bölgelerini keşfet.
+            </p>
+
+            <div class="search-box">
+                <input
+                    id="categorySearch"
+                    type="search"
+                    placeholder="Biyom ara..."
+                    aria-label="Kategori içeriklerinde ara">
+
+                <a href="wiki.html" class="btn">
+                    Wiki'ye dön
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <h2 id="itemsHeading">
+                        Kategori içerikleri
+                    </h2>
+
+                    <p id="categoryCount">
+                        İçerikler yükleniyor...
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                class="card-grid"
+                id="categoryItems"
+                aria-live="polite">
+            </div>
+
+            <p
+                id="categoryEmpty"
+                class="empty-message"
+                hidden>
+                Aradığın içerik bulunamadı.
+            </p>
+
+        </div>
+    </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+</body>
+</html>
