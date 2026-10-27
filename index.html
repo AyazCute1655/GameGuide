@@ -1,42 +1,42 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#10130f">
-    <meta name="description" content="GameGuide - Minecraft Wiki, rehberler ve güncellemeler.">
+    <meta name="theme-color" content="#10140f">
+    <meta name="description" content="GameGuide Minecraft Wiki, rehberler, biyomlar, moblar ve PvP taktikleri.">
 
     <title>GameGuide | Minecraft Bilgi Merkezi</title>
 
     <style>
         :root {
-            --bg: #10130f;
-            --panel: #191e19;
-            --panel-hover: #222a21;
-            --green: #69d66b;
-            --green-dark: #2c8139;
-            --text: #f2f5f0;
-            --muted: #a5afa2;
-            --border: #303a30;
+            --bg: #10140f;
+            --surface: #181e17;
+            --surface2: #20291e;
+            --green: #79df72;
+            --green-dark: #375f35;
+            --text: #f1f5ee;
+            --muted: #a6b09f;
+            --border: #303b2d;
+            --radius: 13px;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
+            scroll-padding-top: 100px;
         }
 
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            line-height: 1.7;
         }
 
         a {
@@ -44,51 +44,57 @@
             text-decoration: none;
         }
 
-        button, input {
+        button,
+        input {
             font: inherit;
         }
 
-        .container {
-            width: min(1180px, 92%);
-            margin: auto;
+        button {
+            cursor: pointer;
         }
 
-        /* NAVBAR */
+        .container {
+            width: min(1120px, 92%);
+            margin-inline: auto;
+        }
 
-        header {
-            background: rgba(16, 19, 15, 0.96);
-            border-bottom: 1px solid var(--border);
+        /* ÜST MENÜ */
+
+        .header {
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(14px);
+            background: rgba(16, 20, 15, .96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(15px);
         }
 
         .navbar {
-            min-height: 76px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            align-items: center;
+            gap: 20px;
+            min-height: 74px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 11px;
+            gap: 10px;
             font-size: 23px;
-            font-weight: 800;
-            letter-spacing: -0.7px;
+            font-weight: 900;
+            letter-spacing: -.7px;
+            white-space: nowrap;
         }
 
         .logo-icon {
-            width: 38px;
-            height: 38px;
             display: grid;
             place-items: center;
+            width: 39px;
+            height: 39px;
+            border-radius: 10px;
             background: var(--green);
-            color: #102111;
-            border-radius: 9px;
+            color: #13200f;
             font-size: 23px;
         }
 
@@ -96,96 +102,103 @@
             color: var(--green);
         }
 
-        .nav-links {
+        .nav {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 19px;
         }
 
-        .nav-links a {
+        .nav a {
             color: var(--muted);
-            font-size: 14px;
-            transition: 0.2s;
+            font-size: 13px;
+            transition: color .2s;
         }
 
-        .nav-links a:hover {
+        .nav a:hover,
+        .nav a.active {
             color: var(--green);
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+        .nav-button {
+            display: none;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 21px;
         }
 
-        .btn {
+        /* GENEL BUTONLAR */
+
+        .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 11px 17px;
+            gap: 8px;
+            padding: 11px 16px;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 9px;
+            background: var(--surface);
             color: var(--text);
-            background: transparent;
-            cursor: pointer;
-            transition: 0.2s;
+            font-size: 13px;
             font-weight: 700;
-            font-size: 14px;
+            transition: .2s;
         }
 
-        .btn:hover {
+        .button:hover {
+            border-color: var(--green);
             transform: translateY(-2px);
-            border-color: var(--green);
         }
 
-        .btn-primary {
+        .button-primary {
             background: var(--green);
-            color: #102111;
             border-color: var(--green);
+            color: #142011;
         }
 
-        .btn-primary:hover {
-            background: #81e782;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 25px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
+        .button-primary:hover {
+            background: #94ed8d;
         }
 
         /* HERO */
 
         .hero {
-            padding: 95px 0 80px;
+            position: relative;
+            padding: 85px 0 65px;
+            overflow: hidden;
             background:
-                radial-gradient(ellipse at 50% 0%, #254329 0%, transparent 57%),
+                radial-gradient(ellipse at 15% 5%, rgba(80, 145, 65, .2), transparent 45%),
+                radial-gradient(ellipse at 90% 0%, rgba(46, 93, 49, .15), transparent 40%),
                 var(--bg);
-            text-align: center;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: 50px;
         }
 
         .eyebrow {
             display: inline-flex;
-            gap: 8px;
             align-items: center;
-            border: 1px solid #416744;
-            background: #1a2b1b;
+            padding: 6px 11px;
+            margin-bottom: 22px;
+            background: #203020;
             color: var(--green);
-            padding: 7px 13px;
+            border: 1px solid #3d5837;
             border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 25px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .6px;
         }
 
         .hero h1 {
-            font-size: clamp(38px, 6vw, 68px);
-            line-height: 1.12;
+            margin-bottom: 20px;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.13;
             letter-spacing: -2px;
-            margin-bottom: 23px;
         }
 
         .hero h1 span {
@@ -193,426 +206,565 @@
         }
 
         .hero-description {
+            max-width: 590px;
+            margin-bottom: 25px;
             color: var(--muted);
-            max-width: 670px;
-            margin: 0 auto 32px;
-            font-size: 17px;
+            font-size: 15px;
         }
 
         .search-box {
-            max-width: 650px;
-            margin: auto;
             display: flex;
-            gap: 10px;
-            padding: 8px;
-            border: 1px solid #465346;
-            background: #181e17;
-            border-radius: 12px;
+            gap: 9px;
+            max-width: 590px;
+            padding: 7px;
+            background: var(--surface);
+            border: 1px solid #43533e;
+            border-radius: 11px;
         }
 
         .search-box input {
-            min-width: 0;
             flex: 1;
-            background: transparent;
-            border: none;
+            min-width: 0;
+            padding: 10px;
+            border: 0;
             outline: none;
-            color: white;
-            padding: 10px 13px;
+            background: transparent;
+            color: var(--text);
+            font-size: 14px;
         }
 
         .search-box input::placeholder {
-            color: #899489;
+            color: #8d9986;
         }
 
-        #searchMessage {
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 17px;
+        }
+
+        .search-tags a {
+            padding: 5px 10px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
             color: var(--muted);
-            margin-top: 12px;
-            font-size: 13px;
-            min-height: 20px;
+            font-size: 11px;
         }
 
-        .hero-tags {
-            margin-top: 18px;
+        .search-tags a:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 280px;
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-block {
+            display: grid;
+            place-items: center;
+            width: 190px;
+            height: 190px;
+            background: linear-gradient(145deg, #3c6035, #1b301d);
+            border: 1px solid #52764b;
+            border-radius: 26px;
+            font-size: 85px;
+            transform: rotate(-5deg);
+            box-shadow: 0 0 90px rgba(95, 185, 77, .12);
+        }
+
+        .floating-card {
+            position: absolute;
+            padding: 11px 14px;
+            background: #1b2219;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: 0 10px 30px #0003;
+        }
+
+        .floating-card strong {
+            display: block;
+            color: var(--green);
+        }
+
+        .floating-one {
+            top: 18px;
+            left: 0;
+        }
+
+        .floating-two {
+            right: 0;
+            bottom: 20px;
+        }
+
+        .floating-three {
+            right: -5px;
+            top: 15px;
+        }
+
+        /* SAYFA BÖLÜMLERİ */
+
+        .section {
+            padding: 43px 0;
+        }
+
+        .section-alt {
+            background: #131812;
+            border-block: 1px solid #222b20;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 20px;
+            margin-bottom: 21px;
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+        }
+
+        .section-head h2 {
+            margin-bottom: 5px;
+            font-size: clamp(23px, 3vw, 31px);
+            letter-spacing: -.6px;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .section-head > a {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* TÜM İÇERİKLER İÇİN AKORDİYON */
+
+        .accordion-list {
+            display: grid;
+            gap: 11px;
+        }
+
+        .accordion {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+            transition: border-color .2s, background .2s;
+        }
+
+        .accordion:hover {
+            border-color: #4b6543;
+        }
+
+        .accordion[open] {
+            border-color: #486541;
+            background: #192018;
+        }
+
+        .accordion summary {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 72px;
+            padding: 16px 20px;
+            list-style: none;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .accordion summary::after {
+            content: "+";
+            display: grid;
+            place-items: center;
+            width: 29px;
+            height: 29px;
+            flex-shrink: 0;
+            margin-left: auto;
+            color: var(--green);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 20px;
+            line-height: 1;
+            transition: transform .2s;
+        }
+
+        .accordion[open] summary::after {
+            content: "−";
+            background: #243423;
+            transform: rotate(180deg);
+        }
+
+        .accordion-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: #263525;
+            font-size: 22px;
+        }
+
+        .accordion-heading {
+            min-width: 0;
+        }
+
+        .accordion-heading strong {
+            display: block;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .accordion-heading small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .accordion-content {
+            padding: 0 20px 21px;
+            border-top: 1px solid #293427;
+        }
+
+        .accordion-description {
+            margin: 17px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .sub-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+        }
+
+        .sub-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 13px;
+            background: #20291e;
+            border: 1px solid #2e3a29;
+            border-radius: 8px;
+            font-size: 12px;
+            transition: .2s;
+        }
+
+        .sub-link:hover {
+            border-color: var(--green-dark);
+            color: var(--green);
+            background: #263524;
+        }
+
+        .sub-link span:last-child {
+            color: var(--green);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 7px;
+            padding: 3px 7px;
+            border-radius: 5px;
+            background: #263625;
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        /* PVP */
+
+        .pvp-callout {
+            padding: 22px;
+            margin-bottom: 13px;
+            border: 1px solid #405a37;
+            border-radius: var(--radius);
+            background: linear-gradient(110deg, #1e2b1d, #171e16);
+        }
+
+        .pvp-callout h3 {
+            margin-bottom: 5px;
+            font-size: 17px;
+        }
+
+        .pvp-callout p {
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .pvp-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .pvp-mini-grid a {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: #171d15;
+            transition: .2s;
+        }
+
+        .pvp-mini-grid a:hover {
+            border-color: var(--green-dark);
+            background: #20291e;
+        }
+
+        .pvp-mini-grid strong {
+            display: block;
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .pvp-mini-grid p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* ALT BÖLÜM */
+
+        .bottom-cta {
+            padding: 29px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .bottom-cta h2 {
+            margin-bottom: 8px;
+            font-size: 25px;
+        }
+
+        .bottom-cta p {
+            max-width: 570px;
+            margin: 0 auto 17px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .button-row {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 9px;
         }
 
-        .hero-tags a {
-            color: var(--muted);
-            border: 1px solid var(--border);
-            padding: 5px 11px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
-        .hero-tags a:hover {
-            color: var(--green);
-            border-color: var(--green);
-        }
-
-        /* SECTIONS */
-
-        section.content-section {
-            padding: 58px 0;
-        }
-
-        .section-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 20px;
-            margin-bottom: 26px;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(25px, 3vw, 34px);
-            letter-spacing: -0.8px;
-            margin-bottom: 5px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .text-link {
-            color: var(--green);
-            font-size: 14px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        /* CATEGORY CARDS */
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .category-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 23px 19px;
-            transition: 0.2s;
-        }
-
-        .category-card:hover {
-            background: var(--panel-hover);
-            border-color: var(--green-dark);
-            transform: translateY(-4px);
-        }
-
-        .category-icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            font-size: 25px;
-            border-radius: 10px;
-            background: #263a26;
-            margin-bottom: 17px;
-        }
-
-        .category-card h3 {
-            font-size: 17px;
-            margin-bottom: 7px;
-        }
-
-        .category-card p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* WIKI CARDS */
-
-        .wiki-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 17px;
-        }
-
-        .wiki-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.2s;
-        }
-
-        .wiki-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--green-dark);
-        }
-
-        .wiki-art {
-            height: 135px;
-            display: grid;
-            place-items: center;
-            font-size: 61px;
-            background:
-                radial-gradient(circle at center, #354c32, #202b20);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .wiki-info {
-            padding: 18px;
-        }
-
-        .badge {
-            display: inline-block;
-            font-size: 11px;
-            color: var(--green);
-            background: #223523;
-            padding: 4px 8px;
-            border-radius: 5px;
-            margin-bottom: 11px;
-        }
-
-        .wiki-info h3 {
-            font-size: 18px;
-            margin-bottom: 7px;
-        }
-
-        .wiki-info p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-
-        .card-link {
-            display: inline-block;
-            color: var(--green);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .wiki-card.hidden {
-            display: none;
-        }
-
-        /* GUIDES */
-
-        .guide-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 17px;
-        }
-
-        .guide-card {
-            padding: 23px;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: 0.2s;
-        }
-
-        .guide-card:hover {
-            border-color: var(--green-dark);
-            transform: translateY(-3px);
-        }
-
-        .guide-card h3 {
-            margin: 13px 0 8px;
-            font-size: 19px;
-        }
-
-        .guide-card p {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        /* UPDATES */
-
-        .updates {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            background: var(--panel);
-        }
-
-        .update-row {
-            padding: 20px 23px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .update-row:last-child {
-            border-bottom: none;
-        }
-
-        .update-row h3 {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .update-row p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .version {
-            color: var(--green);
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        /* FAQ */
-
-        .faq-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        details {
-            border: 1px solid var(--border);
-            background: var(--panel);
-            border-radius: 9px;
-            padding: 17px 19px;
-        }
-
-        summary {
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        details p {
-            color: var(--muted);
-            margin-top: 12px;
-            font-size: 14px;
-        }
-
         /* FOOTER */
 
-        footer {
+        .footer {
+            padding: 30px 0;
             border-top: 1px solid var(--border);
-            padding: 35px 0;
-            margin-top: 30px;
         }
 
         .footer-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .footer-inner p {
-            color: var(--muted);
-            font-size: 12px;
+        .footer-note {
             margin-top: 7px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
         .footer-links {
             display: flex;
-            gap: 17px;
             flex-wrap: wrap;
+            gap: 14px;
         }
 
         .footer-links a {
             color: var(--muted);
-            font-size: 13px;
+            font-size: 11px;
         }
 
         .footer-links a:hover {
             color: var(--green);
         }
 
-        /* MOBILE */
+        /* ARAMA DURUMU */
+
+        .search-status {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .search-status:empty {
+            display: none;
+        }
+
+        .no-results {
+            padding: 20px;
+            color: var(--muted);
+            text-align: center;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* RESPONSIVE */
 
         @media (max-width: 950px) {
-            .nav-links {
-                gap: 13px;
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
 
-            .category-grid,
-            .wiki-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-art {
+                min-height: 230px;
+            }
+
+            .hero-block {
+                width: 155px;
+                height: 155px;
+                font-size: 70px;
+            }
+
+            .pvp-mini-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .nav {
+                gap: 11px;
+            }
+
+            .nav a {
+                font-size: 11px;
             }
         }
 
-        @media (max-width: 720px) {
+        @media (max-width: 700px) {
             .navbar {
                 min-height: 68px;
                 flex-wrap: wrap;
             }
 
-            .menu-toggle {
+            .nav-button {
                 display: block;
             }
 
-            .nav-links {
+            .nav {
                 display: none;
-                width: 100%;
                 order: 3;
-                padding: 0 0 18px;
+                width: 100%;
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0;
+                padding-bottom: 14px;
             }
 
-            .nav-links.open {
+            .nav.open {
                 display: flex;
             }
 
-            .nav-links a {
+            .nav a {
                 padding: 10px 0;
                 border-top: 1px solid var(--border);
-            }
-
-            .nav-actions {
-                display: none;
+                font-size: 13px;
             }
 
             .hero {
-                padding: 65px 0 55px;
+                padding: 55px 0 42px;
             }
 
             .hero h1 {
-                letter-spacing: -1px;
+                font-size: clamp(36px, 9vw, 48px);
+                letter-spacing: -1.2px;
             }
 
             .hero-description {
-                font-size: 15px;
+                font-size: 14px;
             }
 
-            .search-box {
-                flex-direction: column;
+            .hero-art {
+                min-height: 210px;
             }
 
-            .search-box .btn {
-                width: 100%;
+            .floating-card {
+                font-size: 10px;
+                padding: 9px;
             }
 
-            section.content-section {
-                padding: 42px 0;
+            .section {
+                padding: 33px 0;
             }
 
-            .section-heading {
-                align-items: start;
-                flex-direction: column;
+            .section-head {
+                align-items: flex-start;
             }
 
-            .category-grid,
-            .wiki-grid,
-            .guide-list {
+            .section-head > a {
+                margin-top: 25px;
+            }
+
+            .accordion summary {
+                padding: 13px;
+                gap: 10px;
+            }
+
+            .accordion-icon {
+                width: 37px;
+                height: 37px;
+                font-size: 20px;
+            }
+
+            .accordion-heading strong {
+                font-size: 13px;
+            }
+
+            .accordion-heading small {
+                font-size: 11px;
+            }
+
+            .accordion-content {
+                padding: 0 13px 15px;
+            }
+
+            .sub-links {
                 grid-template-columns: 1fr;
             }
 
-            .wiki-art {
-                height: 120px;
+            .pvp-mini-grid {
+                grid-template-columns: 1fr;
             }
 
-            .update-row {
-                padding: 17px;
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
             }
         }
     </style>
@@ -620,425 +772,1092 @@
 
 <body>
 
-<header>
+<!-- =====================================
+     ÜST MENÜ
+====================================== -->
+
+<header class="header">
     <div class="container navbar">
 
-        <a href="#anasayfa" class="logo">
+        <a class="logo" href="index.html">
             <div class="logo-icon">G</div>
-            Game<span>Guide</span>
+            <div>Game<span>Guide</span></div>
         </a>
 
-        <button class="menu-toggle" id="menuToggle"
-                aria-label="Menüyü aç veya kapat"
-                aria-expanded="false">☰</button>
+        <button
+            class="nav-button"
+            id="navButton"
+            type="button"
+            aria-label="Menüyü aç"
+            aria-expanded="false">
+            ☰
+        </button>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="#anasayfa">Ana Sayfa</a>
-            <a href="#wiki">Wiki</a>
-            <a href="#rehberler">Rehberler</a>
-            <a href="#guncellemeler">Güncellemeler</a>
-            <a href="#faq">SSS</a>
+        <nav class="nav" id="nav">
+            <a class="active" href="index.html">Ana Sayfa</a>
+            <a href="wiki.html">Wiki</a>
+            <a href="rehberler.html">Rehberler</a>
+            <a href="onemli-oneriler.html">Önemli Öneriler</a>
+            <a href="pvp.html">PvP Merkezi</a>
+            <a href="guncellemeler.html">Güncellemeler</a>
+            <a href="faq.html">SSS</a>
         </nav>
-
-        <div class="nav-actions">
-            <a href="#wiki" class="btn">Wiki'yi Keşfet</a>
-            <a href="#rehberler" class="btn btn-primary">Rehberlere Git</a>
-        </div>
 
     </div>
 </header>
 
+
 <main>
 
-    <!-- HERO -->
+    <!-- =====================================
+         HERO
+    ====================================== -->
 
     <section class="hero" id="anasayfa">
-        <div class="container">
+        <div class="container hero-layout">
 
-            <div class="eyebrow">
-                ✦ MINECRAFT BİLGİ MERKEZİ
+            <div>
+                <span class="eyebrow">✦ MINECRAFT BİLGİ MERKEZİ</span>
+
+                <h1>
+                    Minecraft dünyasını<br>
+                    <span>keşfet ve öğren.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Bloklardan moblara, biyomlardan yapılara, rehberlerden
+                    PvP taktiklerine kadar Minecraft hakkında merak ettiğin
+                    konuları GameGuide'da keşfet.
+                </p>
+
+                <form class="search-box" id="searchForm">
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Warden, biyom, elmas, PvP..."
+                        aria-label="Minecraft içeriklerinde ara">
+
+                    <button type="submit" class="button button-primary">
+                        🔎 Ara
+                    </button>
+                </form>
+
+                <div class="search-status" id="searchStatus"></div>
+
+                <div class="search-tags">
+                    <a href="moblar.html">Moblar</a>
+                    <a href="biyomlar.html">Biyomlar</a>
+                    <a href="bloklar.html">Bloklar</a>
+                    <a href="pvp.html">PvP</a>
+                    <a href="redstone.html">Redstone</a>
+                </div>
             </div>
 
-            <h1>
-                Minecraft dünyasını<br>
-                <span>keşfet ve öğren.</span>
-            </h1>
+            <div class="hero-art">
+                <div class="hero-block">🌳</div>
 
-            <p class="hero-description">
-                Bloklardan moblara, üretim tariflerinden gelişmiş
-                taktiklere kadar Minecraft hakkında aradığın bilgiler
-                GameGuide'da.
-            </p>
+                <div class="floating-card floating-one">
+                    <strong>📚 Wiki</strong>
+                    Detaylı içerikler
+                </div>
 
-            <form class="search-box" id="searchForm">
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Warden, elmas, redstone, Nether..."
-                    aria-label="Wiki içeriklerinde ara">
+                <div class="floating-card floating-two">
+                    <strong>⚔️ PvP</strong>
+                    Savaş rehberleri
+                </div>
 
-                <button class="btn btn-primary" type="submit">
-                    🔎 Ara
-                </button>
-            </form>
-
-            <p id="searchMessage" aria-live="polite"></p>
-
-            <div class="hero-tags">
-                <a href="#wiki">Warden</a>
-                <a href="#wiki">Redstone</a>
-                <a href="#wiki">Netherite</a>
-                <a href="#rehberler">Başlangıç Rehberi</a>
+                <div class="floating-card floating-three">
+                    <strong>🧭 Rehberler</strong>
+                    Adım adım öğren
+                </div>
             </div>
 
         </div>
     </section>
 
 
-    <!-- KATEGORİLER -->
+    <!-- =====================================
+         1. WİKİ KATEGORİLERİ
+         HEPSİ AKORDİYON
+    ====================================== -->
 
-    <section class="content-section" id="kategoriler">
+    <section class="section" id="wiki">
         <div class="container">
 
-            <div class="section-heading">
+            <div class="section-head">
                 <div>
-                    <h2>Kategorileri keşfet</h2>
-                    <p>Aradığın bilgiyi doğru kategoride bul.</p>
+                    <span class="section-kicker">BİLGİ MERKEZİ</span>
+                    <h2>Minecraft Wiki</h2>
+                    <p>Bir kategoriye tıkla ve içindeki bağlantıları aç.</p>
                 </div>
 
-                <a href="#wiki" class="text-link">Wiki'ye git →</a>
+                <a href="wiki.html">Genel Wiki →</a>
             </div>
 
-            <div class="category-grid">
+            <div class="accordion-list">
 
-                <a href="#wiki" class="category-card">
-                    <div class="category-icon">🧱</div>
-                    <h3>Bloklar</h3>
-                    <p>Yapı malzemeleri, madenler ve işlevsel bloklar.</p>
-                </a>
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🧱</span>
+                        <span class="accordion-heading">
+                            <strong>Bloklar</strong>
+                            <small>Doğal bloklar, madenler ve yapı malzemeleri</small>
+                        </span>
+                    </summary>
 
-                <a href="#wiki" class="category-card">
-                    <div class="category-icon">⚔️</div>
-                    <h3>Eşyalar</h3>
-                    <p>Silahlar, zırhlar, araçlar ve değerli eşyalar.</p>
-                </a>
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Minecraft bloklarını türlerine, özelliklerine ve kullanım alanlarına göre keşfet.
+                        </p>
 
-                <a href="#wiki" class="category-card">
-                    <div class="category-icon">🐉</div>
-                    <h3>Moblar</h3>
-                    <p>Dost canlıları, düşmanlar ve bosslar.</p>
-                </a>
-
-                <a href="#wiki" class="category-card">
-                    <div class="category-icon">🌲</div>
-                    <h3>Biyomlar</h3>
-                    <p>Keşfedilecek bölgeler ve doğal ortamlar.</p>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- POPÜLER WIKI -->
-
-    <section class="content-section" id="wiki">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Popüler Wiki</h2>
-                    <p>Minecraft dünyasındaki önemli içerikleri keşfet.</p>
-                </div>
-
-                <a href="#kategoriler" class="text-link">Kategoriler →</a>
-            </div>
-
-            <div class="wiki-grid" id="wikiGrid">
-
-                <article class="wiki-card" data-search="redstone blok mekanik devre otomasyon">
-                    <div class="wiki-art">🔴</div>
-                    <div class="wiki-info">
-                        <span class="badge">Blok ve Mekanik</span>
-                        <h3>Redstone</h3>
-                        <p>Devreler, otomasyonlar ve mekanik sistemler hakkında bilgi edin.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
+                        <div class="sub-links">
+                            <a class="sub-link" href="bloklar.html">Bütün Bloklar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=redstone">Redstone <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=elmas">Elmas Cevheri <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=obsidian">Obsidyen <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=crafting-table">Üretim Masası <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=glass">Cam <span>→</span></a>
+                        </div>
                     </div>
-                </article>
-
-                <article class="wiki-card" data-search="warden mob derin karanlık">
-                    <div class="wiki-art">👹</div>
-                    <div class="wiki-info">
-                        <span class="badge">Mob</span>
-                        <h3>Warden</h3>
-                        <p>Derin Karanlık'ın güçlü ve tehlikeli sakini.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="netherite eşya zırh silah maden">
-                    <div class="wiki-art">🛡️</div>
-                    <div class="wiki-info">
-                        <span class="badge">Eşya</span>
-                        <h3>Netherite</h3>
-                        <p>Netherite ekipmanları ve yükseltme sistemi hakkında bilgi edin.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="ender dragon boss end boyut savaş">
-                    <div class="wiki-art">🐲</div>
-                    <div class="wiki-info">
-                        <span class="badge">Boss</span>
-                        <h3>Ender Dragon</h3>
-                        <p>End boyutunun boss'u ve savaş hazırlığı hakkında bilgi edin.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="elmas maden cevher kazma zırh">
-                    <div class="wiki-art">💎</div>
-                    <div class="wiki-info">
-                        <span class="badge">Maden</span>
-                        <h3>Elmas</h3>
-                        <p>Elmasın kullanım alanlarını ve elde etme yöntemlerini keşfet.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="köylü ticaret takas meslek">
-                    <div class="wiki-art">🧑‍🌾</div>
-                    <div class="wiki-info">
-                        <span class="badge">Canlı</span>
-                        <h3>Köylüler</h3>
-                        <p>Köylü meslekleri ve ticaret sistemi hakkında bilgi edin.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="nether cehennem boyut kale">
-                    <div class="wiki-art">🔥</div>
-                    <div class="wiki-info">
-                        <span class="badge">Boyut</span>
-                        <h3>Nether</h3>
-                        <p>Tehlikeli bölgeleri, kaynakları ve yapıları keşfet.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-                <article class="wiki-card" data-search="antik şehir yapı derin karanlık sculk">
-                    <div class="wiki-art">🏛️</div>
-                    <div class="wiki-info">
-                        <span class="badge">Yapı</span>
-                        <h3>Antik Şehir</h3>
-                        <p>Antik Şehir'in yapısını ve keşif sırasında dikkat edilecekleri öğren.</p>
-                        <a href="#rehberler" class="card-link">İçeriği keşfet →</a>
-                    </div>
-                </article>
-
-            </div>
-
-            <p id="noResults" style="display:none;color:#a5afa2;margin-top:20px;">
-                Aramana uygun içerik bulunamadı.
-            </p>
-
-        </div>
-    </section>
-
-
-    <!-- REHBERLER -->
-
-    <section class="content-section" id="rehberler">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Öne çıkan rehberler</h2>
-                    <p>Bilgini geliştir ve Minecraft dünyasında ilerle.</p>
-                </div>
-            </div>
-
-            <div class="guide-list">
-
-                <article class="guide-card">
-                    <span class="badge">Başlangıç</span>
-                    <h3>🌳 İlk Günü Atlat</h3>
-                    <p>İlk kaynaklarını topla, barınak yap ve geceye hazırlan.</p>
-                    <a href="#faq" class="card-link">Rehber hakkında →</a>
-                </article>
-
-                <article class="guide-card">
-                    <span class="badge">Orta Seviye</span>
-                    <h3>⛏️ Madenciliğe Başla</h3>
-                    <p>Doğru ekipmanla yer altı keşiflerine hazırlan.</p>
-                    <a href="#faq" class="card-link">Rehber hakkında →</a>
-                </article>
-
-                <article class="guide-card">
-                    <span class="badge">İleri Seviye</span>
-                    <h3>🐉 End Savaşı</h3>
-                    <p>End boyutuna gitmeden önce ekipmanını ve stratejini hazırla.</p>
-                    <a href="#faq" class="card-link">Rehber hakkında →</a>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- GÜNCELLEMELER -->
-
-    <section class="content-section" id="guncellemeler">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Güncelleme merkezi</h2>
-                    <p>Minecraft sürümlerini ve yeniliklerini takip et.</p>
-                </div>
-
-                <a href="#guncellemeler" class="text-link">Güncellemelere git →</a>
-            </div>
-
-            <div class="updates">
-
-                <div class="update-row">
-                    <div>
-                        <h3>Minecraft Java Edition</h3>
-                        <p>Java sürümleri ve resmî değişiklik notları.</p>
-                    </div>
-                    <span class="version">Java</span>
-                </div>
-
-                <div class="update-row">
-                    <div>
-                        <h3>Minecraft Bedrock Edition</h3>
-                        <p>Bedrock sürümleri ve platform güncellemeleri.</p>
-                    </div>
-                    <span class="version">Bedrock</span>
-                </div>
-
-                <div class="update-row">
-                    <div>
-                        <h3>Snapshot ve Ön Sürümler</h3>
-                        <p>Deneysel özellikler ve geliştirme sürümleri.</p>
-                    </div>
-                    <span class="version">Test</span>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- SSS -->
-
-    <section class="content-section" id="faq">
-        <div class="container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Sık sorulan sorular</h2>
-                    <p>GameGuide hakkında merak edilenler.</p>
-                </div>
-
-                <a href="#faq" class="text-link">Tüm sorular →</a>
-            </div>
-
-            <div class="faq-list">
-
-                <details>
-                    <summary>GameGuide nedir?</summary>
-                    <p>
-                        GameGuide, Minecraft hakkında wiki bilgileri,
-                        rehberler ve sürüm bilgileri sunmak amacıyla
-                        oluşturulan bağımsız bir projedir.
-                    </p>
                 </details>
 
-                <details>
-                    <summary>Wiki sayfalarına nasıl ulaşabilirim?</summary>
-                    <p>
-                        Ana sayfadaki arama alanını kullanabilir veya
-                        Wiki bölümündeki içerikleri inceleyebilirsin.
-                    </p>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🎒</span>
+                        <span class="accordion-heading">
+                            <strong>Eşyalar</strong>
+                            <small>Silahlar, araçlar, kaynaklar ve özel eşyalar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Eşyaların kullanım alanlarını, elde edilme yöntemlerini ve özelliklerini incele.
+                        </p>
+
+                        <div class="sub-links">
+                            <a class="sub-link" href="esyalar.html">Bütün Eşyalar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=elmas">Elmas <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=netherite">Netherite <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=elytra">Elytra <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=trident">Üç Uçlu Mızrak <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=totem">Ölümsüzlük Totemi <span>→</span></a>
+                        </div>
+                    </div>
                 </details>
 
-                <details>
-                    <summary>GameGuide mobil cihazlarda çalışır mı?</summary>
-                    <p>
-                        Site telefon, tablet ve bilgisayar ekranlarına
-                        uyum sağlayacak şekilde tasarlanmıştır.
-                    </p>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🐉</span>
+                        <span class="accordion-heading">
+                            <strong>Moblar</strong>
+                            <small>Dost canlıları, düşmanlar ve bosslar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Canlıların özelliklerini, davranışlarını ve karşılaşma stratejilerini öğren.
+                        </p>
+
+                        <div class="sub-links">
+                            <a class="sub-link" href="moblar.html">Bütün Moblar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=warden">Warden <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=ender-dragon">Ender Dragon <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=wither">Wither <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=creeper">Creeper <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=villager">Köylü <span>→</span></a>
+                        </div>
+                    </div>
                 </details>
 
-                <details>
-                    <summary>GameGuide resmî bir Minecraft sitesi mi?</summary>
-                    <p>
-                        Hayır. GameGuide bağımsız bir projedir ve
-                        Mojang Studios veya Microsoft tarafından desteklenmez.
-                    </p>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🌍</span>
+                        <span class="accordion-heading">
+                            <strong>Biyomlar</strong>
+                            <small>Ormanlar, çöller, okyanuslar ve diğer bölgeler</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Bütün biyomları, doğal kaynaklarını, bitki örtülerini ve oluşan canlıları keşfet.
+                        </p>
+
+                        <div class="sub-links">
+                            <a class="sub-link" href="biyomlar.html">Bütün Biyomlar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=cherry-grove">Cherry Grove <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=deep-dark">Derin Karanlık <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=desert">Çöl <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=lush-caves">Gür Mağaralar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=pale-garden">Soluk Bahçe <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🏛️</span>
+                        <span class="accordion-heading">
+                            <strong>Yapılar</strong>
+                            <small>Köyler, Antik Şehirler ve keşif bölgeleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="yapilar.html">Bütün Yapılar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=antik-sehir">Antik Şehir <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=stronghold">Stronghold <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=trial-chambers">Deneme Odaları <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=woodland-mansion">Orman Malikânesi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=end-city">End Şehri <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🌌</span>
+                        <span class="accordion-heading">
+                            <strong>Boyutlar</strong>
+                            <small>Overworld, Nether ve End</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="boyutlar.html">Bütün Boyutlar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=overworld">Overworld <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=nether">Nether <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=end">End <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🛠️</span>
+                        <span class="accordion-heading">
+                            <strong>Üretim Tarifleri</strong>
+                            <small>Eşyaların nasıl üretildiğini öğren</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="uretim-tarifleri.html">Bütün Tarifler <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=crafting-table">Üretim Masası <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=bow-recipe">Yay Tarifi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=shield-recipe">Kalkan Tarifi <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🔮</span>
+                        <span class="accordion-heading">
+                            <strong>Büyüler</strong>
+                            <small>Silah, zırh ve araç geliştirmeleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="buyuler.html">Bütün Büyüler <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=sharpness">Keskinlik <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=mending">Tamir <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=efficiency">Verimlilik <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🧪</span>
+                        <span class="accordion-heading">
+                            <strong>İksirler</strong>
+                            <small>İksirler, etkiler ve üretim yöntemleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="iksirler.html">Bütün İksirler <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=healing-potion">İyileştirme İksiri <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=fire-resistance-potion">Ateş Direnci <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=night-vision-potion">Gece Görüşü <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🔴</span>
+                        <span class="accordion-heading">
+                            <strong>Redstone</strong>
+                            <small>Mekanikler, devreler ve otomasyon</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="redstone.html">Redstone Merkezi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=redstone-repeater">Tekrarlayıcı <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=piston">Piston <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=observer">Gözlemci <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🧑‍🌾</span>
+                        <span class="accordion-heading">
+                            <strong>Köylüler ve Ticaret</strong>
+                            <small>Meslekler, iş blokları ve takaslar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="koyluler.html">Köylü Rehberi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=librarian">Kütüphaneci <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=farmer">Çiftçi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=armorer">Zırhçı <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🌾</span>
+                        <span class="accordion-heading">
+                            <strong>Tarım ve Çiftlikler</strong>
+                            <small>Bitkiler, ürünler ve kaynak üretimi</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="tarim.html">Tarım Merkezi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=wheat">Buğday <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=sugar-cane">Şeker Kamışı <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=bamboo">Bambu <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⛏️</span>
+                        <span class="accordion-heading">
+                            <strong>Madencilik</strong>
+                            <small>Cevherler, kaynaklar ve kazı yöntemleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="madencilik.html">Madencilik Merkezi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=diamond-ore">Elmas Cevheri <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=iron-ore">Demir Cevheri <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=ancient-debris">Antik Kalıntılar <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⚔️</span>
+                        <span class="accordion-heading">
+                            <strong>Savaş Sistemi</strong>
+                            <small>Silahlar, savunma ve savaş mekanikleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="savas.html">Savaş Merkezi <span>→</span></a>
+                            <a class="sub-link" href="zirhlar.html">Zırhlar <span>→</span></a>
+                            <a class="sub-link" href="pvp.html">PvP Merkezi <span>→</span></a>
+                            <a class="sub-link" href="pvp-ekipman.html">PvP Ekipmanları <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🏆</span>
+                        <span class="accordion-heading">
+                            <strong>Başarımlar</strong>
+                            <small>İlerlemeler ve oyun içi hedefler</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="basarimlar.html">Bütün Başarımlar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=free-the-end">End'i Özgür Bırak <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⚙️</span>
+                        <span class="accordion-heading">
+                            <strong>Oyun Mekanikleri</strong>
+                            <small>Oyunun sistemleri ve kuralları</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="mekanikler.html">Mekanikler Merkezi <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=day-night-cycle">Gece ve Gündüz <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=mob-spawning">Mob Oluşumu <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⌨️</span>
+                        <span class="accordion-heading">
+                            <strong>Komutlar</strong>
+                            <small>Minecraft komutları ve kullanım örnekleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="komutlar.html">Bütün Komutlar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=command-gamemode">/gamemode <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=command-teleport">/teleport <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=command-give">/give <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🛡️</span>
+                        <span class="accordion-heading">
+                            <strong>Zırhlar</strong>
+                            <small>Koruma, zırh setleri ve ekipmanlar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="zirhlar.html">Bütün Zırhlar <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=diamond-armor">Elmas Zırh <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=netherite-armor">Netherite Zırh <span>→</span></a>
+                            <a class="sub-link" href="wiki-detay.html?item=armor-trims">Zırh Süslemeleri <span>→</span></a>
+                        </div>
+                    </div>
                 </details>
 
             </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         REHBERLER
+    ====================================== -->
+
+    <section class="section section-alt" id="rehberler">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <span class="section-kicker">ADIM ADIM ÖĞREN</span>
+                    <h2>Minecraft Rehberleri</h2>
+                    <p>Bir rehbere tıkla ve içeriğini aç.</p>
+                </div>
+
+                <a href="rehberler.html">Tüm rehberler →</a>
+            </div>
+
+            <div class="accordion-list">
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🌳</span>
+                        <span class="accordion-heading">
+                            <strong>Başlangıç Rehberleri</strong>
+                            <small>İlk gün, ilk gece ve temel kaynaklar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Hayatta kalma dünyasına yeni başladıysan bu rehberlerden başla.
+                        </p>
+
+                        <div class="sub-links">
+                            <a class="sub-link" href="rehber-detay.html?guide=ilk-gece">İlk Geceyi Atlatma <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=ilk-ev">İlk Evi Yapma <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=ilk-maden">İlk Maden Keşfi <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🔥</span>
+                        <span class="accordion-heading">
+                            <strong>Boyut ve Boss Rehberleri</strong>
+                            <small>Nether, End ve boss savaşları</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="rehber-detay.html?guide=nether">Nether'a Hazırlık <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=end">Ender Dragon Savaşı <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=wither">Wither Savaşı <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🔴</span>
+                        <span class="accordion-heading">
+                            <strong>Teknik ve Redstone Rehberleri</strong>
+                            <small>Devreler, mekanizmalar ve otomasyonlar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="rehber-detay.html?guide=redstone">Redstone'a Giriş <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=otomatik-ciftlik">Otomatik Çiftlikler <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=demir-ciftligi">Demir Çiftliği <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🪽</span>
+                        <span class="accordion-heading">
+                            <strong>İleri Seviye Rehberler</strong>
+                            <small>Gelişmiş hareket ve ekipman teknikleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="rehber-detay.html?guide=elytra">Elytra Kullanımı <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=madencilik">İleri Seviye Madencilik <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=buyuler">Ekipman Büyüleri <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         ÖNEMLİ ÖNERİLER
+    ====================================== -->
+
+    <section class="section" id="onemli-oneriler">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <span class="section-kicker">GAMEGUIDE TAVSİYELERİ</span>
+                    <h2>Önemli Öneriler</h2>
+                    <p>Ekipman, PvP ve hayatta kalma önerilerini aç.</p>
+                </div>
+
+                <a href="onemli-oneriler.html">Tüm öneriler →</a>
+            </div>
+
+            <div class="accordion-list">
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⚔️</span>
+                        <span class="accordion-heading">
+                            <strong>PvP'de Gelişmek</strong>
+                            <small>Saldırı zamanlaması, hareket ve savaş stratejileri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            PvP becerilerini geliştirmek için farklı taktikleri öğren ve oynadığın sürümün mekaniklerini tanı.
+                        </p>
+
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp.html">PvP Merkezi <span>→</span></a>
+                            <a class="sub-link" href="pvp-taktikleri.html">Savaş Taktikleri <span>→</span></a>
+                            <a class="sub-link" href="pvp-antrenman.html">Antrenman Rehberi <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🛡️</span>
+                        <span class="accordion-heading">
+                            <strong>Ekipman Seçimi</strong>
+                            <small>Silahlar, zırhlar ve yardımcı eşyalar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp-ekipman.html">PvP Ekipmanları <span>→</span></a>
+                            <a class="sub-link" href="pvp-kilic.html">Kılıç PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-balta.html">Balta PvP <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">❤️</span>
+                        <span class="accordion-heading">
+                            <strong>Hayatta Kalma</strong>
+                            <small>Can yönetimi, çevre kontrolü ve hazırlık</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp-hayatta-kalma.html">Savaşta Hayatta Kalma <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=ilk-gece">İlk Gece Rehberi <span>→</span></a>
+                            <a class="sub-link" href="rehber-detay.html?guide=nether">Nether Hazırlığı <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         PVP MERKEZİ
+    ====================================== -->
+
+    <section class="section section-alt" id="pvp">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <span class="section-kicker">SAVAŞ REHBERLERİ</span>
+                    <h2>⚔️ Minecraft PvP Merkezi</h2>
+                    <p>Her PvP türü için açılabilir özel rehberler.</p>
+                </div>
+
+                <a href="pvp.html">PvP merkezine git →</a>
+            </div>
+
+            <div class="pvp-callout">
+                <h3>🎯 Hangi PvP türünü öğrenmek istiyorsun?</h3>
+                <p>
+                    Aşağıdaki başlıkları açarak kılıç, balta, Crystal PvP,
+                    BoxPvP ve diğer oyun modlarının rehberlerine ulaş.
+                </p>
+
+                <a href="pvp.html" class="button button-primary">
+                    Bütün PvP Rehberleri →
+                </a>
+            </div>
+
+            <div class="accordion-list">
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⚔️</span>
+                        <span class="accordion-heading">
+                            <strong>Yakın Dövüş PvP</strong>
+                            <small>Kılıç ve balta savaşları</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp-kilic.html">Kılıç PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-balta.html">Balta PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-ekipman.html">Savaş Ekipmanları <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🏹</span>
+                        <span class="accordion-heading">
+                            <strong>Menzilli ve İleri Seviye PvP</strong>
+                            <small>Yay, Crystal PvP ve özel ekipmanlar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp-yay.html">Yay PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-kristal.html">Crystal PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-taktikleri.html">Savaş Taktikleri <span>→</span></a>
+                            <a class="sub-link" href="pvp-antrenman.html">PvP Antrenmanı <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🟩</span>
+                        <span class="accordion-heading">
+                            <strong>Minecraft PvP Oyun Modları</strong>
+                            <small>Sunucu modları ve oyun stratejileri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <div class="sub-links">
+                            <a class="sub-link" href="pvp-boxpvp.html">BoxPvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-bedwars.html">BedWars <span>→</span></a>
+                            <a class="sub-link" href="pvp-skywars.html">SkyWars <span>→</span></a>
+                            <a class="sub-link" href="pvp-potpvp.html">Potion PvP <span>→</span></a>
+                            <a class="sub-link" href="pvp-uhc.html">UHC <span>→</span></a>
+                            <a class="sub-link" href="pvp-hayatta-kalma.html">Hayatta Kalma <span>→</span></a>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         GÜNCELLEMELER
+    ====================================== -->
+
+    <section class="section" id="guncellemeler">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <span class="section-kicker">SÜRÜM ARŞİVİ</span>
+                    <h2>Minecraft Güncellemeleri</h2>
+                    <p>İncelemek istediğin sürüm grubunu aç.</p>
+                </div>
+
+                <a href="guncellemeler.html">Bütün güncellemeler →</a>
+            </div>
+
+            <div class="accordion-list">
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">☕</span>
+                        <span class="accordion-heading">
+                            <strong>Java Edition</strong>
+                            <small>Java sürümleri ve değişiklik kayıtları</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Java Edition için sürüm notlarını ve resmî duyuruları takip et.
+                        </p>
+
+                        <a href="guncellemeler.html#java" class="button">
+                            Java sürümlerini incele →
+                        </a>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">📱</span>
+                        <span class="accordion-heading">
+                            <strong>Bedrock Edition</strong>
+                            <small>Bedrock sürümleri ve platform özellikleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Bedrock Edition sürümlerini ve resmî duyuruları incele.
+                        </p>
+
+                        <a href="guncellemeler.html#bedrock" class="button">
+                            Bedrock sürümlerini incele →
+                        </a>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🧪</span>
+                        <span class="accordion-heading">
+                            <strong>Snapshot ve Ön Sürümler</strong>
+                            <small>Deneysel özellikler ve test sürümleri</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Test sürümleriyle ilgili notları kontrol et. Deneysel özellikler kararlı sürümlerde değişebilir.
+                        </p>
+
+                        <a href="guncellemeler.html#snapshot" class="button">
+                            Snapshot bilgilerini incele →
+                        </a>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         SIK SORULAN SORULAR
+    ====================================== -->
+
+    <section class="section section-alt" id="faq">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <span class="section-kicker">YARDIM MERKEZİ</span>
+                    <h2>Sık Sorulan Sorular</h2>
+                    <p>Sorulara tıklayarak cevaplarını aç.</p>
+                </div>
+
+                <a href="faq.html">Tüm sorular →</a>
+            </div>
+
+            <div class="accordion-list">
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">❓</span>
+                        <span class="accordion-heading">
+                            <strong>GameGuide nedir?</strong>
+                            <small>Proje hakkında</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            GameGuide, Minecraft hakkında Wiki içerikleri,
+                            rehberler, PvP taktikleri ve güncelleme bilgileri
+                            sunmayı amaçlayan bağımsız bir bilgi platformudur.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">🔎</span>
+                        <span class="accordion-heading">
+                            <strong>Aradığım Wiki içeriğini nasıl bulurum?</strong>
+                            <small>Arama ve kategoriler</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Ana sayfadaki arama kutusunu kullanabilir veya
+                            Wiki bölümündeki kategorileri açabilirsin.
+                            İlgili kategori sayfasından içerikleri inceleyebilirsin.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">⚔️</span>
+                        <span class="accordion-heading">
+                            <strong>PvP taktikleri nerede bulunur?</strong>
+                            <small>PvP merkezi</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Kılıç, balta, yay, Crystal PvP ve sunucu oyun
+                            modları için rehberlere PvP merkezinden ulaşabilirsin.
+                        </p>
+
+                        <a href="pvp.html" class="button button-primary">
+                            PvP merkezini aç →
+                        </a>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">📱</span>
+                        <span class="accordion-heading">
+                            <strong>GameGuide mobil cihazlarda çalışır mı?</strong>
+                            <small>Telefon, tablet ve bilgisayar</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Tasarım telefon, tablet ve bilgisayar ekranlarına
+                            uyum sağlayacak şekilde hazırlanmıştır.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion searchable">
+                    <summary>
+                        <span class="accordion-icon">ℹ️</span>
+                        <span class="accordion-heading">
+                            <strong>GameGuide resmî bir Minecraft sitesi mi?</strong>
+                            <small>Projenin bağımsızlığı</small>
+                        </span>
+                    </summary>
+
+                    <div class="accordion-content">
+                        <p class="accordion-description">
+                            Hayır. GameGuide bağımsız bir projedir ve
+                            Mojang Studios veya Microsoft tarafından desteklenmez.
+                        </p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         ALT BÖLÜM
+    ====================================== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="bottom-cta">
+                <span class="eyebrow">GAMEGUIDE</span>
+
+                <h2>Keşfetmeye hazır mısın?</h2>
+
+                <p>
+                    Minecraft bilgisini geliştir, yeni rehberleri keşfet
+                    ve PvP taktiklerini öğren.
+                </p>
+
+                <div class="button-row">
+                    <a href="wiki.html" class="button button-primary">
+                        Wiki'yi aç →
+                    </a>
+
+                    <a href="pvp.html" class="button">
+                        PvP Merkezi →
+                    </a>
+
+                    <a href="onemli-oneriler.html" class="button">
+                        Önemli Öneriler →
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
 </main>
 
-<footer>
+
+<!-- =====================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
     <div class="container footer-inner">
 
         <div>
-            <a href="#anasayfa" class="logo">
+            <a class="logo" href="index.html">
                 <div class="logo-icon">G</div>
-                Game<span>Guide</span>
+                <div>Game<span>Guide</span></div>
             </a>
 
-            <p>Minecraft dünyasını keşfet. Öğren. Geliş.</p>
+            <p class="footer-note">
+                Minecraft dünyasını keşfet. Öğren. Geliş.
+            </p>
 
-            <p>
-                © <span id="year"></span> GameGuide.
-                Bağımsız topluluk projesi.
+            <p class="footer-note">
+                © <span id="year"></span> GameGuide. Bağımsız topluluk projesi.
             </p>
         </div>
 
-        <div class="footer-links">
-            <a href="#anasayfa">Ana Sayfa</a>
-            <a href="#wiki">Wiki</a>
-            <a href="#rehberler">Rehberler</a>
-            <a href="#guncellemeler">Güncellemeler</a>
-            <a href="#faq">SSS</a>
-        </div>
+        <nav class="footer-links" aria-label="Alt menü">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="wiki.html">Wiki</a>
+            <a href="rehberler.html">Rehberler</a>
+            <a href="onemli-oneriler.html">Önemli Öneriler</a>
+            <a href="pvp.html">PvP Merkezi</a>
+            <a href="guncellemeler.html">Güncellemeler</a>
+            <a href="faq.html">SSS</a>
+        </nav>
 
     </div>
 </footer>
 
+
 <script>
-    /* Mobil menü */
+    "use strict";
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+    /* MOBİL MENÜ */
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            const isOpen = navLinks.classList.toggle("open");
+    const navButton = document.getElementById("navButton");
+    const nav = document.getElementById("nav");
 
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.textContent = isOpen ? "✕" : "☰";
+    if (navButton && nav) {
+        navButton.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("open");
+
+            navButton.textContent = isOpen ? "✕" : "☰";
+            navButton.setAttribute("aria-expanded", String(isOpen));
         });
 
-        navLinks.querySelectorAll("a").forEach(link => {
+        nav.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
-                navLinks.classList.remove("open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.textContent = "☰";
+                nav.classList.remove("open");
+                navButton.textContent = "☰";
+                navButton.setAttribute("aria-expanded", "false");
             });
         });
     }
 
-    /* Türkçe karakterleri normalize et */
+    /* TÜRKÇE ARAMA */
 
     function normalizeText(text) {
         return String(text || "")
@@ -1047,68 +1866,51 @@
             .replace(/[\u0300-\u036f]/g, "");
     }
 
-    /* Wiki araması */
-
     const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("searchInput");
-    const searchMessage = document.getElementById("searchMessage");
-    const wikiCards = [...document.querySelectorAll(".wiki-card")];
-    const noResults = document.getElementById("noResults");
+    const searchStatus = document.getElementById("searchStatus");
 
-    function searchWiki() {
-        const query = normalizeText(searchInput.value.trim());
-        let visibleCount = 0;
-
-        wikiCards.forEach(card => {
-            const text = normalizeText(
-                card.innerText + " " + (card.dataset.search || "")
-            );
-
-            const matches = text.includes(query);
-
-            card.classList.toggle("hidden", query !== "" && !matches);
-
-            if (query === "" || matches) {
-                visibleCount++;
-            }
-        });
-
-        searchMessage.textContent = query
-            ? visibleCount + " içerik bulundu."
-            : "";
-
-        noResults.style.display =
-            visibleCount === 0 ? "block" : "none";
-    }
+    /*
+       Arama, kullanıcıyı Wiki sayfasına gönderir.
+       q parametresi wiki sayfasında kullanılabilir.
+    */
 
     if (searchForm && searchInput) {
         searchForm.addEventListener("submit", event => {
             event.preventDefault();
 
-            if (!searchInput.value.trim()) {
+            const query = searchInput.value.trim();
+
+            if (!query) {
                 searchInput.focus();
                 return;
             }
 
-            searchWiki();
-
-            document.getElementById("wiki").scrollIntoView({
-                behavior: "smooth"
-            });
+            window.location.href =
+                "wiki.html?q=" + encodeURIComponent(query);
         });
     }
 
-    if (searchInput) {
-        searchInput.addEventListener("input", searchWiki);
-    }
+    /* AKORDİYON DAVRANIŞI */
 
-    /* Footer yılı */
+    const accordions = [...document.querySelectorAll(".accordion")];
+
+    accordions.forEach(accordion => {
+        accordion.addEventListener("toggle", () => {
+            /*
+               Aynı akordiyon grubunda birden fazla bölümün
+               açık kalmasına izin verilir. Kullanıcı istediği
+               bölümü bağımsız olarak açıp kapatabilir.
+            */
+        });
+    });
+
+    /* FOOTER YILI */
 
     document.getElementById("year").textContent =
         new Date().getFullYear();
+
 </script>
 
 </body>
 </html>
-```
-
