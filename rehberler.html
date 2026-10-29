@@ -1002,3 +1002,432 @@ footer strong {
     </section>
 
     <!-- DEVAMI SONRAKİ PARÇADA -->
+    <body>
+
+<header>
+    <div class="container navbar">
+
+        <a class="logo" href="#anasayfa" aria-label="GameGuide ana sayfa">
+            <span class="logo-icon">G</span>
+            <span>Game<span>Guide</span></span>
+        </a>
+
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav"
+        >☰ Menü</button>
+
+        <nav id="nav" class="nav" aria-label="Ana menü">
+            <a href="#wiki">Minecraft Wiki</a>
+            <a href="#rehberler">Rehberler</a>
+            <a href="#pvp">PvP Merkezi</a>
+            <a href="#sunucumuz">Minecraft Sunucumuz</a>
+            <a href="#ipuclari">Önemli Öneriler</a>
+            <a href="#guncellemeler">Güncellemeler</a>
+            <a href="#sss">SSS</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- ANA SAYFA -->
+
+<section class="hero" id="anasayfa">
+    <div class="container">
+
+        <div class="hero-layout">
+
+            <div>
+                <span class="eyebrow">✦ MINECRAFT BİLGİ MERKEZİ</span>
+
+                <h1>
+                    Minecraft dünyasını<br>
+                    <span>keşfet ve öğren.</span>
+                </h1>
+
+                <p>
+                    Bloklardan moblara, biyomlardan yapılara, hayatta kalma
+                    rehberlerinden PvP taktiklerine kadar Minecraft hakkında
+                    aradığın bilgileri tek bir yerde keşfet.
+                </p>
+
+                <form id="searchForm" class="search-box" role="search">
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Warden, elmas, biyom, PvP..."
+                        aria-label="GameGuide içinde ara"
+                        autocomplete="off"
+                    >
+
+                    <button class="button button-primary" type="submit">⌕ Ara</button>
+                </form>
+
+                <div id="searchStatus" class="search-status" aria-live="polite"></div>
+
+                <div class="hero-tags" aria-label="Popüler aramalar">
+                    <button type="button" data-search-term="Warden">Warden</button>
+                    <button type="button" data-search-term="Elmas">Elmas</button>
+                    <button type="button" data-search-term="Redstone">Redstone</button>
+                    <button type="button" data-search-term="Biyom">Biyomlar</button>
+                    <button type="button" data-search-term="PvP">PvP Taktikleri</button>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-hidden="true">
+                <div class="hero-block">🌳</div>
+                <div class="floating float-one"><strong>Wiki</strong>Bilgi merkezi</div>
+                <div class="floating float-two"><strong>⚔️ PvP</strong>Savaş rehberleri</div>
+            </div>
+
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>18</strong>
+                <span>Wiki kategorisi</span>
+            </div>
+            <div class="stat">
+                <strong>12+</strong>
+                <span>PvP ve oyun rehberi</span>
+            </div>
+            <div class="stat">
+                <strong>100+</strong>
+                <span>Keşfedilecek başlık</span>
+            </div>
+            <div class="stat">
+                <strong>1</strong>
+                <span>Minecraft bilgi merkezi</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MINECRAFT WIKI -->
+
+<section class="section" id="wiki">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">MINECRAFT WIKI</span>
+            <h2>Minecraft Bilgi Merkezi</h2>
+            <p>
+                Minecraft dünyasını tanımak, kaynakları öğrenmek ve
+                macerana hazırlanmak için kategorileri keşfet.
+            </p>
+        </div>
+
+        <div class="wiki-grid" id="wikiGrid">
+
+            <article class="wiki-card" data-searchable>
+                <div class="wiki-card-icon">🧱</div>
+                <h3>Bloklar</h3>
+                <p>Yapı blokları, madenler, dekorasyon ve özel bloklar.</p>
+                <a href="#bloklar">Kategoriyi keşfet →</a>
+            </article>
+
+            <article class="wiki-card" data-searchable>
+                <div class="wiki-card-icon">⚒️</div>
+                <h3>Eşyalar ve Araçlar</h3>
+                <p>Araçlar, silahlar, zırhlar ve üretim malzemeleri.</p>
+                <a href="#esyalar">Kategoriyi keşfet →</a>
+            </article>
+
+            <article class="wiki-card" data-searchable>
+                <div class="wiki-card-icon">🐉</div>
+                <h3>Canlılar (Moblar)</h3>
+                <p>Dost canlılar, düşmanlar ve özel yaratıklar.</p>
+                <a href="#moblar">Kategoriyi keşfet →</a>
+            </article>
+
+            <article class="wiki-card" data-searchable>
+                <div class="wiki-card-icon">🌲</div>
+                <h3>Biyomlar</h3>
+                <p>Ormanlar, çöller, okyanuslar ve diğer bölgeler.</p>
+                <a href="#biyomlar">Kategoriyi keşfet →</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+    <!-- REHBERLER -->
+
+<section class="section section-alt" id="rehberler">
+    <div class="container">
+        <div class="section-heading">
+            <span class="kicker">ADIM ADIM ÖĞREN</span>
+            <h2>Minecraft Rehberleri</h2>
+            <p>
+                Başlangıçtan ileri seviyeye kadar keşfet, hazırlan ve oyun
+                bilgini geliştir.
+            </p>
+        </div>
+
+        <div id="guideAccordion" class="accordion-list"></div>
+    </div>
+</section>
+
+<!-- PVP -->
+
+<section class="section" id="pvp">
+    <div class="container">
+        <div class="section-heading">
+            <span class="kicker">SAVAŞ REHBERLERİ</span>
+            <h2>⚔️ Minecraft PvP Merkezi</h2>
+            <p>
+                Kılıçtan Crystal PvP'ye, BedWars'tan SkyWars'a kadar
+                oyun içi savaş türleri, ekipman ve taktikler.
+            </p>
+        </div>
+
+        <div id="pvpAccordion" class="accordion-list"></div>
+    </div>
+</section>
+
+<!-- ÖNEMLİ ÖNERİLER -->
+
+<section class="section section-alt" id="ipuclari">
+    <div class="container">
+        <div class="section-heading">
+            <span class="kicker">KÜÇÜK İPUÇLARI, BÜYÜK FARK</span>
+            <h2>Önemli Öneriler</h2>
+            <p>
+                Hayatta kalma, kaynak toplama, keşif ve savaş sırasında
+                işine yarayabilecek pratik bilgiler.
+            </p>
+        </div>
+
+        <div id="tipsAccordion" class="accordion-list"></div>
+    </div>
+</section>
+
+<!-- GÜNCELLEMELER -->
+
+<section class="section" id="guncellemeler">
+    <div class="container">
+        <div class="section-heading">
+            <span class="kicker">SÜRÜM TAKİBİ</span>
+            <h2>Minecraft Güncellemeleri</h2>
+            <p>
+                Java, Bedrock, snapshot ve ön sürüm kavramlarını öğren.
+                Deneysel özelliklerin son sürümde bulunmayabileceğini unutma.
+            </p>
+        </div>
+
+        <div id="updatesAccordion" class="accordion-list"></div>
+
+        <div class="notice">
+            <strong>Bilgi notu:</strong>
+            Güncellemelerin içeriği zaman içinde değişebilir.
+            Yeni özellikleri doğrularken Minecraft'ın resmî sürüm duyurularını
+            ve oyun içi sürüm notlarını kontrol et.
+        </div>
+    </div>
+</section>
+    <!-- MINECRAFT SUNUCUMUZ -->
+
+<section class="section" id="sunucumuz">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">GAMEGUIDE TOPLULUĞU</span>
+            <h2>🎮 Minecraft Sunucumuz</h2>
+            <p>
+                GameGuide'ın Minecraft sunucusu için hazırlıklar sürüyor.
+                Açılış bilgileri burada paylaşılacak.
+            </p>
+        </div>
+
+        <div class="server-card">
+            <div class="server-card-copy">
+                <span class="server-badge">✦ YAKINDA</span>
+
+                <h3>NexaNW Minecraft Sunucusu</h3>
+
+                <p>
+                    Minecraft maceralarına katılmaya hazırlan!
+                    Sunucumuz yakında hizmete sunulacaktır.
+                </p>
+
+                <div class="server-status">
+                    <span class="status-dot"></span>
+                    Yakında hizmete sunulacaktır.
+                </div>
+
+                <a class="button button-primary" href="sunucu.html">
+                    Sunucu Sayfası →
+                </a>
+            </div>
+
+            <div class="server-card-art" aria-hidden="true">
+                ⛏️
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SIKÇA SORULAN SORULAR -->
+
+<section class="section section-alt" id="sss">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">YARDIM MERKEZİ</span>
+            <h2>Sıkça Sorulan Sorular</h2>
+            <p>
+                GameGuide ve Minecraft hakkında sık sorulan soruların
+                cevaplarını burada bulabilirsin.
+            </p>
+        </div>
+
+        <div class="accordion-list">
+
+            <details class="accordion">
+                <summary>
+                    <span class="item-icon">❓</span>
+                    <span class="summary-text">
+                        <strong>GameGuide nedir?</strong>
+                        <small>Minecraft bilgi ve rehber sitesi</small>
+                    </span>
+                </summary>
+
+                <div class="accordion-content">
+                    <p>
+                        GameGuide, Minecraft hakkında bilgiler ve oyun
+                        rehberleri sunmak için hazırlanmış bir web sitesidir.
+                    </p>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary>
+                    <span class="item-icon">🎮</span>
+                    <span class="summary-text">
+                        <strong>Minecraft sunucusu ne zaman açılacak?</strong>
+                        <small>Sunucu hakkında</small>
+                    </span>
+                </summary>
+
+                <div class="accordion-content">
+                    <p>
+                        Sunucumuzun açılış tarihi henüz açıklanmadı.
+                        Yeni bilgiler sunucu sayfasında paylaşılacaktır.
+                    </p>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary>
+                    <span class="item-icon">🔎</span>
+                    <span class="summary-text">
+                        <strong>Aradığım konuyu nasıl bulabilirim?</strong>
+                        <small>Arama özelliği</small>
+                    </span>
+                </summary>
+
+                <div class="accordion-content">
+                    <p>
+                        Sayfanın üst kısmındaki arama alanını kullanarak
+                        ilgili başlıkları bulabilirsin.
+                    </p>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary>
+                    <span class="item-icon">📱</span>
+                    <span class="summary-text">
+                        <strong>Site telefonda çalışır mı?</strong>
+                        <small>Mobil uyumluluk</small>
+                    </span>
+                </summary>
+
+                <div class="accordion-content">
+                    <p>
+                        Site tasarımı farklı ekran boyutlarına uyum sağlayacak
+                        şekilde hazırlanmıştır.
+                    </p>
+                </div>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+
+        <div>
+            <strong>GAMEGUIDE</strong>
+            <p>Minecraft dünyasını keşfet ve öğren.</p>
+        </div>
+
+        <a class="back-top" href="#anasayfa">↑ Yukarı çık</a>
+
+    </div>
+</footer>
+            ["Savanna", "🌾", "Akasyalar ve sıcak iklimiyle bilinir. Açık alanlar yapı kurmak ve çevreyi gözlemlemek için kullanışlıdır."],
+        ["Jungle", "🌴", "Yoğun bitki örtüsü, bambu ve papağanlar gibi özellikleriyle tanınır. Sık ağaçlar yön bulmayı zorlaştırabilir."],
+        ["Okyanus", "🌊", "Su altı kalıntıları, mercanlar ve çeşitli deniz canlılarını barındırır. Su altında keşif yaparken oksijenini takip et."],
+        ["Nether Wastes", "🔥", "Nether boyutunun temel bölgelerinden biridir. Lav gölleri ve tehlikeli canlılar nedeniyle dikkatli hareket et."],
+        ["Soul Sand Valley", "💀", "Ruh kumu ve ruh toprağıyla kaplı, iskeletlerin sık görülebildiği tehlikeli bir Nether biyomudur."],
+        ["Crimson Forest", "🔴", "Kızıl mantarlar ve Nether bitkileriyle kaplıdır. Piglinler ve Hoglinler gibi canlılara dikkat et."],
+        ["Warped Forest", "🟦", "Mavi-yeşil renkli bitki örtüsüyle tanınır. Endermanlar burada sık görülebilir."],
+        ["Basalt Deltas", "🌋", "Bazalt sütunları ve lav havuzları bulunan engebeli bir Nether biyomudur."],
+        ["The End", "🌌", "Ender Dragon ve End şehirleriyle ilişkilidir. Keşif öncesinde yeterli ekipman ve yiyecek hazırla."]
+    ]
+},
+{
+    title: "Boyutlar",
+    icon: "🌌",
+    description: "Minecraft'ın üç ana boyutunu tanı.",
+    items: [
+        ["Overworld", "🌍", "Oyuncuların genellikle başladığı ana dünyadır. Köyler, ormanlar, okyanuslar ve pek çok farklı biyom içerir."],
+        ["Nether", "🔥", "Obsidyen portalıyla ulaşılan tehlikeli boyuttur. Blaze çubukları ve Nether kaynakları için keşfedilir."],
+        ["End", "🌌", "Ender Dragon'un bulunduğu boyuttur. Ejderhayı yendikten sonra dış adalara giderek End şehirlerini arayabilirsin."]
+    ]
+},
+{
+    title: "Yapılar",
+    icon: "🏰",
+    description: "Keşfedilebilir yapılar ve içerdikleri ganimetler.",
+    items: [
+        ["Köy", "🏘️", "Köylüler, evler ve meslek blokları içerir. Ticaret ve başlangıç kaynakları için yararlı olabilir."],
+        ["Antik Şehir", "🏛️", "Derin Karanlık biyomunda bulunur. Sculk sensörleri ve Warden tehlikesi nedeniyle sessiz hareket etmek önemlidir."],
+        ["Nether Kalesi", "🏰", "Blaze ve Wither iskeletleri gibi canlıların bulunduğu bir yapıdır. Blaze çubuğu ve Wither kafatası arayanlar için önemlidir."],
+        ["Bastion Kalıntısı", "🟫", "Nether'da bulunan, Piglinlerle ve değerli ganimetlerle ilişkilendirilen bir yapıdır."],
+        ["Orman Köşkü", "🌲", "Nadir bulunan büyük bir yapıdır. İçinde tehlikeli illagerlar ve farklı odalarda ganimetler bulunabilir."],
+        ["Okyanus Anıtı", "🐠", "Guardian ve Elder Guardian canlılarının bulunduğu su altı yapısıdır. Su altı nefesi ve uygun ekipman hazırlamak yararlıdır."],
+        ["End Şehri", "🏙️", "End'in dış adalarında bulunur. Bazı yapılarda Shulkerlar ve değerli ganimetler bulunabilir."],
+        ["Batık Gemi", "🚢", "Okyanuslarda veya sahillerde bulunabilir. Sandıklarında harita, yiyecek ve çeşitli kaynaklar yer alabilir."],
+        ["Çöl Tapınağı", "🏜️", "Çöllerde bulunur. Alt bölümünde tuzak ve sandıklar olabilir; dikkatli kazı yap."],
+        ["Maden Kuyusu", "⛏️", "Yer altında bulunan tünel sistemidir. Raylar, sandıklar ve mağara örümceklerinin bulunduğu alanlarla karşılaşabilirsin."]
+    ]
+},
+{
+    title: "Üretim ve Büyüler",
+    icon: "🔮",
+    description: "Eşya üretimi, büyü sistemi ve iksirler.",
+    items: [
+        ["Üretim Masası", "🛠️", "3×3 üretim alanı açar ve çok sayıda eşyanın tarifini uygulamanı sağlar."],
+        ["Fırın", "🔥", "Cevherleri eritmek ve yiyecekleri pişirmek için kullanılır."],
+        ["Büyü Masası", "🔮", "Deneyim seviyesi ve lapis lazuli kullanarak eşyalara büyü eklemeye yarar."],
+        ["Örs", "🔨", "Eşyaları birleştirmek, onarmak ve isimlendirmek için kullanılır."],
+        ["İksir Standı", "🧪", "Blaze çubuğuyla üretilir ve iksir hazırlamak için kullanılır."],
+        ["Büyü: Verimlilik", "⛏️", "Uygun araçla blokları daha hızlı kırmanı sağlar."],
+        ["Büyü: Dayanıklılık", "🛡️", "Eşyaların dayanıklılığını kullanırken daha uzun süre korumasına yardımcı olur."],
+        ["Büyü: Tamir", "✨", "Deneyim kürelerini kullanarak uygun eşyanın dayanıklılığını onarır."],
+        ["Büyü: Koruma", "🛡️", "Zırha uygulandığında çeşitli hasar türlerine karşı koruma sağlar."],
+        ["Büyü: Keskinlik", "⚔️", "Kılıç ve balta gibi uygun silahların verdiği hasarı artırır."]
+    ]
+}
+];
