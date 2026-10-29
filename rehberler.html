@@ -1,89 +1,1004 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Rehberleri | GameGuide</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
-</head>
-<body data-page="guides">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10170f">
+<meta name="description" content="GameGuide Minecraft bilgi merkezi. Minecraft Wiki, bloklar, eşyalar, moblar, biyomlar, rehberler ve PvP taktikleri.">
+<title>GameGuide | Minecraft Bilgi Merkezi</title>
 
-<header id="site-header"></header>
+<style>
+:root {
+    --bg: #10170f;
+    --panel: #1a2418;
+    --panel2: #273624;
+    --green: #8fdf55;
+    --text: #f4f3df;
+    --muted: #c0c5a9;
+    --border: #425538;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    color: var(--text);
+    background-color: #11170f;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(79,123,47,.18), transparent 48%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px),
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px);
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.65;
+}
+
+::selection {
+    background: #8fdf55;
+    color: #172012;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+/* ÜST MENÜ */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,24,15,.97);
+    border-bottom: 4px solid #406c2c;
+    box-shadow: 0 5px 0 rgba(0,0,0,.22);
+    backdrop-filter: blur(14px);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #85d64b 0 24px,
+        #69b43c 24px 48px,
+        #4d8d31 48px 72px
+    );
+}
+
+.navbar {
+    min-height: 70px;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 900;
+    white-space: nowrap;
+    letter-spacing: -.7px;
+    text-shadow: 2px 2px #000;
+}
+
+.logo-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    color: #183016;
+    background: linear-gradient(#9de75b 30%, #5b9b35 30%);
+    border: 3px solid #d4f4a4;
+    border-radius: 2px;
+    box-shadow: inset -4px -4px #0003, 3px 3px #080d08;
+}
+
+.logo span:last-child {
+    color: var(--green);
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav a {
+    padding: 8px 9px;
+    color: #d3dbbd;
+    border: 1px solid transparent;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    transition: .2s;
+}
+
+.nav a:hover {
+    color: #fff;
+    background: #2b4223;
+    border-color: #638d43;
+    box-shadow: inset 0 -3px var(--green);
+}
+
+.menu-button {
+    display: none;
+    padding: 8px 12px;
+    color: white;
+    background: var(--panel);
+    border: 2px solid #668c48;
+    border-radius: 2px;
+    box-shadow: 3px 3px #090d08;
+}
+
+/* ANA SAYFA */
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 82px 0 50px;
+    background:
+        linear-gradient(180deg, rgba(19,37,28,.54), rgba(17,23,15,.96)),
+        repeating-linear-gradient(90deg, transparent 0 47px, #77ad560d 47px 48px),
+        radial-gradient(ellipse at 18% 10%, #2c6137 0%, transparent 42%),
+        radial-gradient(ellipse at 85% 0%, #244d31 0%, transparent 42%),
+        #121a12;
+    border-bottom: 14px solid #493722;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -14px;
+    height: 14px;
+    background: repeating-linear-gradient(
+        90deg,
+        #72b943 0 32px,
+        #5c9b35 32px 64px,
+        #82cc49 64px 96px
+    );
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .2;
+    background-image: radial-gradient(#a8d680 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    z-index: -1;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 36px;
+    align-items: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 6px 11px;
+    margin-bottom: 16px;
+    color: #d7f5b6;
+    background: #223d23;
+    border: 2px solid #588342;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px #0a0e09;
+}
+
+.hero h1 {
+    margin-bottom: 18px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(35px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    text-shadow: 3px 3px #070b07, 5px 5px #0004;
+}
+
+.hero h1 span {
+    color: #9ee65b;
+    text-shadow: 3px 3px #253e1b;
+}
+
+.hero p {
+    max-width: 610px;
+    margin-bottom: 22px;
+    color: #d2dcc4;
+    font-size: 14px;
+}
+
+/* ARAMA */
+
+.search-box {
+    display: flex;
+    gap: 8px;
+    max-width: 580px;
+    padding: 7px;
+    background: #151c13;
+    border: 3px solid #526c40;
+    border-radius: 2px;
+    box-shadow: 5px 5px #080c07, inset 0 0 0 2px #0b100a;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    color: #f9f8e9;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.search-box input::placeholder {
+    color: #98a78b;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    color: var(--text);
+    background: var(--panel);
+    border: 2px solid #536b43;
+    border-radius: 2px;
+    box-shadow: 3px 3px #070b06;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    transition: .2s;
+}
+
+.button:hover {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.button-primary {
+    color: #172410;
+    background: linear-gradient(#a5ed68, #6db63f);
+    border-color: #a1e96b;
+}
+
+.button-primary:hover {
+    color: #172410;
+    background: linear-gradient(#c3f78f, #86cf4f);
+}
+
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.hero-tags button {
+    padding: 5px 10px;
+    color: #d4dec7;
+    background: #182418;
+    border: 2px solid #4d6640;
+    border-radius: 2px;
+    box-shadow: 2px 2px #080d07;
+    font-size: 11px;
+}
+
+.hero-tags button:hover {
+    color: white;
+    background: #36562a;
+}
+
+.search-status {
+    min-height: 20px;
+    margin-top: 9px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 1px 1px #080d07;
+}
+
+/* BLOK GÖRSELİ */
+
+.hero-art {
+    position: relative;
+    min-height: 230px;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(5px 7px #0004);
+}
+
+.hero-block {
+    position: relative;
+    width: 165px;
+    height: 165px;
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(180deg, transparent 0 22%, #2f5e2259 22% 29%, transparent 29%),
+        repeating-linear-gradient(90deg, transparent 0 18px, #0002 18px 22px),
+        repeating-linear-gradient(0deg, transparent 0 18px, #ffffff0b 18px 22px),
+        linear-gradient(#74be43 0 27%, #3f7f2e 27% 34%, #8e6339 34% 100%);
+    border: 4px solid #172414;
+    border-radius: 0;
+    box-shadow:
+        inset 7px 7px #fff2,
+        inset -8px -8px #0004,
+        8px 8px #080d08,
+        0 0 60px #61a94029;
+    font-size: 74px;
+    text-shadow: 3px 3px #0006;
+    transform: rotate(-3deg);
+}
+
+.floating {
+    position: absolute;
+    padding: 10px 13px;
+    color: #e4ebd7;
+    background: #1b2719;
+    border: 2px solid #576c42;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0007;
+    font-size: 11px;
+}
+
+.floating strong {
+    display: block;
+    color: #a5e76a;
+}
+
+.float-one {
+    top: 10px;
+    left: 0;
+}
+
+.float-two {
+    right: 0;
+    bottom: 10px;
+}
+    /* İSTATİSTİKLER */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.stat {
+    position: relative;
+    padding: 14px;
+    background: linear-gradient(135deg, #202e1d, #121a11);
+    border: 3px solid #35472c;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px #11170f, 4px 4px #080d07;
+}
+
+.stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #6fae3f;
+}
+
+.stat strong {
+    display: block;
+    color: #a7ec69;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+}
+
+.stat span {
+    color: #c7d2b9;
+    font-size: 11px;
+}
+
+/* SAYFA BÖLÜMLERİ */
+
+.section {
+    position: relative;
+    padding: 39px 0;
+}
+
+.section-alt {
+    background:
+        linear-gradient(#141e12f5, #0f160ef5),
+        repeating-linear-gradient(90deg, #263322 0 24px, #1f2a1b 24px 48px);
+    border-block: 4px solid #33482a;
+}
+
+.section-heading {
+    position: relative;
+    margin-bottom: 19px;
+    padding-left: 15px;
+}
+
+.section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 4px;
+    width: 5px;
+    background: linear-gradient(#9ce25d 0 50%, #548b34 50% 100%);
+    box-shadow: 2px 2px #080d07;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 4px 7px;
+    margin-bottom: 7px;
+    color: #a8e76d;
+    background: #1d311a;
+    border: 1px solid #4e7337;
+    border-radius: 1px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+    margin-bottom: 5px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(23px, 3vw, 30px);
+    font-weight: 900;
+    text-shadow: 2px 2px #060906;
+}
+
+.section-heading p {
+    max-width: 780px;
+    color: #bdc9b2;
+    font-size: 13px;
+}
+
+/* AÇILIR KARTLAR */
+
+.accordion-list {
+    display: grid;
+    gap: 12px;
+}
+
+.accordion,
+.topic {
+    min-width: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #202b1d, #161e14);
+    border: 2px solid #34452c;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0005;
+    transition: border-color .2s;
+}
+
+.accordion:hover,
+.topic:hover {
+    border-color: #75a84c;
+}
+
+.accordion[open],
+.topic[open] {
+    background: #1a2717;
+    border-color: #80b74e;
+}
+
+.accordion > summary,
+.topic > summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 63px;
+    padding: 13px 15px;
+    background: linear-gradient(90deg, #4c703426, transparent 65%);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.accordion > summary::-webkit-details-marker,
+.topic > summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion > summary::after,
+.topic > summary::after {
+    content: "+";
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    margin-left: auto;
+    color: var(--green);
+    background: #192416;
+    border: 2px solid #476239;
+    border-radius: 1px;
+    box-shadow: 2px 2px #080d07;
+    font-size: 19px;
+    line-height: 1;
+}
+
+.accordion[open] > summary::after,
+.topic[open] > summary::after {
+    content: "−";
+    color: white;
+    background: #42662d;
+    border-color: #8dc65b;
+}
+
+.item-icon,
+.topic-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    background: linear-gradient(#72b644 0 23%, #4d862e 23% 31%, #705135 31% 100%);
+    border: 2px solid #50683d;
+    border-radius: 1px;
+    box-shadow: inset 3px 3px #fff2, inset -3px -3px #0003, 2px 2px #0a0e08;
+    font-size: 20px;
+}
+
+.summary-text {
+    min-width: 0;
+}
+
+.summary-text strong {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.summary-text small {
+    display: block;
+    margin-top: 3px;
+    color: #b4c1a6;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.accordion-content {
+    padding: 14px 15px 16px;
+    background: #070c0726;
+    border-top: 2px solid #33472a;
+}
+
+/* REHBER İÇERİKLERİ */
+
+.accordion-content p {
+    margin-bottom: 12px;
+    color: #d1dbc8;
+    font-size: 13px;
+}
+
+.accordion-content h3 {
+    margin: 16px 0 8px;
+    color: #a9e975;
+    font-size: 15px;
+}
+
+.accordion-content ul,
+.accordion-content ol {
+    padding-left: 23px;
+    margin: 8px 0 14px;
+    color: #d2dcc9;
+    font-size: 13px;
+}
+
+.accordion-content li {
+    margin: 5px 0;
+}
+
+.accordion-content strong {
+    color: #e9f3dc;
+}
+
+.info-box {
+    padding: 12px 14px;
+    margin: 12px 0;
+    color: #dce8d0;
+    background: #263a20;
+    border-left: 4px solid #8fdf55;
+    font-size: 12px;
+}
+
+.code-box {
+    overflow-x: auto;
+    padding: 12px;
+    margin: 12px 0;
+    color: #b7ef91;
+    background: #0b1009;
+    border: 1px solid #405638;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.topic-content {
+    padding: 14px;
+    border-top: 2px solid #33472a;
+}
+
+.topic-content p {
+    color: #cbd6c0;
+    font-size: 13px;
+}
+
+.topic-content li {
+    margin: 5px 0;
+    color: #d2dcc9;
+    font-size: 13px;
+}
+
+/* ALT BİLGİ */
+
+footer {
+    padding: 28px 0;
+    background: #0b1009;
+    border-top: 5px solid #456532;
+    color: #aab79d;
+    font-size: 12px;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+footer strong {
+    color: #a5e76a;
+}
+
+.back-top {
+    display: inline-block;
+    padding: 7px 10px;
+    background: #1c2918;
+    border: 1px solid #4b653a;
+}
+
+/* MOBİL UYUMLULUK */
+
+@media (max-width: 850px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        min-height: 190px;
+    }
+
+    .hero-block {
+        width: 135px;
+        height: 135px;
+        font-size: 60px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav a {
+        font-size: 9px;
+        padding: 7px 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 13px 0;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .nav a {
+        padding: 10px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .search-box {
+        flex-wrap: wrap;
+    }
+
+    .search-box input {
+        flex-basis: 100%;
+    }
+
+    .search-box .button {
+        flex: 1;
+    }
+
+    .stats {
+        gap: 9px;
+    }
+
+    .stat {
+        padding: 10px;
+    }
+
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .accordion > summary,
+    .topic > summary {
+        padding: 11px;
+        gap: 9px;
+    }
+
+    .summary-text strong {
+        font-size: 12px;
+    }
+
+    .summary-text small {
+        font-size: 10px;
+    }
+
+    .item-icon,
+    .topic-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+    <body>
+<header>
+    <div class="container navbar">
+        <a class="logo" href="index.html">
+            <span class="logo-icon">⛏</span>
+            <span>GAME<span>GUIDE</span></span>
+        </a>
+
+        <button class="menu-button" id="menuButton" type="button">
+            ☰ Menü
+        </button>
+
+        <nav class="nav" id="mainNav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="#bloklar">Bloklar</a>
+            <a href="#esya">Eşyalar</a>
+            <a href="#moblar">Canlılar</a>
+            <a href="#biyomlar">Biyomlar</a>
+            <a href="#rehberler">Rehberler</a>
+            <a href="sunucu.html">Minecraft Sunucumuz</a>
+        </nav>
+    </div>
+</header>
 
 <main>
-    <section class="page-hero">
+    <section class="hero">
         <div class="container">
-            <div class="breadcrumbs"><a href="index.html">Ana Sayfa</a> / Rehberler</div>
-            <span class="eyebrow">ÖĞREN • KEŞFET • GELİŞ</span>
-            <h1>Minecraft <span>Rehberleri</span></h1>
-            <p>İlk gecenden Ender Dragon savaşına kadar adım adım ilerle.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-heading">
+            <div class="hero-layout">
                 <div>
-                    <h2>Tüm rehberler</h2>
-                    <p>Seviyene ve ilgi alanına uygun rehberi seç.</p>
+                    <span class="eyebrow">MINECRAFT BİLGİ MERKEZİ</span>
+
+                    <h1>
+                        Minecraft<br>
+                        dünyasını<br>
+                        <span>keşfet!</span>
+                    </h1>
+
+                    <p>
+                        Minecraft hakkında merak ettiğin blokları,
+                        eşyaları, canlıları, biyomları ve oyun taktiklerini
+                        keşfet. GameGuide ile macerana hazırlan!
+                    </p>
+
+                    <div class="search-box">
+                        <input
+                            id="searchInput"
+                            type="search"
+                            placeholder="Bir konu ara..."
+                            aria-label="Rehberde ara"
+                        >
+                        <button
+                            class="button button-primary"
+                            id="searchButton"
+                            type="button"
+                        >
+                            Ara
+                        </button>
+                    </div>
+
+                    <div class="hero-tags">
+                        <button type="button" data-search="blok">🧱 Bloklar</button>
+                        <button type="button" data-search="eşya">🎒 Eşyalar</button>
+                        <button type="button" data-search="mob">🐉 Canlılar</button>
+                        <button type="button" data-search="biyom">🌲 Biyomlar</button>
+                    </div>
+
+                    <div class="search-status" id="searchStatus"></div>
+                </div>
+
+                <div class="hero-art">
+                    <div class="floating float-one">
+                        <strong>GAMEGUIDE</strong>
+                        Minecraft rehberin
+                    </div>
+
+                    <div class="hero-block">⛏️</div>
+
+                    <div class="floating float-two">
+                        <strong>KEŞFET</strong>
+                        Yeni maceralara başla!
+                    </div>
                 </div>
             </div>
 
-            <div class="guide-grid">
-                <a class="guide-card" href="rehber-detay.html?guide=ilk-gece">
-                    <span class="badge">Başlangıç</span>
-                    <div class="large-icon">🌳</div>
-                    <h3>İlk Geceyi Atlatma</h3>
-                    <p>İlk kaynaklarını topla, barınak kur ve geceye hazırlan.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
-
-                <a class="guide-card" href="rehber-detay.html?guide=madencilik">
-                    <span class="badge">Orta Seviye</span>
-                    <div class="large-icon">⛏️</div>
-                    <h3>Madencilik Rehberi</h3>
-                    <p>Yer altı keşifleri için doğru ekipmanı ve hazırlıkları öğren.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
-
-                <a class="guide-card" href="rehber-detay.html?guide=nether">
-                    <span class="badge">Orta Seviye</span>
-                    <div class="large-icon">🔥</div>
-                    <h3>Nether'a Hazırlık</h3>
-                    <p>Nether portalından geçmeden önce bilmen gerekenler.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
-
-                <a class="guide-card" href="rehber-detay.html?guide=end">
-                    <span class="badge">İleri Seviye</span>
-                    <div class="large-icon">🐉</div>
-                    <h3>Ender Dragon Savaşı</h3>
-                    <p>Ekipmanını hazırla ve savaş stratejini öğren.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
-
-                <a class="guide-card" href="rehber-detay.html?guide=redstone">
-                    <span class="badge">İleri Seviye</span>
-                    <div class="large-icon">🔴</div>
-                    <h3>Redstone'a Giriş</h3>
-                    <p>Temel mekanizmaları ve devreleri öğren.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
-
-                <a class="guide-card" href="rehber-detay.html?guide=elytra">
-                    <span class="badge">İleri Seviye</span>
-                    <div class="large-icon">🪽</div>
-                    <h3>Elytra Kullanımı</h3>
-                    <p>Uçuşa hazırlan ve hava kontrolünü öğren.</p>
-                    <span class="text-link">Rehberi oku →</span>
-                </a>
+            <div class="stats">
+                <div class="stat">
+                    <strong>01</strong>
+                    <span>Bloklar ve eşyalar</span>
+                </div>
+                <div class="stat">
+                    <strong>02</strong>
+                    <span>Canlılar ve biyomlar</span>
+                </div>
+                <div class="stat">
+                    <strong>03</strong>
+                    <span>Hayatta kalma rehberi</span>
+                </div>
+                <div class="stat">
+                    <strong>04</strong>
+                    <span>Savaş ve PvP taktikleri</span>
+                </div>
             </div>
         </div>
     </section>
-</main>
 
-<footer id="site-footer"></footer>
+    <section class="section" id="bloklar">
+        <div class="container">
+            <div class="section-heading">
+                <span class="kicker">MINECRAFT WIKI</span>
+                <h2>🧱 Bloklar ve Eşyalar</h2>
+                <p>
+                    Minecraft dünyasında kullanabileceğin blokları,
+                    araçları ve önemli eşyaları keşfet.
+                </p>
+            </div>
 
-</body>
-</html>
+            <div class="accordion-list">
+                <details class="accordion">
+                    <summary>
+                        <span class="item-icon">⛏️</span>
+                        <span class="summary-text">
+                            <strong>Araçlar</strong>
+                            <small>Kazma, balta, kürek ve diğer araçlar</small>
+                        </span>
+                    </summary>
+                    <div class="accordion-content">
+                        <h3>Temel araçlar</h3>
+                        <ul>
+                            <li><strong>Kazma:</strong> Taş ve maden gibi blokları kazmak için kullanılır.</li>
+                            <li><strong>Balta:</strong> Odun ve ahşap blokları hızlıca kırmaya yarar.</li>
+                            <li><strong>Kürek:</strong> Toprak, kum ve çakıl gibi blokları kazmayı kolaylaştırır.</li>
+                            <li><strong>Çapa:</strong> Tarım arazisi hazırlamak için kullanılır.</li>
+                        </ul>
+                        <div class="info-box">
+                            İpucu: Kıracağın bloğa uygun aracı seçmek,
+                            kaynak toplama süresini azaltır.
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion">
+                    <summary>
+                        <span class="item-icon">💎</span>
+                        <span class="summary-text">
+                            <strong>Madenler ve değerli kaynaklar</strong>
+                            <small>Kömür, demir, altın, elmas ve zümrüt</small>
+                        </span>
+                    </summary>
+                    <div class="accordion-content">
+                        <h3>Madenler</h3>
+                        <ul>
+                            <li><strong>Kömür:</strong> Meşale üretmek ve fırınlarda yakıt olarak kullanmak için idealdir.</li>
+                            <li><strong>Demir:</strong> Araç, zırh ve çeşitli eşyaların üretiminde kullanılır.</li>
+                            <li><strong>Altın:</strong> Çeşitli eşyalar ve Piglinlerle takas için kullanılır.</li>
+                            <li><strong>Elmas:</strong> Güçlü araçlar ve zırhlar üretmekte kullanılır.</li>
+                            <li><strong>Zümrüt:</strong> Köylülerle ticaret yaparken kullanılır.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVAMI SONRAKİ PARÇADA -->
