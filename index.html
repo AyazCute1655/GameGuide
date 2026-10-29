@@ -3,286 +3,1199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10130f">
-<meta name="description" content="GameGuide — oyun rehberleri ve Minecraft sunucumuz.">
-<title>GameGuide | Oyun Dünyana Açıl</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#10170f">
+<meta name="description" content="GameGuide Minecraft bilgi merkezi. Minecraft Wiki, bloklar, eşyalar, moblar, biyomlar, rehberler ve PvP taktikleri.">
+<title>GameGuide | Minecraft Bilgi Merkezi</title>
 
 <style>
 :root {
-    --bg: #0b0f0c;
-    --panel: #141c16;
-    --green: #9be564;
-    --mint: #c8ff9d;
-    --text: #f5f7f1;
-    --muted: #aab6aa;
+    --bg: #10170f;
+    --panel: #1a2418;
+    --panel2: #273624;
+    --green: #8fdf55;
+    --text: #f4f3df;
+    --muted: #c0c5a9;
+    --border: #425538;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-        radial-gradient(ellipse at 50% -15%, #314c2b 0, transparent 45%),
-        linear-gradient(135deg, #0a0d0b, #111a12 60%, #080b09);
     color: var(--text);
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
+    background-color: #11170f;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(79,123,47,.18), transparent 48%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px),
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(167,201,131,.025) 31px 32px);
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.65;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: .15;
-    background-image:
-        linear-gradient(#b7e89b15 1px, transparent 1px),
-        linear-gradient(90deg, #b7e89b15 1px, transparent 1px);
-    background-size: 42px 42px;
+::selection {
+    background: #8fdf55;
+    color: #172012;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+/* ÜST MENÜ */
 
 header {
-    position: relative;
-    max-width: 1180px;
-    margin: auto;
-    padding: 25px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,24,15,.97);
+    border-bottom: 4px solid #406c2c;
+    box-shadow: 0 5px 0 rgba(0,0,0,.22);
+    backdrop-filter: blur(14px);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #85d64b 0 24px,
+        #69b43c 24px 48px,
+        #4d8d31 48px 72px
+    );
+}
+
+.navbar {
+    min-height: 70px;
+    padding-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 18px;
 }
 
-.brand {
+.logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    font-size: 22px;
     font-weight: 900;
-    font-size: 1.25rem;
+    white-space: nowrap;
+    letter-spacing: -.7px;
+    text-shadow: 2px 2px #000;
 }
 
-.brand-icon {
-    width: 39px;
-    height: 39px;
+.logo-icon {
     display: grid;
     place-items: center;
-    background: var(--green);
-    color: #10200c;
-    border-radius: 10px;
-    font-size: 1.35rem;
+    width: 38px;
+    height: 38px;
+    color: #183016;
+    background: linear-gradient(#9de75b 30%, #5b9b35 30%);
+    border: 3px solid #d4f4a4;
+    border-radius: 2px;
+    box-shadow: inset -4px -4px #0003, 3px 3px #080d08;
 }
 
-.badge {
-    border: 1px solid #8fbd7a55;
-    border-radius: 999px;
-    padding: 8px 13px;
-    color: #cce9bd;
-    font-size: .8rem;
-    background: #152116aa;
+.logo span:last-child {
+    color: var(--green);
 }
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav a {
+    padding: 8px 9px;
+    color: #d3dbbd;
+    border: 1px solid transparent;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    transition: .2s;
+}
+
+.nav a:hover {
+    color: #fff;
+    background: #2b4223;
+    border-color: #638d43;
+    box-shadow: inset 0 -3px var(--green);
+}
+
+.menu-button {
+    display: none;
+    padding: 8px 12px;
+    color: white;
+    background: var(--panel);
+    border: 2px solid #668c48;
+    border-radius: 2px;
+    box-shadow: 3px 3px #090d08;
+}
+
+/* ANA SAYFA */
 
 .hero {
     position: relative;
-    text-align: center;
-    max-width: 900px;
-    margin: 64px auto 36px;
-    padding: 0 24px;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 82px 0 50px;
+    background:
+        linear-gradient(180deg, rgba(19,37,28,.54), rgba(17,23,15,.96)),
+        repeating-linear-gradient(90deg, transparent 0 47px, #77ad560d 47px 48px),
+        radial-gradient(ellipse at 18% 10%, #2c6137 0%, transparent 42%),
+        radial-gradient(ellipse at 85% 0%, #244d31 0%, transparent 42%),
+        #121a12;
+    border-bottom: 14px solid #493722;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -14px;
+    height: 14px;
+    background: repeating-linear-gradient(
+        90deg,
+        #72b943 0 32px,
+        #5c9b35 32px 64px,
+        #82cc49 64px 96px
+    );
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .2;
+    background-image: radial-gradient(#a8d680 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    z-index: -1;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 36px;
+    align-items: center;
 }
 
 .eyebrow {
-    color: var(--green);
-    font-size: .78rem;
-    letter-spacing: 3px;
+    display: inline-block;
+    padding: 6px 11px;
+    margin-bottom: 16px;
+    color: #d7f5b6;
+    background: #223d23;
+    border: 2px solid #588342;
+    border-radius: 2px;
+    font-size: 10px;
     font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px #0a0e09;
 }
 
 .hero h1 {
-    font-size: clamp(2.6rem, 7vw, 5.4rem);
-    line-height: .98;
-    letter-spacing: -3px;
-    margin: 20px 0 18px;
-    font-weight: 950;
+    margin-bottom: 18px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(35px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    text-shadow: 3px 3px #070b07, 5px 5px #0004;
 }
 
 .hero h1 span {
-    color: var(--green);
-    text-shadow: 0 0 35px #9be56422;
+    color: #9ee65b;
+    text-shadow: 3px 3px #253e1b;
 }
 
 .hero p {
-    max-width: 590px;
-    margin: auto;
-    color: var(--muted);
-    line-height: 1.8;
-    font-size: 1.05rem;
+    max-width: 610px;
+    margin-bottom: 22px;
+    color: #d2dcc4;
+    font-size: 14px;
 }
 
-.cards {
+/* ARAMA */
+
+.search-box {
+    display: flex;
+    gap: 8px;
+    max-width: 580px;
+    padding: 7px;
+    background: #151c13;
+    border: 3px solid #526c40;
+    border-radius: 2px;
+    box-shadow: 5px 5px #080c07, inset 0 0 0 2px #0b100a;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    color: #f9f8e9;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.search-box input::placeholder {
+    color: #98a78b;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    color: var(--text);
+    background: var(--panel);
+    border: 2px solid #536b43;
+    border-radius: 2px;
+    box-shadow: 3px 3px #070b06;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    transition: .2s;
+}
+
+.button:hover {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.button-primary {
+    color: #172410;
+    background: linear-gradient(#a5ed68, #6db63f);
+    border-color: #a1e96b;
+}
+
+.button-primary:hover {
+    color: #172410;
+    background: linear-gradient(#c3f78f, #86cf4f);
+}
+
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.hero-tags button {
+    padding: 5px 10px;
+    color: #d4dec7;
+    background: #182418;
+    border: 2px solid #4d6640;
+    border-radius: 2px;
+    box-shadow: 2px 2px #080d07;
+    font-size: 11px;
+}
+
+.hero-tags button:hover {
+    color: white;
+    background: #36562a;
+}
+
+.search-status {
+    min-height: 20px;
+    margin-top: 9px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 1px 1px #080d07;
+}
+
+/* BLOK GÖRSELİ */
+
+.hero-art {
     position: relative;
-    max-width: 1050px;
-    margin: 55px auto 80px;
-    padding: 0 24px;
+    min-height: 230px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+    place-items: center;
+    filter: drop-shadow(5px 7px #0004);
+}
+
+.hero-block {
+    position: relative;
+    width: 165px;
+    height: 165px;
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(180deg, transparent 0 22%, #2f5e2259 22% 29%, transparent 29%),
+        repeating-linear-gradient(90deg, transparent 0 18px, #0002 18px 22px),
+        repeating-linear-gradient(0deg, transparent 0 18px, #ffffff0b 18px 22px),
+        linear-gradient(#74be43 0 27%, #3f7f2e 27% 34%, #8e6339 34% 100%);
+    border: 4px solid #172414;
+    border-radius: 0;
+    box-shadow:
+        inset 7px 7px #fff2,
+        inset -8px -8px #0004,
+        8px 8px #080d08,
+        0 0 60px #61a94029;
+    font-size: 74px;
+    text-shadow: 3px 3px #0006;
+    transform: rotate(-3deg);
+}
+
+.floating {
+    position: absolute;
+    padding: 10px 13px;
+    color: #e4ebd7;
+    background: #1b2719;
+    border: 2px solid #576c42;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0007;
+    font-size: 11px;
+}
+
+.floating strong {
+    display: block;
+    color: #a5e76a;
+}
+
+.float-one {
+    top: 10px;
+    left: 0;
+}
+
+.float-two {
+    right: 0;
+    bottom: 10px;
+}
+
+/* İSTATİSTİKLER */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.stat {
+    position: relative;
+    padding: 14px;
+    background: linear-gradient(135deg, #202e1d, #121a11);
+    border: 3px solid #35472c;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px #11170f, 4px 4px #080d07;
+}
+
+.stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #6fae3f;
+}
+
+.stat strong {
+    display: block;
+    color: #a7ec69;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+}
+
+.stat span {
+    color: #c7d2b9;
+    font-size: 11px;
+}
+
+/* SAYFA BÖLÜMLERİ */
+
+.section {
+    position: relative;
+    padding: 39px 0;
+}
+
+.section-alt {
+    background:
+        linear-gradient(#141e12f5, #0f160ef5),
+        repeating-linear-gradient(90deg, #263322 0 24px, #1f2a1b 24px 48px);
+    border-block: 4px solid #33482a;
+}
+
+.section-heading {
+    position: relative;
+    margin-bottom: 19px;
+    padding-left: 15px;
+}
+
+.section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 4px;
+    width: 5px;
+    background: linear-gradient(#9ce25d 0 50%, #548b34 50% 100%);
+    box-shadow: 2px 2px #080d07;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 4px 7px;
+    margin-bottom: 7px;
+    color: #a8e96a;
+    background: #22361d;
+    border: 1px solid #4d7038;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    font-family: "Courier New", monospace;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.2;
+    text-shadow: 2px 2px #080d07;
+}
+
+.section-heading p {
+    max-width: 700px;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
 }
 
 .card {
-    position: relative;
-    min-height: 330px;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--text);
-    border: 1px solid #ffffff18;
-    border-radius: 24px;
-    padding: 31px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: linear-gradient(145deg, #1b2b1d, #101712 72%);
-    transition: transform .25s, border-color .25s, box-shadow .25s;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    width: 230px;
-    height: 230px;
-    right: -48px;
-    top: -55px;
-    background: #9be56412;
-    transform: rotate(25deg);
-    border: 1px solid #9be56418;
-    box-shadow: 0 0 0 25px #9be56408, 0 0 0 50px #9be56405;
-}
-
-.card.server {
-    background: linear-gradient(145deg, #1c2d24, #101714 72%);
-}
-
-.card.server::before {
-    background: #72e7ba12;
-    border-color: #72e7ba18;
+    padding: 17px;
+    background: linear-gradient(145deg, #202d1c, #141c12);
+    border: 2px solid #3b5230;
+    border-radius: 2px;
+    box-shadow: 4px 4px #080d07;
+    transition: transform .2s, border-color .2s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    border-color: #9be56490;
-    box-shadow: 0 20px 60px #0006, 0 0 30px #9be5640d;
+    transform: translateY(-3px);
+    border-color: #83c84e;
 }
 
-.card-top,
-.card-bottom {
-    position: relative;
-    z-index: 1;
-}
-
-.icon {
-    width: 62px;
-    height: 62px;
-    border-radius: 17px;
-    background: #9be56418;
-    border: 1px solid #9be56445;
+.card-icon {
     display: grid;
     place-items: center;
-    font-size: 2rem;
-    margin-bottom: 25px;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
+    background: #2a4122;
+    border: 2px solid #5a7d3f;
+    font-size: 22px;
 }
 
-.server .icon {
-    background: #72e7ba18;
-    border-color: #72e7ba45;
-}
-
-.card h2 {
-    font-size: clamp(1.7rem, 3vw, 2.3rem);
-    margin: 0 0 12px;
-    letter-spacing: -1px;
+.card h3 {
+    margin-bottom: 7px;
+    font-family: "Courier New", monospace;
+    font-size: 17px;
 }
 
 .card p {
-    margin: 0;
-    color: #b3c0b4;
-    line-height: 1.7;
-    max-width: 390px;
+    color: var(--muted);
+    font-size: 12px;
 }
 
-.card-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 28px;
+.card a {
+    display: inline-block;
+    margin-top: 12px;
     color: var(--green);
+    font-size: 11px;
     font-weight: 800;
 }
 
-.server .card-bottom {
-    color: #8ee7bd;
+/* AKORDEON */
+
+.accordion {
+    margin-bottom: 11px;
+    background: #182316;
+    border: 2px solid #3c5230;
+    box-shadow: 3px 3px #080d07;
 }
 
-.arrow {
-    width: 39px;
-    height: 39px;
-    border: 1px solid #ffffff26;
-    border-radius: 50%;
+.accordion > summary {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.accordion > summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion > summary::after {
+    content: "+";
+    margin-left: auto;
+    color: var(--green);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.accordion[open] > summary::after {
+    content: "−";
+}
+
+.accordion > summary:hover {
+    background: #263a20;
+}
+
+.summary-icon {
+    flex-shrink: 0;
     display: grid;
     place-items: center;
-    font-size: 1.2rem;
-    transition: transform .2s;
+    width: 42px;
+    height: 42px;
+    background: #2c4423;
+    border: 2px solid #57783c;
+    font-size: 21px;
 }
 
-.card:hover .arrow {
-    transform: translateX(4px);
+.summary-text {
+    min-width: 0;
 }
+
+.summary-text strong {
+    display: block;
+    font-size: 14px;
+}
+
+.summary-text small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.accordion-content {
+    padding: 15px;
+    border-top: 2px solid #34492a;
+    background: #10180f;
+}
+
+.accordion-content > p {
+    margin-bottom: 12px;
+    color: #c7d2bb;
+    font-size: 13px;
+}
+
+.topic {
+    margin-bottom: 8px;
+    background: #172115;
+    border: 1px solid #354a2c;
+}
+
+.topic > summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.topic > summary::-webkit-details-marker {
+    display: none;
+}
+
+.topic > summary::after {
+    content: "＋";
+    margin-left: auto;
+    color: var(--green);
+    font-size: 16px;
+}
+
+.topic[open] > summary::after {
+    content: "−";
+}
+
+.topic > summary:hover {
+    background: #263a20;
+}
+
+.topic-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    background: #2a4021;
+    border: 1px solid #4c6b37;
+    font-size: 18px;
+}
+
+.topic-title {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.topic-body {
+    padding: 12px;
+    color: #c6d1bb;
+    border-top: 1px solid #34492a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.topic-body strong {
+    color: var(--green);
+}
+
+.topic-body ul,
+.topic-body ol {
+    margin: 8px 0 0 19px;
+}
+
+.topic-body li {
+    margin: 4px 0;
+}
+
+.sub-accordion-list {
+    display: grid;
+    gap: 8px;
+}
+        box-shadow: 2px 2px #080d07;
+    font-size: 19px;
+    line-height: 1;
+}
+
+.accordion[open] > summary::after,
+.topic[open] > summary::after {
+    content: "−";
+    color: white;
+    background: #42662d;
+    border-color: #8dc65b;
+}
+
+.item-icon,
+.topic-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    background: linear-gradient(#72b644 0 23%, #4d862e 23% 31%, #705135 31% 100%);
+    border: 2px solid #50683d;
+    border-radius: 1px;
+    box-shadow: inset 3px 3px #fff2, inset -3px -3px #0003, 2px 2px #0a0e08;
+    font-size: 20px;
+}
+
+.summary-text {
+    min-width: 0;
+}
+
+.summary-text strong {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.summary-text small {
+    display: block;
+    margin-top: 3px;
+    color: #b4c1a6;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.accordion-content {
+    padding: 14px 15px 16px;
+    background: #070c0726;
+    border-top: 2px solid #33472a;
+}
+
+.content-description {
+    margin: 0 0 13px;
+    color: #c1ceb4;
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.topic {
+    background: #141c12;
+    border-color: #34442c;
+    border-radius: 2px;
+    box-shadow: 2px 2px #0003;
+}
+
+.topic > summary {
+    min-height: 54px;
+    padding: 9px 11px;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.topic-icon {
+    width: 31px;
+    height: 31px;
+    background: linear-gradient(135deg, #34442c, #1c2918);
+    border-color: #4a5a3e;
+    box-shadow: inset 2px 2px #fff1;
+    font-size: 16px;
+}
+
+.topic > summary:hover {
+    color: var(--green);
+}
+
+.topic[open] > summary {
+    color: var(--green);
+    border-bottom: 2px solid #394d2e;
+}
+
+.topic > summary span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.topic-body {
+    padding: 12px 14px 14px;
+    color: #dbe4d0;
+    font-size: 12px;
+}
+
+.topic-body p {
+    line-height: 1.85;
+}
+
+.topic-body p + p {
+    margin-top: 9px;
+}
+
+.topic-body strong {
+    color: var(--green);
+}
+
+.topic-body ul,
+.topic-body ol {
+    margin: 8px 0 0 19px;
+}
+
+.topic-body li {
+    margin: 4px 0;
+}
+
+.sub-accordion-list {
+    display: grid;
+    gap: 8px;
+}
+
+/* BÜTÜN KATEGORİLER */
+
+.topic.all-items {
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, #263b21, #182516);
+    border: 3px solid #56783d;
+    border-radius: 2px;
+    box-shadow: 4px 4px #0005;
+}
+
+.topic.all-items > summary {
+    min-height: 58px;
+    background: linear-gradient(90deg, #2f4a25, #1a2917);
+    font-weight: 800;
+}
+
+.topic.all-items > summary .topic-icon {
+    background: linear-gradient(#80c84a 0 32%, #416e2b 32% 42%, #765332 42% 100%);
+}
+
+.topic.all-items[open] > summary {
+    color: var(--green);
+}
+
+.all-items-body {
+    padding: 10px 11px 13px;
+    background: #080d072e;
+}
+
+.all-items-body > p {
+    margin: 0 0 12px;
+    color: #c5d3b9;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* DUYURU VE SUNUCU KARTI */
+
+.notice {
+    margin-top: 15px;
+    padding: 12px 14px;
+    color: var(--muted);
+    background: linear-gradient(90deg, #20311b, #151e13);
+    border: 2px solid #4b6c36;
+    border-left: 6px solid #89d44d;
+    border-radius: 2px;
+    box-shadow: 3px 3px #0004;
+    font-size: 12px;
+}
+
+.notice strong {
+    color: #a7e86a;
+}
+
+.server-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(22px, 4vw, 36px);
+    background:
+        linear-gradient(180deg, #0e221ab3, #131c0ff5),
+        repeating-linear-gradient(90deg, #294526 0 32px, #203a20 32px 64px),
+        #1b2c19;
+    border: 4px solid #506f3a;
+    border-radius: 2px;
+    box-shadow: 7px 7px #070b06;
+}
+
+.server-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 9px;
+    background: repeating-linear-gradient(90deg, #8dd550 0 26px, #66a83e 26px 52px, #477c30 52px 78px);
+}
+
+.server-card-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    padding-top: 8px;
+}
+
+.server-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 11px;
+    margin-bottom: 12px;
+    color: var(--green);
+    background: #253c1e;
+    border: 2px solid #78b84a;
+    border-radius: 1px;
+    box-shadow: 3px 3px #080c07;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.server-card h3 {
+    margin-bottom: 8px;
+    font-family: "Courier New", monospace;
+    font-size: clamp(21px, 3vw, 28px);
+    font-weight: 900;
+    text-shadow: 3px 3px #080d07;
+}
+
+.server-card p {
+    max-width: 650px;
+    color: #d2ddc8;
+    font-size: 13px;
+}
+
+.server-status {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 12px;
+    color: #b5ef7d;
+    background: #243c1e;
+    border: 2px solid #669343;
+    border-radius: 1px;
+    box-shadow: 3px 3px #080c07;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.server-icon {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 12px, #0002 12px 16px),
+        linear-gradient(#7cc64a 0 30%, #4e8a30 30% 38%, #89613b 38% 100%);
+    border: 4px solid #172414;
+    border-radius: 1px;
+    box-shadow: inset 4px 4px #fff2, inset -5px -5px #0004, 5px 5px #090d07;
+    font-size: 46px;
+}
+
+/* ALT BÖLÜM */
 
 footer {
-    position: relative;
-    text-align: center;
-    padding: 0 24px 30px;
-    color: #7f8d80;
-    font-size: .82rem;
+    padding: 28px 0;
+    background:
+        linear-gradient(#0c110af2, #0c110afb),
+        repeating-linear-gradient(90deg, #25331e 0 32px, #1b2817 32px 64px);
+    border-top: 6px solid #537c36;
 }
 
-footer strong {
-    color: #b9d9a9;
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
 }
 
-@media (max-width: 700px) {
-    header {
-        padding: 18px 20px;
+.footer-inner strong {
+    color: var(--green);
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    text-shadow: 2px 2px #050805;
+}
+
+.footer-inner p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.footer-links button {
+    padding: 6px 8px;
+    color: var(--muted);
+    background: #172115;
+    border: 1px solid #3c5230;
+    font-size: 11px;
+}
+
+.footer-links button:hover {
+    color: white;
+    background: #2d4623;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* TABLET */
+
+@media (max-width: 800px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
     }
 
-    .badge {
-        font-size: .7rem;
+    .hero-art {
+        min-height: 190px;
+        max-width: 450px;
+        width: 100%;
+        margin: 0 auto;
     }
 
     .hero {
-        margin-top: 45px;
+        padding-top: 55px;
+    }
+
+    .nav {
+        gap: 4px;
+    }
+
+    .nav a {
+        padding: 6px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* TELEFON */
+
+@media (max-width: 620px) {
+    .navbar {
+        min-height: 64px;
+        flex-wrap: wrap;
+        padding: 8px 0 10px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        padding: 0 0 10px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .nav a {
+        padding: 10px 8px;
+        margin-top: 4px;
+        background: #182316;
+        border: 1px solid #2d4025;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 43px;
     }
 
     .hero h1 {
-        letter-spacing: -1.5px;
+        font-size: clamp(29px, 9vw, 42px);
+        letter-spacing: -1px;
     }
 
-    .cards {
-        grid-template-columns: 1fr;
-        margin-top: 35px;
-        gap: 16px;
+    .hero-art {
+        min-height: 165px;
     }
 
-    .card {
-        min-height: 285px;
-        padding: 25px;
+    .hero-block {
+        width: 125px;
+        height: 125px;
+        border-width: 3px;
+        font-size: 55px;
     }
 
-    .brand {
-        font-size: 1.05rem;
+    .floating {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .search-box {
+        flex-wrap: wrap;
+    }
+
+    .search-box input {
+        flex-basis: 100%;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+    .stats {
+        gap: 10px;
+    }
+
+    .stat {
+        padding: 13px 10px;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .section-heading h2 {
+        letter-spacing: -1px;
+    }
+
+    .accordion > summary {
+        gap: 10px;
+        padding: 11px;
+    }
+
+    .summary-text small {
+        line-height: 1.45;
+    }
+
+    .accordion-content {
+        padding: 11px;
+    }
+
+    .topic > summary {
+        padding: 8px;
+    }
+
+    .server-card {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+    }
+
+    .server-icon {
+        width: 76px;
+        height: 76px;
+        font-size: 36px;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+
+    *::before,
+    *::after {
+        transition: none !important;
     }
 }
 </style>
@@ -291,75 +1204,418 @@ footer strong {
 <body>
 
 <header>
-    <div class="brand">
-        <span class="brand-icon">▦</span>
-        <span>GAMEGUIDE</span>
-    </div>
+    <div class="container navbar">
 
-    <span class="badge">OYUN DÜNYANA HOŞ GELDİN</span>
+        <a class="logo" href="#anasayfa" aria-label="GameGuide ana sayfa">
+            <span class="logo-icon">G</span>
+            <span>Game<span>Guide</span></span>
+        </a>
+
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav"
+        >☰ Menü</button>
+
+        <nav id="nav" class="nav" aria-label="Ana menü">
+            <a href="#wiki">Minecraft Wiki</a>
+            <a href="#rehberler">Rehberler</a>
+            <a href="#pvp">PvP Merkezi</a>
+            <a href="#sunucumuz">Minecraft Sunucumuz</a>
+            <a href="#ipuclari">Önemli Öneriler</a>
+            <a href="#guncellemeler">Güncellemeler</a>
+            <a href="#sss">SSS</a>
+        </nav>
+
+    </div>
 </header>
 
 <main>
-    <section class="hero">
-        <div class="eyebrow">KEŞFET · ÖĞREN · OYNA</div>
 
-        <h1>
-            Oyun dünyana<br>
-            <span>açıl.</span>
-        </h1>
+<!-- ANA SAYFA -->
 
-        <p>
-            İhtiyacın olan rehberler burada.
-            Oyunlar hakkında bilgi edin veya Minecraft
-            sunucumuzla ilgili gelişmeleri keşfet.
-        </p>
-    </section>
+<section class="hero" id="anasayfa">
+    <div class="container">
 
-    <section class="cards" aria-label="Ana menü">
+        <div class="hero-layout">
 
-        <a class="card" href="rehber.html">
-            <div class="card-top">
-                <div class="icon">🎮</div>
+            <div>
+                <span class="eyebrow">✦ MINECRAFT BİLGİ MERKEZİ</span>
 
-                <h2>Oyun Rehberi</h2>
+                <h1>
+                    Minecraft dünyasını<br>
+                    <span>keşfet ve öğren.</span>
+                </h1>
 
                 <p>
-                    Minecraft bilgileri, bloklar, eşyalar,
-                    moblar, biyomlar ve oyun taktikleri.
-                    Rehberlere göz at ve yeni şeyler öğren.
+                    Bloklardan moblara, biyomlardan yapılara, hayatta kalma
+                    rehberlerinden PvP taktiklerine kadar Minecraft hakkında
+                    aradığın bilgileri tek bir yerde keşfet.
                 </p>
+
+                <form id="searchForm" class="search-box" role="search">
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Warden, elmas, biyom, PvP..."
+                        aria-label="GameGuide içinde ara"
+                        autocomplete="off"
+                    >
+
+                    <button class="button button-primary" type="submit">⌕ Ara</button>
+                </form>
+
+                <div id="searchStatus" class="search-status" aria-live="polite"></div>
+
+                <div class="hero-tags" aria-label="Popüler aramalar">
+                    <button type="button" data-search-term="Warden">Warden</button>
+                    <button type="button" data-search-term="Elmas">Elmas</button>
+                    <button type="button" data-search-term="Redstone">Redstone</button>
+                    <button type="button" data-search-term="Biyom">Biyomlar</button>
+                    <button type="button" data-search-term="PvP">PvP Taktikleri</button>
+                </div>
             </div>
 
-            <div class="card-bottom">
-                <span>REHBERLERİ KEŞFET</span>
-                <span class="arrow">↗</span>
+            <div class="hero-art" aria-hidden="true">
+                <div class="floating float-one">
+                    <strong>⛏ Keşfet</strong>
+                    Minecraft bilgileri
+                </div>
+
+                <div class="hero-block">🌿</div>
+
+                <div class="floating float-two">
+                    <strong>⚔ Öğren</strong>
+                    Yeni taktikler
+                </div>
             </div>
-        </a>
 
-        <a class="card server" href="sunucu.html">
-            <div class="card-top">
-                <div class="icon">⛏️</div>
+        </div>
 
-                <h2>Minecraft Sunucumuz</h2>
+        <div class="stats">
+            <div class="stat">
+                <strong>Wiki</strong>
+                <span>Minecraft bilgi merkezi</span>
+            </div>
 
-                <p>
-                    Sunucumuzun özelliklerini, oyun modlarını
-                    ve duyurularını tek bir yerden takip et.
+            <div class="stat">
+                <strong>Rehberler</strong>
+                <span>Adım adım öğren</span>
+            </div>
+
+            <div class="stat">
+                <strong>PvP</strong>
+                <span>Savaş taktikleri</span>
+            </div>
+
+            <div class="stat">
+                <strong>GameGuide</strong>
+                <span>Oyun dünyanı geliştir</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MINECRAFT WIKI -->
+
+<section class="section" id="wiki">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">MINECRAFT BİLGİ BANKASI</span>
+            <h2>Minecraft Wiki</h2>
+            <p>
+                Minecraft dünyasındaki blokları, eşyaları, yaratıkları,
+                biyomları ve oyun sistemlerini keşfet.
+            </p>
+        </div>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">🧱</div>
+                <h3>Bloklar ve Eşyalar</h3>
+                <p>Blokların kullanım alanlarını, üretim tariflerini ve özelliklerini öğren.</p>
+                <a href="#bloklar">Blokları keşfet →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🐉</div>
+                <h3>Moblar ve Yaratıklar</h3>
+                <p>Dost canlılarından tehlikeli düşmanlara kadar Minecraft canlılarını tanı.</p>
+                <a href="#moblar">Yaratıkları keşfet →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🌲</div>
+                <h3>Biyomlar ve Yapılar</h3>
+                <p>Farklı bölgeleri, doğal yapıları ve keşfedilecek yerleri incele.</p>
+                <a href="#biyomlar">Dünyayı keşfet →</a>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- REHBERLER -->
+
+<section class="section section-alt" id="rehberler">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">ADIM ADIM ÖĞREN</span>
+            <h2>Minecraft Rehberleri</h2>
+            <p>
+                Yeni başlayanlardan deneyimli oyunculara kadar herkes için
+                pratik bilgiler ve oynanış önerileri.
+            </p>
+        </div>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">🪓</div>
+                <h3>Hayatta Kalma</h3>
+                <p>İlk gününü planla, kaynak topla, barınak kur ve tehlikelere hazırlan.</p>
+                <a href="#hayatta-kalma">Rehberi incele →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">💎</div>
+                <h3>Madencilik</h3>
+                <p>Yer altını keşfet, kaynaklarını düzenle ve kazılarını daha verimli yap.</p>
+                <a href="#madencilik">Rehberi incele →</a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Redstone Sistemleri</h3>
+                <p>Basit mekanizmalardan otomatik sistemlere kadar yeni fikirler öğren.</p>
+                <a href="#redstone">Rehberi incele →</a>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- BLOKLAR VE EŞYALAR -->
+
+<section class="section" id="bloklar">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="kicker">WIKI KATEGORİSİ</span>
+            <h2>Bloklar ve Eşyalar</h2>
+            <p>
+                Minecraft'taki temel kaynakları, araçları, zırhları ve
+                üretim sistemlerini tanı.
+            </p>
+        </div>
+
+        <details class="accordion">
+            <summary>
+                <span class="item-icon">⛏️</span>
+                <span class="summary-text">
+                    <strong>Aletler ve Silahlar</strong>
+                    <small>Kazmalar, baltalar, kılıçlar, yaylar ve diğer araçlar</small>
+                </span>
+            </summary>
+
+            <div class="accordion-content">
+                <p class="content-description">
+                    Aletler, kaynak toplamayı ve dünyada ilerlemeyi kolaylaştırır.
+                    Doğru aleti doğru blokta kullanmak zaman kazandırır.
                 </p>
+
+                <div class="sub-accordion-list">
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">⛏</span>
+                            <span>Kazma</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Kazmalar taş, cevher ve birçok sert bloğu daha
+                                hızlı kırmak için kullanılır. Bazı bloklar,
+                                doğru kazma türüyle kırılmadığında kaynak olarak düşmez.
+                            </p>
+                            <p><strong>Öneri:</strong> Değerli cevherleri kazmadan önce
+                            uygun alet kullandığından emin ol.</p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🪓</span>
+                            <span>Balta</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Baltalar odun ve kütükleri toplamak için etkilidir.
+                                Java Edition'da savaş sırasında da kullanılabilir.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">⚔</span>
+                            <span>Kılıç</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Kılıçlar yakın dövüşte kullanılan temel silahlardır.
+                                Keskinlik gibi büyüler saldırı gücünü artırabilir.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🏹</span>
+                            <span>Yay ve Arbalet</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Yay ve arbaletler uzaktan saldırı yapmayı sağlar.
+                                Mesafeyi korumak ve isabetli atış yapmak savaşta avantaj sağlar.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
             </div>
+        </details>
 
-            <div class="card-bottom">
-                <span>SUNUCUYU TANI</span>
-                <span class="arrow">↗</span>
+        <details class="accordion">
+            <summary>
+                <span class="item-icon">🛡️</span>
+                <span class="summary-text">
+                    <strong>Zırhlar ve Savunma</strong>
+                    <small>Deri, demir, altın, elmas ve netherit zırhlar</small>
+                </span>
+            </summary>
+
+            <div class="accordion-content">
+                <p class="content-description">
+                    Zırhlar düşmanlardan ve çevresel tehlikelerden alınan hasarı
+                    azaltmaya yardımcı olur.
+                </p>
+
+                <div class="sub-accordion-list">
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🪖</span>
+                            <span>Kask</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>Kask, zırh setinin baş bölümünü korur. Solunum gibi
+                            büyüler su altındaki keşifleri kolaylaştırabilir.</p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🦺</span>
+                            <span>Göğüslük</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>Göğüslük, zırh parçaları arasında önemli bir savunma
+                            katkısı sağlar. Kaynaklarına göre uygun zırhı seçebilirsin.</p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">👖</span>
+                            <span>Pantolon ve Botlar</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>Pantolon ve botlar zırh setini tamamlar. Botlardaki
+                            bazı büyüler hareketi ve keşfi kolaylaştırabilir.</p>
+                        </div>
+                    </details>
+
+                </div>
             </div>
-        </a>
+        </details>
 
-    </section>
-</main>
+        <details class="accordion">
+            <summary>
+                <span class="item-icon">💎</span>
+                <span class="summary-text">
+                    <strong>Cevherler ve Değerli Kaynaklar</strong>
+                    <small>Kömür, demir, altın, elmas, redstone ve diğer kaynaklar</small>
+                </span>
+            </summary>
 
-<footer>
-    © <strong>GameGuide</strong> · Oyun dünyanı keşfet.
-</footer>
+            <div class="accordion-content">
+                <div class="sub-accordion-list">
 
-</body>
-</html>
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">💎</span>
+                            <span>Elmas</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Elmas; güçlü aletler, zırhlar ve çeşitli eşyalar
+                                üretmekte kullanılan değerli bir kaynaktır.
+                            </p>
+                            <p><strong>Öneri:</strong> Derin mağaralarda dikkatli ilerle,
+                            yanında yeterli meşale ve yiyecek bulundur.</p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">⛓️</span>
+                            <span>Demir</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Demir; aletler, zırhlar, raylar, kovalar ve çok sayıda
+                                mekanik eşya için kullanılan temel kaynaklardan biridir.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🟡</span>
+                            <span>Altın</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Altın; çeşitli eşyaların üretiminde, ticarette ve
+                                Nether'daki piglinlerle etkileşimde kullanılabilir.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="topic">
+                        <summary>
+                            <span class="topic-icon">🔴</span>
+                            <span>Redstone</span>
+                        </summary>
+                        <div class="topic-body">
+                            <p>
+                                Redstone, devreler ve otomatik sistemler kurmaya yarar.
+                                Kapılar, tuzaklar, saatler ve eşya ayırıcılar gibi
+                                mekanizmaların temelinde kullanılabilir.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </details>
+
+        <details class="accordion
