@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10170f">
+<meta name="description" content="NexaNW Minecraft sunucusu. SMP ve BoxPvP modları yakında açılıyor!">
+<title>NexaNW | Minecraft Sunucumuz</title>
+
+<link rel="icon" href="favicon.ico">
+
+<style>
+:root {
+    --bg: #0d130d;
+    --panel: #182318;
+    --panel2: #223321;
+    --green: #8fe052;
+    --green2: #5c9c35;
+    --text: #f4f5e9;
+    --muted: #b7c5ae;
+    --border: #405638;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at top, #254327 0%, transparent 45%),
+        repeating-linear-gradient(90deg, transparent 0 39px, #ffffff04 39px 40px),
+        repeating-linear-gradient(0deg, transparent 0 39px, #ffffff04 39px 40px),
+        var(--bg);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+/* NAVİGASYON */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #10170ff5;
+    border-bottom: 4px solid #477a30;
+    box-shadow: 0 5px 20px #0005;
+    backdrop-filter: blur(12px);
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: "Courier New", monospace;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo-block {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(
+        #83cc4b 0 30%,
+        #4f8b32 30% 40%,
+        #795538 40% 100%
+    );
+    border: 3px solid #c0e995;
+    box-shadow: inset -4px -4px #0003, 3px 3px #0008;
+}
+
+.logo span:last-child {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+}
+
+.nav-links a {
+    padding: 9px 12px;
+    color: #d1ddc6;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid transparent;
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+    background: #223321;
+    border-color: #527344;
+}
+
+.nav-button {
+    display: none;
+    padding: 8px 12px;
+    color: white;
+    background: var(--panel);
+    border: 2px solid var(--border);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 85px;
+    text-align: center;
+    border-bottom: 12px solid #523a25;
+    background:
+        linear-gradient(180deg, #10170f24, #10170ff5),
+        radial-gradient(ellipse at center, #31552b 0%, #182b1b 52%, #10170f 100%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: repeating-linear-gradient(
+        90deg,
+        #83d34a 0 32px,
+        #65a93b 32px 64px,
+        #477d2e 64px 96px
+    );
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 13px;
+    margin-bottom: 23px;
+    color: #b7f28a;
+    background: #1b301b;
+    border: 2px solid #5d8a43;
+    box-shadow: 3px 3px #0005;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    font-family: "Courier New", monospace;
+    font-size: clamp(45px, 8vw, 88px);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -4px;
+    text-shadow: 4px 4px #000, 7px 7px #0005;
+}
+
+.hero h1 span {
+    display: block;
+    margin-top: 8px;
+    color: var(--green);
+    text-shadow: 4px 4px #29421d;
+}
+
+.hero-description {
+    max-width: 660px;
+    margin: 25px auto;
+    color: #d0ddc7;
+    font-size: 16px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 19px;
+    color: #edf4e7;
+    background: #1a2718;
+    border: 2px solid #526c43;
+    box-shadow: 4px 4px #0007;
+    font-size: 12px;
+    font-weight: 900;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--green);
+}
+
+.btn-primary {
+    color: #14210e;
+    background: linear-gradient(#a7ec70, #6eb641);
+    border-color: #b4f587;
+}
+
+.btn-primary:hover {
+    color: #14210e;
+    background: linear-gradient(#c2f99a, #83ce51);
+}
+
+.cube-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 48px auto 30px;
+    min-height: 145px;
+}
+
+.cube {
+    position: relative;
+    width: 115px;
+    height: 115px;
+    display: grid;
+    place-items: center;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 15px, #0002 15px 18px),
+        linear-gradient(#7dc54b 0 28%, #518b32 28% 37%, #87603a 37% 100%);
+    border: 4px solid #243a1d;
+    box-shadow:
+        inset 5px 5px #ffffff25,
+        inset -6px -6px #0004,
+        9px 9px #0008;
+    font-size: 48px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 15px;
+    color: #c3f59d;
+    background: #1d301b;
+    border: 2px solid #4f7a3b;
+    box-shadow: 3px 3px #0005;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #8bdc4f;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #8bdc4f88;
+}
+
+/* GENEL BÖLÜMLER */
+
+section.content-section {
+    padding: 70px 0;
+}
+
+.section-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.section-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 9px;
+    color: var(--green);
+    background: #21341c;
+    border: 1px solid #4b6e37;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+    font-family: "Courier New", monospace;
+    font-size: clamp(27px, 4vw, 39px);
+    font-weight: 900;
+    text-shadow: 3px 3px #0008;
+}
+
+.section-heading p {
+    max-width: 620px;
+    margin: 12px auto 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* OYUN MODLARI */
+
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.mode-card {
+    position: relative;
+    overflow: hidden;
+    padding: 27px;
+    background: linear-gradient(145deg, #20301d, #121b11);
+    border: 3px solid #3c5530;
+    box-shadow: 5px 5px #0007;
+    transition: .25s;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    border-color: #83cb4d;
+}
+
+.mode-icon {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 19px;
+    background: #2a4122;
+    border: 2px solid #557d3e;
+    box-shadow: inset 3px 3px #ffffff10, 3px 3px #0005;
+    font-size: 31px;
+}
+
+.mode-card h3 {
+    margin-bottom: 10px;
+    font-family: "Courier New", monospace;
+    font-size: 25px;
+}
+
+.mode-card p {
+    min-height: 60px;
+    margin-bottom: 19px;
+    color: #bdcbb4;
+    font-size: 13px;
+}
+
+.mode-tag {
+    display: inline-block;
+    padding: 6px 9px;
+    color: #b8ed91;
+    background: #1d3119;
+    border: 1px solid #486b35;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* ÖZELLİKLER */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.feature {
+    padding: 22px;
+    background: #172216;
+    border: 2px solid #354b2b;
+    box-shadow: 3px 3px #0005;
+}
+
+.feature-icon {
+    margin-bottom: 10px;
+    font-size: 29px;
+}
+
+.feature h3 {
+    margin-bottom: 7px;
+    color: #dff4d0;
+    font-family: "Courier New", monospace;
+    font-size: 17px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* SUNUCU IP */
+
+.ip-panel {
+    padding: 35px;
+    text-align: center;
+    background:
+        linear-gradient(145deg, #20361f, #121b11);
+    border: 3px solid #547941;
+    box-shadow: 6px 6px #0007;
+}
+
+.ip-panel h3 {
+    margin-bottom: 9px;
+    font-family: "Courier New", monospace;
+    font-size: 25px;
+}
+
+.ip-panel p {
+    margin-bottom: 21px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.ip-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 540px;
+    margin: auto;
+    padding: 10px;
+    background: #0d150c;
+    border: 2px solid #415c32;
+}
+
+.ip-address {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: #a5eb70;
+    font-family: "Courier New", monospace;
+    font-size: clamp(15px, 3vw, 22px);
+    font-weight: 900;
+}
+
+.copy-button {
+    flex-shrink: 0;
+    padding: 10px 12px;
+    color: #15210f;
+    background: var(--green);
+    border: 2px solid #b5ef89;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.copy-button:hover {
+    background: #baf38f;
+}
+
+#copyMessage {
+    min-height: 22px;
+    margin-top: 12px;
+    color: var(--green);
+    font-size: 12px;
+}
+
+/* YAKINDA */
+
+.coming-soon {
+    position: relative;
+    overflow: hidden;
+    padding: 45px 25px;
+    text-align: center;
+    background: #172417;
+    border: 3px dashed #527443;
+}
+
+.coming-soon h2 {
+    margin-bottom: 12px;
+    color: var(--green);
+    font-family: "Courier New", monospace;
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+.coming-soon p {
+    max-width: 590px;
+    margin: 0 auto 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 27px 0;
+    background: #0a1009;
+    border-top: 4px solid #3d612c;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-logo {
+    color: var(--green);
+    font-family: "Courier New", monospace;
+    font-weight: 900;
+    font-size: 17px;
+}
+
+.footer-inner p {
+    color: #9eae94;
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #c0cfb5;
+    font-size: 11px;
+}
+
+.footer-links a:hover {
+    color: var(--green);
+}
+
+/* MOBİL */
+
+@media (max-width: 760px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 13px 0;
+    }
+
+    .nav-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: 5px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        background: #182318;
+        border: 1px solid #34492b;
+    }
+
+    .hero {
+        padding: 70px 0 60px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .modes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ip-panel {
+        padding: 25px 14px;
+    }
+}
+
+@media (max-width: 450px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cube {
+        width: 95px;
+        height: 95px;
+        font-size: 40px;
+    }
+
+    section.content-section {
+        padding: 50px 0;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ip-box {
+        flex-direction: column;
+    }
+
+    .copy-button {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+
+        <a href="index.html" class="logo">
+            <span class="logo-block">N</span>
+            <span>Nexa<span>NW</span></span>
+        </a>
+
+        <button
+            class="nav-button"
+            id="navButton"
+            type="button"
+            aria-expanded="false"
+            aria-controls="navLinks"
+        >☰ Menü</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">GameGuide Ana Sayfa</a>
+            <a href="#modlar">Oyun Modları</a>
+            <a href="#ozellikler">Özellikler</a>
+            <a href="#baglan">Sunucu IP</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <!-- ANA ALAN -->
+
+    <section class="hero">
+        <div class="container hero-inner">
+
+            <span class="badge">✦ YENİ BİR MINECRAFT DENEYİMİ</span>
+
+            <h1>
+                NEXA<span>NETWORK</span>
+            </h1>
+
+            <p class="hero-description">
+                Yeni maceralar, rekabet dolu savaşlar ve kendi hikâyeni
+                yazabileceğin bir Minecraft dünyası seni bekliyor.
+                NexaNW çok yakında!
+            </p>
+
+            <div class="cube-area">
+                <div class="cube" aria-hidden="true">🌿</div>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                SUNUCU YAKINDA AÇILIYOR
+            </div>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#modlar">
+                    ⚔ OYUN MODLARINI KEŞFET
+                </a>
+
+                <a class="btn" href="index.html">
+                    ← GAMEGUIDE ANA SAYFA
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OYUN MODLARI -->
+
+    <section class="content-section" id="modlar">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="section-label">SENİ NELER BEKLİYOR?</span>
+                <h2>Oyun Modları</h2>
+                <p>
+                    İster kendi dünyanı kur, ister savaş alanında yeteneklerini
+                    göster. NexaNW'de farklı maceralara hazırlan.
+                </p>
+            </div>
+
+            <div class="modes-grid">
+
+                <article class="mode-card">
+                    <div class="mode-icon">🌍</div>
+
+                    <h3>SMP</h3>
+
+                    <p>
+                        Hayatta kal, kaynaklarını topla, yapılar inşa et ve
+                        diğer oyuncularla kendi maceranı oluştur.
+                        Minecraft dünyasında kendi yolunu çiz.
+                    </p>
+
+                    <span class="mode-tag">YAKINDA AÇILIYOR</span>
+                </article>
+
+                <article class="mode-card">
+                    <div class="mode-icon">⚔️</div>
+
+                    <h3>BoxPvP</h3>
+
+                    <p>
+                        Savaş alanına gir, ekipmanını geliştir ve rakiplerinle
+                        mücadele et. Reflekslerini ve savaş becerilerini göster.
+                    </p>
+
+                    <span class="mode-tag">YAKINDA AÇILIYOR</span>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ÖZELLİKLER -->
+
+    <section class="content-section" id="ozellikler">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="section-label">NEXANW DÜNYASI</span>
+                <h2>Maceraya Hazırlan</h2>
+                <p>
+                    Sunucumuzun açılışına hazırlanırken seni bekleyen
+                    Minecraft deneyimine göz at.
+                </p>
+            </div>
+
+            <div class="features-grid">
+
+                <article class="feature">
+                    <div class="feature-icon">🌲</div>
+                    <h3>Keşif</h3>
+                    <p>Yeni bölgeler keşfet, kaynak topla ve kendi maceranı yaşa.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon">🏰</div>
+                    <h3>İnşa Et</h3>
+                    <p>Kendi yapını oluştur ve Minecraft dünyasında iz bırak.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>Rekabet</h3>
+                    <p>BoxPvP modunda mücadele et ve savaş becerilerini geliştir.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon">⛏️</div>
+                    <h3>Kaynak Topla</h3>
+                    <p>Kaynaklarını topla, ekipmanlarını geliştir ve ilerle.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon">🧭</div>
+                    <h3>Kendi Yolun</h3>
+                    <p>SMP dünyasında kendi hedeflerini belirle ve gerçekleştir.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Topluluk</h3>
+                    <p>Diğer oyuncularla tanış ve Minecraft maceranı paylaş.</p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUNUCU ADRESİ -->
+
+    <section class="content-section" id="baglan">
+        <div class="container">
+
+            <div class="ip-panel">
+
+                <span class="section-label">BAĞLANTI BİLGİLERİ</span>
+
+                <h3>Sunucu Adresi</h3>
+
+                <p>
+                    Sunucu açıldığında aşağıdaki adresi Minecraft'ın
+                    çok oyunculu bölümüne ekleyebilirsin.
+                </p>
+
+                <div class="ip-box">
+                    <span class="ip-address" id="serverIP">
+                        NexaNW.aternos.me
+                    </span>
+
+                    <button
+                        class="copy-button"
+                        id="copyButton"
+                        type="button"
+                    >IP'Yİ KOPYALA</button>
+                </div>
+
+                <div id="copyMessage" aria-live="polite"></div>
+
+                <p style="margin-top:12px;margin-bottom:0">
+                    <strong style="color:#a5eb70">Not:</strong>
+                    Sunucu henüz açılmadıysa bağlantı kuramazsın.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- YAKINDA -->
+
+    <section class="content-section">
+        <div class="container">
+
+            <div class="coming-soon">
+                <span class="section-label">HAZIR MISIN?</span>
+
+                <h2>Macera Başlamak Üzere!</h2>
+
+                <p>
+                    NexaNW'nin açılışı için hazırlıklar devam ediyor.
+                    SMP ve BoxPvP dünyalarımız yakında hizmete sunulacaktır.
+                </p>
+
+                <a href="index.html" class="btn btn-primary">
+                    GAMEGUIDE'A GERİ DÖN
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+
+        <div>
+            <div class="footer-logo">NexaNW</div>
+            <p>© 2026 NexaNW. Tüm hakları saklıdır.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">GameGuide</a>
+            <a href="#modlar">Oyun Modları</a>
+            <a href="#baglan">Sunucu Adresi</a>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+const navButton = document.getElementById("navButton");
+const navLinks = document.getElementById("navLinks");
+
+navButton.addEventListener("click", function () {
+    const isOpen = navLinks.classList.toggle("open");
+
+    navButton.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        navButton.setAttribute("aria-expanded", "false");
+    });
+});
+
+const copyButton = document.getElementById("copyButton");
+const serverIP = document.getElementById("serverIP");
+const copyMessage = document.getElementById("copyMessage");
+
+copyButton.addEventListener("click", async function () {
+    const ip = serverIP.textContent.trim();
+
+    try {
+        await navigator.clipboard.writeText(ip);
+        copyMessage.textContent = "✓ Sunucu IP'si kopyalandı!";
+    } catch (error) {
+        const temporaryInput = document.createElement("textarea");
+
+        temporaryInput.value = ip;
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.opacity = "0";
+
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+
+        const copied = document.execCommand("copy");
+        temporaryInput.remove();
+
+        copyMessage.textContent = copied
+            ? "✓ Sunucu IP'si kopyalandı!"
+            : "IP adresi: " + ip;
+    }
+
+    copyButton.textContent = "KOPYALANDI!";
+
+    setTimeout(function () {
+        copyButton.textContent = "IP'Yİ KOPYALA";
+        copyMessage.textContent = "";
+    }, 2500);
+});
+</script>
+
+</body>
+</html>
